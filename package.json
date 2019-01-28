@@ -1,7 +1,7 @@
 {
   "name": "dinky.js",
   "version": "0.1.0",
-  "description": "Derpibooru client for JavaScript",
+  "description": "A JavaScript client for Derpibooru API",
   "main": "lib/Dinky.js",
   "repository": "https://github.com/octet-stream/dinky",
   "author": "Nick K. <nick.kruchinin@gmail.com>",
