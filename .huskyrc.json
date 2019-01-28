@@ -1,6 +1,6 @@
 {
   "hooks": {
     "pre-commit": "yarn staged",
-    "pre-push": "yarn lint"
+    "pre-push": "yarn eslint"
   }
 }
