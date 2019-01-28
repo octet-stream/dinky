@@ -7,7 +7,7 @@
   "author": "Nick K. <nick.kruchinin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "eslint": "node_modules/.bin/eslint lib/**/*.js test/**/*.js",
+    "eslint": "node_modules/.bin/eslint lib/**/*.js",
     "staged": "node_modules/.bin/lint-staged"
   },
   "devDependencies": {
