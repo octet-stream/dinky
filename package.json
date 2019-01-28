@@ -8,7 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@octetstream/eslint-config": "^3.0.0",
-    "ava": "^1.1.0",
+    "ava": "^1.2.0",
     "eslint": "^5.12.1",
     "eslint-plugin-ava": "^5.1.1",
     "isomorphic-fetch": "^2.2.1"
