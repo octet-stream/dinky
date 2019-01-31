@@ -45,7 +45,9 @@ dinky({url: "derpibooru.org"}).search(["artist:rainbow", "safe"]).raindom()
 
 ## API
 
-`constructor Dinky([options])`
+### `class Dinky`
+
+##### `constructor([options]) -> {Dinky}`
 
 Creates a new instance of the Derpibooru API client
 
@@ -53,12 +55,91 @@ Creates a new instance of the Derpibooru API client
   - **{string}** [options.url = "derpibooru.org"] - Derpibooru API hostname (you can set trixiebooru.org or derpibooru.org)
   - **{string}** [options.key = null] – your personal API key taken from your account settings
 
-`images() -> {Images}`
+#### Instance methods
+
+##### `images() -> {Images}`
 
 Creates a request handler for `/images.json`
 
-`search([tags]) -> {Search}`
+##### `search([tags]) -> {Search}`
 
 Creates a request handler for `/search.json`. This method takes a list of tags
 
-  - **{string | Array<string>}** [tags = null] – a tag or a list of tags
+  - **{string | string[]}** [tags = null] – a tag or a list of tags and returns Search instance
+
+### `class Images > Request`
+
+##### `constructor() -> {Images}`
+
+Creates a request handler for `/images.json`
+
+#### Instance methods
+
+##### `id(id) -> {Promise<object>}`
+
+Returns an image with given ID
+
+### `class Search > Request`
+
+##### `constructor() -> {Search}`
+
+Creates a request handler for `/search.json`.
+
+#### Instance methods
+
+##### `tags(list) -> {Search}`
+
+Appends a tag or a list of tags to the current search request
+
+  - **{string | string[]}** list – a tag or a list of tags you want to append
+
+##### `limit(value) -> {Search}`
+
+Specifies how many images per page should API return
+
+  - **{number}** value – an amount of images you want to take.
+    The value must be in range of 1 and 50.
+
+##### `random() -> {Promise<object>}`
+
+If been called, the API will return random image
+
+### `class Request`
+
+##### `constructor() -> {Request}`
+
+Creates a new request handler.
+
+#### Instance methods
+
+##### `ascending() -> {Request}`
+
+Sets results ordering to ascending
+
+##### `descending() -> {Request}`
+
+Sets results ordering to descending
+
+##### `page(offset) -> {Request}`
+
+Sets the page offset
+
+  - **{number}** [offset = 1] – The page offset.
+
+##### `exec() -> {Promise<object | Array<object>>}`
+
+Executes current request.
+
+##### `then(onFulfilled, onRejected) -> {Promise<object | Array<object>>}`
+
+This method takes up to two arguments: callback functions for the success and failure cases of the Promise.
+See [Promise#then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) documentation for more info.
+
+##### `catch(onRejected) -> {Promise<object | Array<object>>}`
+
+This method returns a Promise and deals with rejected cases only.
+See [Promise#catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) documentation for more info.
+
+## Related
+
+* Derpibooru API documentation can be found here: [trixiebooru.org/pages/api](https://trixiebooru.org/pages/api)
