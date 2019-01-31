@@ -39,6 +39,26 @@ Or if you want to find pictures by their tags, just use `.search()` method:
 import dinky from "dinky.js"
 
 // You can specify tags right in .search() method
-dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).raindom()
+dinky({url: "derpibooru.org"}).search(["artist:rainbow", "safe"]).raindom()
   .then(console.log)
 ```
+
+## API
+
+`constructor Dinky([options])`
+
+Creates a new instance of the Derpibooru API client
+
+  - **{object}** [options = {}] – client options
+  - **{string}** options.url - one of Derpibooru hostname (you can set trixiebooru.org or derpibooru.org)
+  - **{string}** [options.key = undefined] – your personal API key taken from your account settings
+
+`images() -> {Images}`
+
+Creates a request handler for `/images.json`
+
+`search([tags]) -> {Search}`
+
+Creates a request handler for `/search.json`. This method takes a list of tags
+
+  - **{string | Array<string>}** [tags = null] – a tag or a list of tags
