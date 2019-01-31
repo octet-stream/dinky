@@ -33,7 +33,7 @@ import dinky from "dinky.js"
 dinky({url: "trixiebooru.org"}).images().id(0).then(console.log)
 ```
 
-Or if you want to find pictures randomly or by their tags, just use .search() method:
+Or if you want to find pictures by their tags, just use `.search()` method:
 
 ```js
 import dinky from "dinky.js"
