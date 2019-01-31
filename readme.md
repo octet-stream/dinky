@@ -50,8 +50,8 @@ dinky({url: "derpibooru.org"}).search(["artist:rainbow", "safe"]).raindom()
 Creates a new instance of the Derpibooru API client
 
   - **{object}** [options = {}] – client options
-  - **{string}** options.url - one of Derpibooru hostname (you can set trixiebooru.org or derpibooru.org)
-  - **{string}** [options.key = undefined] – your personal API key taken from your account settings
+  - **{string}** [options.url = "derpibooru.org"] - Derpibooru API hostname (you can set trixiebooru.org or derpibooru.org)
+  - **{string}** [options.key = null] – your personal API key taken from your account settings
 
 `images() -> {Images}`
 
