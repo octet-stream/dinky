@@ -20,7 +20,7 @@
     "lint-staged": "8.1.1"
   },
   "dependencies": {
-    "camelcase-keys": "^5.0.0",
+    "camelcase-keys": "5.0.0",
     "node-fetch": "2.3.0"
   }
 }
