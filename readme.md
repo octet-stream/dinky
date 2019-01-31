@@ -30,5 +30,5 @@ import dinky from "dinky.js"
 // You can specify to which address request will be sent in Dinky's constructor
 // The following request will return the 1th uploaded image from Derpibooru.
 // Equivalent to https://trixiebooru.org/images/0.json request
-dinky({url: "trixiebooru.org"}).images(0).then(console.log)
+dinky({url: "trixiebooru.org"}).images().id(0).then(console.log)
 ```
