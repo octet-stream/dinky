@@ -4,6 +4,8 @@ const pq = require("proxyquire")
 const {spy} = require("sinon")
 
 const dinky = require("../../lib/Dinky")
+const Images = require("../../lib/Images")
+const Search = require("../../lib/Search")
 
 test("Dinky constructor creates a link function with default url", t => {
   const spylink = spy()
@@ -25,6 +27,14 @@ test("Dinky constructor creates a link with given url", t => {
   dinky({url: "trixiebooru.org"})
 
   t.is(spylink.firstCall.lastArg.url, "trixiebooru.org")
+})
+
+test("Dinky#images returns the Images instance", t => {
+  t.true(dinky().images() instanceof Images)
+})
+
+test("Dinky#search returns the Search instance", t => {
+  t.true(dinky().search() instanceof Search)
 })
 
 test(

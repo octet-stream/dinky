@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "test": "node_modules/.bin/ava",
-    "report": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=html yarn test",
+    "report": "node_modules/.bin/nyc yarn test",
+    "report:html": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=html yarn test",
     "report:lcov": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=lcov yarn test",
     "report:ci": "yarn report:lcov && node_modules/.bin/codecov",
     "eslint": "node_modules/.bin/eslint lib/**/*.js test/**/*.js",
