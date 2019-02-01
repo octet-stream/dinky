@@ -1,6 +1,6 @@
 {
   "hooks": {
     "pre-commit": "yarn staged",
-    "pre-push": "yarn eslint"
+    "pre-push": "yarn eslint && yarn report:lcov"
   }
 }
