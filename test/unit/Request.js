@@ -5,7 +5,7 @@ const {spy} = require("sinon")
 
 const Request = require("../../lib/Request")
 
-test("Calls the link on given path", async t => {
+test("Request calls the link on given path", async t => {
   const link = spy(() => Promise.resolve({}))
 
   await new Request({link, path: "search"}).exec()
@@ -15,7 +15,7 @@ test("Calls the link on given path", async t => {
   t.is(path, "search")
 })
 
-test("Request#ascending sets images ordering to \"a\"", async t => {
+test("Request#ascending() sets images ordering to \"a\"", async t => {
   const link = spy(() => Promise.resolve({}))
 
   // The Request class is thenable so we can avoid of
@@ -28,7 +28,7 @@ test("Request#ascending sets images ordering to \"a\"", async t => {
   t.is(query.get("order"), "a")
 })
 
-test("Request#descending sets images ordering to \"d\"", async t => {
+test("Request#descending() sets images ordering to \"d\"", async t => {
   const link = spy(() => Promise.resolve({}))
 
   await new Request({link, path: "search"}).descending()
@@ -39,7 +39,7 @@ test("Request#descending sets images ordering to \"d\"", async t => {
   t.is(query.get("order"), "d")
 })
 
-test("Request#page sets the page offset in query", async t => {
+test("Request#page() sets the page offset in query", async t => {
   const link = spy(() => Promise.resolve({}))
 
   await new Request({link, path: "search"}).page(42)
