@@ -37,6 +37,19 @@ test("Dinky#search returns the Search instance", t => {
   t.true(dinky().search() instanceof Search)
 })
 
+test("Dinky#search creates Search handler with given tags", t => {
+  const FakeSearch = spy()
+
+  // eslint-disable-next-line no-shadow
+  const dinky = pq("../../lib/Dinky", {"./Search": FakeSearch})
+
+  const expected = ["princess luna", "safe"]
+
+  dinky().search(expected)
+
+  t.deepEqual(FakeSearch.firstCall.lastArg.tags, expected)
+})
+
 test(
   "Dinky should throw an error on requesting to unsupported url",
   async t => {
