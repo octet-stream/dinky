@@ -49,3 +49,14 @@ test("Request#page() sets the page offset in query", async t => {
   t.true(query.has("page"))
   t.is(query.get("page"), 42)
 })
+
+test("Request#page() sets default page offset in query", async t => {
+  const link = spy(() => Promise.resolve({}))
+
+  await new Request({link, path: "search"}).page()
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("page"))
+  t.is(query.get("page"), 1)
+})
