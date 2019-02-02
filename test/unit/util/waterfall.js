@@ -4,7 +4,7 @@ const {spy} = require("sinon")
 
 const waterfall = require("../../../lib/util/waterfall")
 
-test("Should always return a Promise", async t => {
+test("Always returns a Promise", async t => {
   t.plan(1)
 
   const actual = waterfall([
@@ -17,7 +17,7 @@ test("Should always return a Promise", async t => {
 })
 
 test(
-  "Should correctly resolve values even if tasks aren't return Promise",
+  "Correctly resolves values even if tasks aren't return Promise",
   async t => {
     t.plan(2)
 
@@ -26,7 +26,7 @@ test(
   }
 )
 
-test("Should pass a result of previous task to the next", async t => {
+test("Passes the result of previous task to the next", async t => {
   t.plan(1)
 
   const taskOne = spy(() => "Hello")
@@ -35,14 +35,14 @@ test("Should pass a result of previous task to the next", async t => {
 
   await waterfall([taskOne, taskTwo])
 
-  const [actual] = taskTwo.lastCall.args
-
   const expected = taskOne.lastCall.returnValue
+
+  const [actual] = taskTwo.lastCall.args
 
   t.is(actual, expected)
 })
 
-test("Should resolve a correct value", async t => {
+test("Resolves a correct value", async t => {
   const actual = await waterfall([
     () => "Hello",
     prev => `${prev}, world!`
@@ -51,7 +51,7 @@ test("Should resolve a correct value", async t => {
   t.is(actual, "Hello, world!")
 })
 
-test("Should throw an error given task is not a function", async t => {
+test("Throws an error given task is not a function", async t => {
   t.plan(2)
 
   await Promise.all([
