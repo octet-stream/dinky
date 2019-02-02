@@ -38,3 +38,14 @@ test("Request#descending sets images ordering to \"d\"", async t => {
   t.true(query.has("order"))
   t.is(query.get("order"), "d")
 })
+
+test("Request#page sets the page offset in query", async t => {
+  const link = spy(() => Promise.resolve({}))
+
+  await new Request({link, path: "search"}).page(42)
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("page"))
+  t.is(query.get("page"), 42)
+})
