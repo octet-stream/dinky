@@ -1,0 +1,8 @@
+test
+
+.editorconfig
+.eslintrc.json
+.huskyrc.json
+.lintstagedrc
+.travis.yml
+yarn.lock
