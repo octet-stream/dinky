@@ -2,7 +2,7 @@ const test = require("ava")
 
 const Query = require("../../lib/Query")
 
-test(".set allows only string keys", t => {
+test(".set() allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.set({}, "some value")
@@ -13,7 +13,7 @@ test(".set allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test(".get allows only string keys", t => {
+test(".get() allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.get({}, "some value")
@@ -24,7 +24,7 @@ test(".get allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test(".get returns a value by its key", t => {
+test(".get() returns a value by its key", t => {
   const query = new Query()
 
   query.set("key", "value")
@@ -32,7 +32,7 @@ test(".get returns a value by its key", t => {
   t.is(query.get("key"), "value")
 })
 
-test(".has allows only string keys", t => {
+test(".has() allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.has({}, "some value")
@@ -43,7 +43,7 @@ test(".has allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test(".has returns true for known keys and false for unknown", t => {
+test(".has() returns true for known keys and false for unknown", t => {
   const query = new Query()
 
   query.set("key", "value")
@@ -52,7 +52,7 @@ test(".has returns true for known keys and false for unknown", t => {
   t.false(query.has("unknown"))
 })
 
-test(".delete allows only string keys", t => {
+test(".delete() allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.delete({}, "some value")
@@ -63,7 +63,7 @@ test(".delete allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test(".delete removes value by its key", t => {
+test(".delete() removes value by its key", t => {
   const query = new Query()
 
   query.set("key", "value")
@@ -98,7 +98,7 @@ test(".toString() ignores nullish values", t => {
 })
 
 test(
-  ".[Symbol.toStringTag] returns the same result as .toString()",
+  ".[Symbol.toStringTag]() returns the same result as .toString()",
   t => {
     const query = new Query()
 
