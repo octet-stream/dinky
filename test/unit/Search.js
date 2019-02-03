@@ -103,3 +103,32 @@ test(".random() adds random_image param to query", async t => {
   t.true(query.has("random_image"))
   t.true(query.get("random_image"))
 })
+
+// TODO: Add test to check how
+
+test("Throws an error when given limit is not a number", async t => {
+  const link = t.context.noopLink
+
+  const err = await t.throwsAsync(new Search({link}).limit("not a number"))
+
+  t.true(err instanceof TypeError)
+  t.is(err.message, "You must specify the limit amount as number.")
+})
+
+test("Throws an error when given limit is more than 50", async t => {
+  const link = t.context.noopLink
+
+  const err = await t.throwsAsync(new Search({link}).limit(451))
+
+  t.true(err instanceof RangeError)
+  t.is(err.message, "Limit must be a value in range between 1 and 50.")
+})
+
+test("Throws an error when given limit is less than 1", async t => {
+  const link = t.context.noopLink
+
+  const err = await t.throwsAsync(new Search({link}).limit(0))
+
+  t.true(err instanceof RangeError)
+  t.is(err.message, "Limit must be a value in range between 1 and 50.")
+})
