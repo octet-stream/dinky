@@ -104,7 +104,7 @@ test(".random() adds random_image param to query", async t => {
   t.true(query.get("random_image"))
 })
 
-// TODO: Add test to check how
+// TODO: Add test to check how .random() resolves image
 
 test("Throws an error when given limit is not a number", async t => {
   const link = t.context.noopLink
