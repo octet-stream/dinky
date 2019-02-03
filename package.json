@@ -16,8 +16,7 @@
     "report": "node_modules/.bin/nyc yarn test",
     "report:html": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=html yarn test",
     "report:lcov": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=lcov yarn test",
-    "report:ci": "yarn report:lcov && node_modules/.bin/codecov",
-    "ci": "yarn report:ci && yarn codecov",
+    "ci": "yarn report:lcov && yarn codecov",
     "eslint": "node_modules/.bin/eslint lib/**/*.js test/**/*.js",
     "staged": "node_modules/.bin/lint-staged"
   },
