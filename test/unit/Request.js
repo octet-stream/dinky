@@ -60,3 +60,16 @@ test("Request#page() sets default page offset in query", async t => {
   t.true(query.has("page"))
   t.is(query.get("page"), 1)
 })
+
+test("Request#catch() correctly handles errors", async t => {
+  const link = () => Promise.reject(new Error("Some error."))
+  const onRejected = spy()
+
+  await new Request({link}).catch(onRejected)
+
+  t.true(onRejected.called)
+
+  const [err] = onRejected.firstCall.args
+
+  t.is(err.message, "Some error.")
+})
