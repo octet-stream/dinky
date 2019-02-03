@@ -18,7 +18,7 @@
   "ava": {
     "files": [
       "test/**/*.js",
-      "!test/**/__helper__/**"
+      "!test/helper/**"
     ]
   },
   "engines": {

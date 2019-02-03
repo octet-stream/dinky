@@ -29,15 +29,15 @@ test("Dinky constructor creates a link with given url", t => {
   t.is(spylink.firstCall.lastArg.url, "trixiebooru.org")
 })
 
-test("Dinky#images returns the Images instance", t => {
+test(".images() returns the Images instance", t => {
   t.true(dinky().images() instanceof Images)
 })
 
-test("Dinky#search returns the Search instance", t => {
+test(".search() returns the Search instance", t => {
   t.true(dinky().search() instanceof Search)
 })
 
-test("Dinky#search creates Search handler with given tags", t => {
+test(".search() creates Search handler with given tags", t => {
   const FakeSearch = spy()
 
   // eslint-disable-next-line no-shadow

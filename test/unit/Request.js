@@ -1,26 +1,29 @@
 const test = require("ava")
-// const mock = require("fetch-mock")
 
 const {spy} = require("sinon")
 
+const createNoopLink = require("../helper/createNoopLink")
+
 const Request = require("../../lib/Request")
 
+test.beforeEach(createNoopLink)
+
 test("Request calls the link on given path", async t => {
-  const link = spy(() => Promise.resolve({}))
+  const link = t.context.noopLink
 
   await new Request({link, path: "search"}).exec()
 
   const [path] = link.firstCall.args
 
-  t.is(path, "search")
+  t.deepEqual(path, ["search"])
 })
 
-test("Request#ascending() sets images ordering to \"a\"", async t => {
-  const link = spy(() => Promise.resolve({}))
+test(".ascending() sets images ordering to \"a\"", async t => {
+  const link = t.context.noopLink
 
   // The Request class is thenable so we can avoid of
   // explicit .exec() method calls
-  await new Request({link, path: "search"}).ascending()
+  await new Request({link}).ascending()
 
   const [, query] = link.firstCall.args
 
@@ -28,10 +31,10 @@ test("Request#ascending() sets images ordering to \"a\"", async t => {
   t.is(query.get("order"), "a")
 })
 
-test("Request#descending() sets images ordering to \"d\"", async t => {
-  const link = spy(() => Promise.resolve({}))
+test(".descending() sets images ordering to \"d\"", async t => {
+  const link = t.context.noopLink
 
-  await new Request({link, path: "search"}).descending()
+  await new Request({link}).descending()
 
   const [, query] = link.firstCall.args
 
@@ -39,10 +42,10 @@ test("Request#descending() sets images ordering to \"d\"", async t => {
   t.is(query.get("order"), "d")
 })
 
-test("Request#page() sets the page offset in query", async t => {
-  const link = spy(() => Promise.resolve({}))
+test(".page() sets the page offset in query", async t => {
+  const link = t.context.noopLink
 
-  await new Request({link, path: "search"}).page(42)
+  await new Request({link}).page(42)
 
   const [, query] = link.firstCall.args
 
@@ -50,10 +53,10 @@ test("Request#page() sets the page offset in query", async t => {
   t.is(query.get("page"), 42)
 })
 
-test("Request#page() sets default page offset in query", async t => {
-  const link = spy(() => Promise.resolve({}))
+test(".page() sets default page offset in query", async t => {
+  const link = t.context.noopLink
 
-  await new Request({link, path: "search"}).page()
+  await new Request({link}).page()
 
   const [, query] = link.firstCall.args
 
@@ -61,7 +64,7 @@ test("Request#page() sets default page offset in query", async t => {
   t.is(query.get("page"), 1)
 })
 
-test("Request#catch() correctly handles errors", async t => {
+test(".catch() correctly handles errors", async t => {
   const link = () => Promise.reject(new Error("Some error."))
   const onRejected = spy()
 

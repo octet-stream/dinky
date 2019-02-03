@@ -2,7 +2,7 @@ const test = require("ava")
 
 const Query = require("../../lib/Query")
 
-test("Query#set allows only string keys", t => {
+test(".set allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.set({}, "some value")
@@ -13,7 +13,7 @@ test("Query#set allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test("Query#get allows only string keys", t => {
+test(".get allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.get({}, "some value")
@@ -24,7 +24,7 @@ test("Query#get allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test("Query#get returns a value by its key", t => {
+test(".get returns a value by its key", t => {
   const query = new Query()
 
   query.set("key", "value")
@@ -32,7 +32,7 @@ test("Query#get returns a value by its key", t => {
   t.is(query.get("key"), "value")
 })
 
-test("Query#has allows only string keys", t => {
+test(".has allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.has({}, "some value")
@@ -43,7 +43,7 @@ test("Query#has allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test("Query#has returns true for known keys and false for unknown", t => {
+test(".has returns true for known keys and false for unknown", t => {
   const query = new Query()
 
   query.set("key", "value")
@@ -52,7 +52,7 @@ test("Query#has returns true for known keys and false for unknown", t => {
   t.false(query.has("unknown"))
 })
 
-test("Query#delete allows only string keys", t => {
+test(".delete allows only string keys", t => {
   const query = new Query()
 
   const trap = () => query.delete({}, "some value")
@@ -63,7 +63,7 @@ test("Query#delete allows only string keys", t => {
   t.is(err.message, "Given key must be a string.")
 })
 
-test("Query#delete removes value by its key", t => {
+test(".delete removes value by its key", t => {
   const query = new Query()
 
   query.set("key", "value")
@@ -75,7 +75,7 @@ test("Query#delete removes value by its key", t => {
   t.false(query.has("key"))
 })
 
-test("Query#toString() returns a correctly build query string", t => {
+test(".toString() returns a correctly build query string", t => {
   const query = new Query()
 
   const expected = "q=princess+luna&random_image=true"
@@ -86,7 +86,7 @@ test("Query#toString() returns a correctly build query string", t => {
   t.is(query.toString(), expected)
 })
 
-test("Query#toString() ignores nullish values", t => {
+test(".toString() ignores nullish values", t => {
   const query = new Query()
 
   const expected = "another_key=value"
@@ -98,7 +98,7 @@ test("Query#toString() ignores nullish values", t => {
 })
 
 test(
-  "Query#[Symbol.toStringTag] returns the same result as Query#toString()",
+  ".[Symbol.toStringTag] returns the same result as .toString()",
   t => {
     const query = new Query()
 
