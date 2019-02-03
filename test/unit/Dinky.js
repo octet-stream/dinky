@@ -49,16 +49,3 @@ test(".search() creates Search handler with given tags", t => {
 
   t.deepEqual(FakeSearch.firstCall.lastArg.tags, expected)
 })
-
-test(
-  "Dinky should throw an error on requesting to unsupported url",
-  async t => {
-    const err = await t.throwsAsync(dinky({url: "example.com"}).images().exec())
-
-    t.is(
-      err.message,
-      "Dinky can sends requests only to these hosts: " +
-      "trixiebooru.org, derpibooru.org"
-    )
-  }
-)
