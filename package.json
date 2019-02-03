@@ -28,7 +28,7 @@
     ]
   },
   "engines": {
-    "node": ">=8.10 <9 || >=10.0.0"
+    "node": ">=8.10.x <9 || >=10.0.0"
   },
   "devDependencies": {
     "@octetstream/eslint-config": "3.0.0",
