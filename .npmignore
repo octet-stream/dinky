@@ -1,4 +1,6 @@
 test
+coverage
+.codecov
 
 .editorconfig
 .eslintrc.json

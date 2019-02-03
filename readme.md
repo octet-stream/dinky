@@ -43,7 +43,7 @@ import dinky from "dinky.js"
 // You can specify tags right in the .search() method
 // By default all requests will be sent to derpibooru.org, but you can
 // manually set one of Derpibooru's host in constructor options if you need:
-dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).raindom()
+dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).random()
   .then(console.log)
 ```
 
