@@ -167,8 +167,8 @@ test("Throws an error when given MINIMAL score is not a number", async t => {
 test("Throws an error when given MAXIMAL score is not a number", async t => {
   const link = t.context.noopLink
 
-  const err = await t.throwsAsync(new Search({link}).minScore("not a number"))
+  const err = await t.throwsAsync(new Search({link}).maxScore("not a number"))
 
   t.true(err instanceof TypeError)
-  t.is(err.message, "You must specify minimal score as a number.")
+  t.is(err.message, "You must specify maximal score as a number.")
 })
