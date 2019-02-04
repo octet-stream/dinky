@@ -59,7 +59,7 @@ test("Thows an error when unknown url was set", async t => {
 
   t.is(
     err.message,
-    "Dinky can sends requests only to these hosts: " +
+    "Dinky can send requests only to these hosts: " +
     "trixiebooru.org, derpibooru.org"
   )
 })
