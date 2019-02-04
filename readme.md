@@ -104,6 +104,18 @@ Specifies how many images per page should API return
   - **{number}** value – an amount of images you want to take.
     The value must be in range of 1 and 50.
 
+##### `minScore(value) -> {Search}`
+
+Sets the **minimal** score of requested images.
+
+  - **{numver}** value – a value of minimal socre
+
+##### `maxScore(value) -> {Search}`
+
+Sets the **maximal** score of requested images
+
+  - **{numver}** value – a value of maximal socre
+
 ##### `random() -> {Promise<object>}`
 
 If been called, the API will return random image
