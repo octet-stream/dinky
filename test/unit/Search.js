@@ -154,3 +154,21 @@ test("Throws an error when given limit is less than 1", async t => {
   t.true(err instanceof RangeError)
   t.is(err.message, "Limit must be a value in range between 1 and 50.")
 })
+
+test("Throws an error when given MINIMAL score is not a number", async t => {
+  const link = t.context.noopLink
+
+  const err = await t.throwsAsync(new Search({link}).minScore("not a number"))
+
+  t.true(err instanceof TypeError)
+  t.is(err.message, "You must specify minimal score as a number.")
+})
+
+test("Throws an error when given MAXIMAL score is not a number", async t => {
+  const link = t.context.noopLink
+
+  const err = await t.throwsAsync(new Search({link}).minScore("not a number"))
+
+  t.true(err instanceof TypeError)
+  t.is(err.message, "You must specify minimal score as a number.")
+})
