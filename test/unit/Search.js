@@ -93,6 +93,28 @@ test(".limit() adds the page limit (perpage param) to query", async t => {
   t.is(query.get("perpage"), 42)
 })
 
+test(".minScore() adds the minimal images score to query", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).minScore(420)
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("min_score"))
+  t.is(query.get("min_score"), 420)
+})
+
+test(".maxScore() adds the maximal images score to query", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).maxScore(2600)
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("max_score"))
+  t.is(query.get("max_score"), 2600)
+})
+
 test(".random() adds random_image param to query", async t => {
   const link = t.context.noopLink
 

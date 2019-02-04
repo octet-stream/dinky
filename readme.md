@@ -146,4 +146,4 @@ See [Promise#catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## Related
 
-* Derpibooru API documentation can be found here: [trixiebooru.org/pages/api](https://trixiebooru.org/pages/api)
+* Derpibooru API documentation can be found here: [derpibooru.org/pages/api](https://derpibooru.org/pages/api)
