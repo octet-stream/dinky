@@ -130,11 +130,11 @@ Creates a new request handler.
 
 ##### `ascending() -> {Request}`
 
-Sets results ordering to ascending
+Sets images ordering to ascending
 
 ##### `descending() -> {Request}`
 
-Sets results ordering to descending
+Sets images ordering to descending
 
 ##### `page(offset) -> {Request}`
 
