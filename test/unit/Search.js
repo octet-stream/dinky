@@ -1,4 +1,7 @@
 const test = require("ava")
+const pq = require("proxyquire")
+
+const {spy} = require("sinon")
 
 const createNoopLink = require("../helper/createNoopLink")
 
@@ -126,7 +129,28 @@ test(".random() adds random_image param to query", async t => {
   t.true(query.get("random_image"))
 })
 
-// TODO: Add test to check how .random() resolves image
+test(
+  ".random() sends another request to get an image with returned ID",
+  async t => {
+    const expected = 1328192
+
+    const link = spy((_, query) => {
+      if (query.get("q") === "scootaloo") {
+        return {id: expected}
+      }
+    })
+
+    const dinky = pq("../../lib/Dinky", {"./util/link": () => link})()
+
+    await new Search({link, dinky}).tags("scootaloo").random()
+
+    t.true(link.calledTwice)
+
+    const [[, actual]] = link.lastCall.args
+
+    t.is(actual, expected)
+  }
+)
 
 test("Throws an error when given limit is not a number", async t => {
   const link = t.context.noopLink
