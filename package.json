@@ -12,13 +12,13 @@
     "api-client"
   ],
   "scripts": {
-    "test": "node_modules/.bin/ava",
-    "report": "node_modules/.bin/nyc yarn test",
-    "report:html": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=html yarn test",
-    "report:lcov": "node_modules/.bin/nyc yarn test && node_modules/.bin/nyc report --reporter=lcov yarn test",
-    "ci": "yarn report:lcov && yarn codecov",
-    "eslint": "node_modules/.bin/eslint lib/**/*.js test/**/*.js",
-    "staged": "node_modules/.bin/lint-staged"
+    "test": "ava",
+    "report": "nyc npm run test",
+    "report:html": "nyc npm run test && nyc report --reporter=html npm run test",
+    "report:lcov": "nyc npm run test && nyc report --reporter=lcov npm run test",
+    "ci": "npm run report:lcov && npm run codecov",
+    "eslint": "eslint lib/**/*.js test/**/*.js",
+    "staged": "lint-staged"
   },
   "ava": {
     "files": [
