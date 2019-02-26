@@ -16,7 +16,7 @@
     "report": "nyc npm run test",
     "report:html": "nyc npm run test && nyc report --reporter=html npm run test",
     "report:lcov": "nyc npm run test && nyc report --reporter=lcov npm run test",
-    "ci": "npm run report:lcov && npm run codecov",
+    "ci": "npm run report:lcov && node_modules/.bin/codecov",
     "eslint": "eslint lib/**/*.js test/**/*.js",
     "staged": "lint-staged"
   },
