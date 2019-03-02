@@ -1,6 +1,6 @@
 # dinky.js
 
-A JavaScript client for Derpibooru API
+JavaScript bindings for [Derpibooru](https://derpibooru.org) API
 
 [![Build Status](https://travis-ci.org/octet-stream/dinky.svg?branch=master)](https://travis-ci.org/octet-stream/dinky)
 [![Code Coverage](https://codecov.io/github/octet-stream/dinky/coverage.svg?branch=master)](https://codecov.io/github/octet-stream/dinky?branch=master)
