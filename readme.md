@@ -145,16 +145,16 @@ Sets the page offset
 
   - **{number}** [offset = 1] – The page offset.
 
-##### `exec() -> {Promise<object | Array<object>>}`
+##### `exec() -> {Promise<object>}`
 
 Executes current request.
 
-##### `then(onFulfilled, onRejected) -> {Promise<object | Array<object>>}`
+##### `then(onFulfilled, onRejected) -> {Promise<object>}`
 
 This method takes up to two arguments: callback functions for the success and failure cases of the Promise.
 See [Promise#then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) documentation for more info.
 
-##### `catch(onRejected) -> {Promise<object | Array<object>>}`
+##### `catch(onRejected) -> {Error}`
 
 This method returns a Promise and deals with rejected cases only.
 See [Promise#catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) documentation for more info.
