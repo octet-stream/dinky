@@ -45,7 +45,7 @@ import dinky from "dinky.js"
 // The following example is equivalent of these requests:
 // https://derpibooru.org/search.json?q=artist:rainbow,safe&random_image=true
 // ...and then this one:
-// https://derpibooru.org/images/<received image id>.json
+// https://trixiebooru.org/images/<received image id>.json
 dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).random()
   .then(console.log)
 ```
