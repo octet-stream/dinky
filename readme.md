@@ -30,7 +30,7 @@ The minimal example that will return an image by known ID:
 import dinky from "dinky.js"
 
 // The following request will return the 1th uploaded image from Derpibooru.
-// Equivalent to https://trixiebooru.org/images/0.json request
+// Equivalent to https://derpibooru.org/images/0.json request
 dinky().images().id(0).then(console.log)
 ```
 
