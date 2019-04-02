@@ -37,13 +37,13 @@ test("Allows to pass tags to the constructor", async t => {
   const [, query] = link.firstCall.args
 
   t.true(query.has("q"))
-  t.is(query.get("q"), "princess luna, safe")
+  t.is(query.get("q"), "princess luna,safe")
 })
 
 test("Allows to pass a one tag from the string", async t => {
   const link = t.context.noopLink
 
-  await new Search({link, tags: "scootaloo"})
+  await new Search({link}).tags("scootaloo")
 
   const [, query] = link.firstCall.args
 
@@ -60,7 +60,7 @@ test(".tags() appends more tags to request", async t => {
   const [, query] = link.firstCall.args
 
   t.true(query.has("q"))
-  t.is(query.get("q"), "princess luna, safe, scootaloo, sleepless in ponyville")
+  t.is(query.get("q"), "princess luna,safe,scootaloo,sleepless in ponyville")
 })
 
 test(".tags() allows to add a tag from the string", async t => {
@@ -77,12 +77,34 @@ test(".tags() allows to add a tag from the string", async t => {
 test(".tags() appends a tag from the string", async t => {
   const link = t.context.noopLink
 
-  await new Search({link, tags: "minuette"}).tags("amending fences")
+  await new Search({link, tags: ["minuette"]}).tags("amending fences")
 
   const [, query] = link.firstCall.args
 
   t.true(query.has("q"))
-  t.is(query.get("q"), "minuette, amending fences")
+  t.is(query.get("q"), "minuette,amending fences")
+})
+
+test(".tags() allows to set tags from multiple strings", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags("artist:rainbow", "scootaloo")
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("q"))
+  t.is(query.get("q"), "artist:rainbow,scootaloo")
+})
+
+test(".tags() allows to set tags from multiple arrays", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags(["artist:rainbow"], ["scootaloo"])
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("q"))
+  t.is(query.get("q"), "artist:rainbow,scootaloo")
 })
 
 test(".limit() adds the page limit (perpage param) to query", async t => {

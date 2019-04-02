@@ -47,5 +47,5 @@ test(".search() creates Search handler with given tags", t => {
 
   dinky().search(expected)
 
-  t.deepEqual(FakeSearch.firstCall.lastArg.tags, expected)
+  t.deepEqual(FakeSearch.firstCall.lastArg.tags, [expected])
 })
