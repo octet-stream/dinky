@@ -41,8 +41,8 @@ import dinky from "dinky.js"
 
 // You can specify tags right in the .search() method
 // By default all requests will be sent to derpibooru.org, but you can
-// manually set one of Derpibooru's host in constructor options if you need:
-// Equivalent to the following requests:
+// manually set one of Derpibooru's host in constructor options if you need.
+// The following example is equivalent of these requests:
 // https://derpibooru.org/search.json?q=artist:rainbow,safe&random_image=true
 // ...and then this one:
 // https://derpibooru.org/images/<received image id>.json
