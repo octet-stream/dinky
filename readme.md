@@ -43,7 +43,7 @@ import dinky from "dinky.js"
 // By default all requests will be sent to derpibooru.org, but you can
 // manually set one of Derpibooru's host in constructor options if you need.
 // The following example is equivalent of these requests:
-// https://derpibooru.org/search.json?q=artist:rainbow,safe&random_image=true
+// https://trixiebooru.org/search.json?q=artist:rainbow,safe&random_image=true
 // ...and then this one:
 // https://trixiebooru.org/images/<received image id>.json
 dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).random()
