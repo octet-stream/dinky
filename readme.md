@@ -155,7 +155,7 @@ Executes current request.
 This method takes up to two arguments: callback functions for the success and failure cases of the Promise.
 See [Promise#then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) documentation for more info.
 
-##### `catch(onRejected) -> {Error}`
+##### `catch(onRejected) -> {Promise<any>}`
 
 This method returns a Promise and deals with rejected cases only.
 See [Promise#catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) documentation for more info.
