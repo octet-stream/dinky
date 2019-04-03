@@ -158,7 +158,7 @@ See [Promise#then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
 ##### `catch(onRejected) -> {Error}`
 
 This method returns a Promise and deals with rejected cases only.
-See [Promise#catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) documentation for more info.
+See [Promise#catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) documentation for more info.
 
 ## Related
 
