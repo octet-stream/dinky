@@ -61,6 +61,7 @@ Creates a new instance of the Derpibooru API client
   - **{object}** [options = {}] – client options
   - **{string}** [options.url = "derpibooru.org"] - Derpibooru API hostname (you can set trixiebooru.org or derpibooru.org)
   - **{string}** [options.key = null] – your personal API key taken from your account settings
+  - **{number}** [options.filter = undefined] – ID of a filter. The ID can be found on [filters page](https://derpibooru.org/filters)
 
 #### Instance methods
 
