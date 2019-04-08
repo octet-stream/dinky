@@ -10,7 +10,9 @@ const pattern = /^https:\/\/(derpibooru|trixiebooru).org/
 
 test("Creates fetcher with default url", async t => {
   const fetch = fm.sandbox().mock(pattern, {})
-  const link = pq("../../../lib/util/link", {"node-fetch": fetch})()
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink()
 
   await link(["images"], new Query())
 
@@ -23,10 +25,11 @@ test("Creates fetcher with default url", async t => {
 
 test("Creates fetcher with reserve url", async t => {
   const expected = "https://trixiebooru.org"
+
   const fetch = fm.sandbox().mock(pattern, {})
-  const link = pq("../../../lib/util/link", {"node-fetch": fetch})({
-    url: expected
-  })
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink({url: expected})
 
   await link(["images"], new Query())
 
@@ -39,7 +42,10 @@ test("Creates fetcher with reserve url", async t => {
 
 test("Creates a correct request address from given path and query", async t => {
   const fetch = fm.sandbox().mock(pattern, {})
-  const link = pq("../../../lib/util/link", {"node-fetch": fetch})()
+
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink()
   const query = new Query()
 
   query.set("q", "princess luna")
@@ -58,44 +64,102 @@ test("Appends given key to query params", async t => {
   const expected = "secret"
 
   const fetch = fm.sandbox().mock(pattern, {})
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
 
-  const link = pq("../../../lib/util/link", {"node-fetch": fetch})({
-    key: expected
-  })
-
+  const link = createLink({key: expected})
   const query = new Query()
 
   await link(["search"], query)
 
   t.true(fetch.called())
 
-  const actual = parse(fetch.lastUrl())
-  const search = new URLSearchParams(actual.search)
+  const url = parse(fetch.lastUrl())
+  const actual = new URLSearchParams(url.query)
 
-  t.true(search.has("key"))
-  t.is(search.get("key"), expected)
+  t.is(actual.get("key"), expected)
 })
 
 test("Appends given filter_id to query params", async t => {
   const expected = 419
 
   const fetch = fm.sandbox().mock(pattern, {})
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
 
-  const link = pq("../../../lib/util/link", {"node-fetch": fetch})({
-    filter: expected
-  })
-
+  const link = createLink({filter: expected})
   const query = new Query()
 
   await link(["search"], query)
 
   t.true(fetch.called())
 
-  const actual = parse(fetch.lastUrl())
-  const search = new URLSearchParams(actual.search)
+  const url = parse(fetch.lastUrl())
+  const actual = new URLSearchParams(url.query)
 
-  t.true(search.has("filter_id"))
-  t.is(search.get("filter_id"), String(expected))
+  t.is(actual.get("filter_id"), String(expected))
+})
+
+test("Allows to set per-request key in the third argument", async t => {
+  const expected = "secret"
+
+  const fetch = fm.sandbox().mock(pattern, {})
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink()
+
+  await link(["search"], new Query(), {key: expected})
+
+  const url = parse(fetch.lastUrl())
+  const actual = new URLSearchParams(url.query)
+
+  t.is(actual.get("key"), expected)
+})
+
+test("Per-request key have priority over the default one", async t => {
+  const expected = "another-key"
+
+  const fetch = fm.sandbox().mock(pattern, {})
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink({key: "secret"})
+
+  await link(["search"], new Query(), {key: expected})
+
+  const url = parse(fetch.lastUrl())
+  const actual = new URLSearchParams(url.query)
+
+  t.is(actual.get("key"), expected)
+})
+
+test("Allows to set per-request filter in the third argument", async t => {
+  const expected = 419
+
+  const fetch = fm.sandbox().mock(pattern, {})
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink()
+
+  await link(["search"], new Query(), {filter: expected})
+
+  const url = parse(fetch.lastUrl())
+  const actual = new URLSearchParams(url.query)
+
+  t.is(actual.get("filter_id"), String(expected))
+})
+
+test("Per-request filter have priority over the default one", async t => {
+  const expected = 451
+
+  const fetch = fm.sandbox().mock(pattern, {})
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink({filter: 419})
+
+  await link(["search"], new Query(), {filter: expected})
+
+  const url = parse(fetch.lastUrl())
+  const actual = new URLSearchParams(url.query)
+
+  t.is(actual.get("filter_id"), String(expected))
 })
 
 test("Thows an error when unknown url was set", async t => {
