@@ -64,6 +64,17 @@ test(".page() sets default page offset in query", async t => {
   t.is(query.get("page"), 1)
 })
 
+test(".exec() takes per-request options", async t => {
+  const link = t.context.noopLink
+  const expected = {key: "secret", filter: 100073}
+
+  await new Request({link}).exec(expected)
+
+  const [, , actual] = link.firstCall.args
+
+  t.deepEqual(actual, expected)
+})
+
 test(".catch() correctly handles errors", async t => {
   const link = () => Promise.reject(new Error("Some error."))
   const onRejected = spy()
