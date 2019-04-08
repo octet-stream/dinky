@@ -1,6 +1,6 @@
 {
   "name": "dinky.js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "JavaScript bindings for Derpibooru API",
   "main": "lib/Dinky.js",
   "repository": "https://github.com/octet-stream/dinky",
