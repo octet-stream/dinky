@@ -146,7 +146,11 @@ Sets the page offset
 
   - **{number}** [offset = 1] – The page offset.
 
-##### `exec() -> {Promise<object>}`
+##### `exec([options]) -> {Promise<object>}`
+  - **{object}** options – a set of options to use in request.
+    They are have priority over the [constructor](#class-dinky) options.
+  - **{string}** [options.key = null] – your personal API key taken from your account settings
+  - **{number}** [options.filter = undefined] – ID of a filter. The ID can be found on [filters page](https://derpibooru.org/filters)
 
 Executes current request.
 
