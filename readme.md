@@ -24,7 +24,8 @@ yarn add dinky.js
 ## Usage
 
 Dinky implements chainable API to build each request and all requests will return a Promise that resolves data taken from Derpibooru API.
-The minimal example that will return an image by known ID:
+
+1. The minimal example that will return an image by known ID:
 
 ```js
 import dinky from "dinky.js"
@@ -34,7 +35,7 @@ import dinky from "dinky.js"
 dinky().images().id(0).then(console.log)
 ```
 
-Or if you want to find pictures by their tags, just use `.search()` method:
+2. Search for images by their tags using the `.search()` method:
 
 ```js
 import dinky from "dinky.js"
