@@ -107,6 +107,66 @@ test(".tags() allows to set tags from multiple arrays", async t => {
   t.is(query.get("q"), "artist:rainbow,scootaloo")
 })
 
+test(".faves() sets my:faves to request", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).faves()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "my:faves")
+})
+
+test(".faves() appends my:faves to the existent tags set", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags(["scootaloo", "safe"]).faves()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "scootaloo,safe,my:faves")
+})
+
+test(".watched() sets my:watched to request", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).watched()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "my:watched")
+})
+
+test(".watched() appends my:watched to the existent tags set", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags(["scootaloo", "safe"]).watched()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "scootaloo,safe,my:watched")
+})
+
+test(".upvotes() sets my:upvotes to request", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).upvotes()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "my:upvotes")
+})
+
+test(".upvotes() appends my:upvotes to the existent tags set", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags(["scootaloo", "safe"]).upvotes()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "scootaloo,safe,my:upvotes")
+})
+
 test(".limit() adds the page limit (perpage param) to query", async t => {
   const link = t.context.noopLink
 
