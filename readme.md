@@ -51,6 +51,68 @@ dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).random()
   .then(console.log)
 ```
 
+3. Since `.search()` method returns [`Search`](#class-search--request) instance
+you can store it into variable for the further usage:
+
+```js
+import dinky from "dinky.js"
+
+(async function() {
+  const search = dinky()
+    .search(["scootaloo", "princess luna", "safe", "sleepless in ponyville"])
+    .minScore(200)
+
+  // Will search for random image with parameters from above
+  await search.random()
+
+  // ...and once more
+  await search.random()
+}()).catch(console.error)
+```
+
+4. Walking through the search results:
+
+```js
+import dinky from "dinky.js"
+
+(async function() {
+  const search = dinky().search(["twilight sparkle"]).minScore(200)
+
+  // Search class is thenable, so you don't have to call `.exec()` method
+  // in async functions context.
+  // This request will return search results from the first page
+  await search
+
+  await search.page(2)
+
+  // Same thing for Images class:
+  const images = dinky().images()
+
+  await images.page(2)
+}()).catch(console.error)
+```
+
+5. You can set a filter to use for requests:
+
+```js
+import dinky from "dinky.js"
+
+dinky({filter: 37430}).search(["dinky", "derpy hooves"]).then(console.log)
+
+// You can also set per-request filter from .exec() method
+dinky({filter: 37430}).search(["dinky", "derpy hooves"]).exec({filter: 100073})
+  .then(console.log)
+```
+
+6. Search for "my:faves" images using a key taken from account page:
+
+```js
+import dinky from "dinky.js"
+
+dinky({key: "<your key here>"}).search(["trixie", "safe"]).faves()
+  .then(console.log)
+```
+
 ## API
 
 ### `class Dinky`
@@ -101,6 +163,24 @@ Creates a request handler for `/search.json`.
 Appends a tag or a list of tags to the current search request
 
   - **{string | string[]}** list – a tag or a list of tags you want to append
+
+##### `faves() -> {Seatch}`
+
+Sets my:faves param to the search request.
+
+**Note that this method reques user's key.**
+
+##### `watched() -> {Search}`
+
+Sets my:watched param to the search request.
+
+**Note that this method reques user's key.**
+
+##### `upvotes() -> {Search}`
+
+Sets my:upvotes param to the search request.
+
+**Note that this method reques user's key.**
 
 ##### `limit(value) -> {Search}`
 
