@@ -4,6 +4,8 @@ const test = require("ava")
 const pq = require("proxyquire")
 const fm = require("fetch-mock")
 
+const {Response} = require("node-fetch")
+
 const Query = require("../../../lib/Query")
 
 const pattern = /^https:\/\/(derpibooru|trixiebooru).org/
@@ -162,7 +164,22 @@ test("Per-request filter have priority over the default one", async t => {
   t.is(actual.get("filter_id"), String(expected))
 })
 
-test("Thows an error when unknown url was set", async t => {
+test("Throws an error for non 2xx response", async t => {
+  const fetch = fm.sandbox().mock(pattern, 404)
+  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
+
+  const link = createLink()
+
+  const err = await t.throwsAsync(link(["search"], new Query()))
+
+  t.true(err instanceof Error)
+  t.is(err.message, "Network error: 404")
+
+  t.true(err.response instanceof Response)
+  t.is(err.response.status, 404)
+})
+
+test("Throws an error when unknown url was set", async t => {
   const link = pq("../../../lib/util/link", {"node-fetch": () => { }})({
     url: "https://unknownhost.org"
   })
