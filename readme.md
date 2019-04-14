@@ -23,7 +23,7 @@ yarn add dinky.js
 
 ## Native ESM support
 
-Dinky supports expose `.mjs` entry point, so you can use ESM natively
+Dinky expose `.mjs` entry point, so you can use ESM natively
 in Node.js context using the [`--experimental-modules`](https://nodejs.org/api/esm.html#esm_enabling) flag.
 
 ## Usage
