@@ -7,6 +7,7 @@ const fm = require("fetch-mock")
 const {Response} = require("node-fetch")
 
 const Query = require("../../../lib/Query")
+const NetworkError = require("../../../lib/util/NetworkError")
 
 const pattern = /^https:\/\/(derpibooru|trixiebooru).org/
 
@@ -172,11 +173,13 @@ test("Throws an error for non 2xx response", async t => {
 
   const err = await t.throwsAsync(link(["search"], new Query()))
 
-  t.true(err instanceof Error)
+  t.true(err instanceof NetworkError)
   t.is(err.message, "Network error: 404")
 
   t.true(err.response instanceof Response)
-  t.is(err.response.status, 404)
+  t.is(err.status, 404)
+  t.is(err.statusText, "Not Found")
+  t.is(err.url, "https://derpibooru.org/search.json")
 })
 
 test("Throws an error when unknown url was set", async t => {
