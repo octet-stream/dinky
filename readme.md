@@ -260,7 +260,7 @@ This class can be used to check if network error was thrown.
 
 ##### `response -> {Response}`
 
-Returns a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) interface.
+Returns a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) object.
 
 ##### `url -> {string}`
 
