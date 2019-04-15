@@ -250,6 +250,30 @@ See [Promise#then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
 This method returns a Promise and deals with rejected cases only.
 See [Promise#catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) documentation for more info.
 
+### `class NetworkError > Error`
+
+##### `constructor() -> {NetworkError}`
+
+This class can be used to check if network error was thrown.
+
+#### Instance properties
+
+##### `response -> {Response}`
+
+Returns a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) interface.
+
+##### `url -> {sting}`
+
+Contains the URL of the response.
+
+##### `status -> {number}`
+
+Contains the status code of the response (e.g., `200` for a `success`).
+
+##### `statusText -> {sting}`
+
+Contains the status message corresponding to the status code (e.g., `OK` for `200`).
+
 ## Related
 
 * Derpibooru API documentation can be found here: [derpibooru.org/pages/api](https://derpibooru.org/pages/api)
