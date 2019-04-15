@@ -128,7 +128,7 @@ Creates a new instance of the Derpibooru API client
 
   - **{object}** [options = {}] – client options
   - **{string}** [options.url = "derpibooru.org"] - Derpibooru API hostname (you can set trixiebooru.org or derpibooru.org)
-  - **{string}** [options.key = null] – your personal API key taken from your account settings
+  - **{string}** [options.key = undefined] – your personal API key taken from your account settings
   - **{number}** [options.filter = undefined] – ID of a filter. The ID can be found on [filters page](https://derpibooru.org/filters)
 
 #### Instance methods
@@ -141,7 +141,7 @@ Creates a request handler for `/images.json`
 
 Creates a request handler for `/search.json`. This method takes a list of tags
 
-  - **{string | string[]}** [tags = null] – a tag or a list of tags and returns Search instance
+  - **{string | string[]}** [tags = []] – a tag or a list of tags and returns Search instance
 
 ### `class Images > Request`
 
@@ -163,11 +163,11 @@ Creates a request handler for `/search.json`.
 
 #### Instance methods
 
-##### `tags(list) -> {Search}`
+##### `tags([list]) -> {Search}`
 
 Appends a tag or a list of tags to the current search request
 
-  - **{string | string[]}** list – a tag or a list of tags you want to append
+  - **{string | string[]}** [list = []] – a tag or a list of tags you want to append
 
 ##### `faves() -> {Seatch}`
 
@@ -233,12 +233,12 @@ Sets the page offset
   - **{number}** [offset = 1] – The page offset.
 
 ##### `exec([options]) -> {Promise<object>}`
+Executes current request.
+
   - **{object}** options – a set of options to use in request.
     They are have priority over the [constructor](#class-dinky) options.
-  - **{string}** [options.key = null] – your personal API key taken from your account settings
+  - **{string}** [options.key = undefined] – your personal API key taken from your account settings
   - **{number}** [options.filter = undefined] – ID of a filter. The ID can be found on [filters page](https://derpibooru.org/filters)
-
-Executes current request.
 
 ##### `then(onFulfilled, onRejected) -> {Promise<object>}`
 
