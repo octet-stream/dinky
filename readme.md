@@ -262,7 +262,7 @@ This class can be used to check if network error was thrown.
 
 Returns a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) interface.
 
-##### `url -> {sting}`
+##### `url -> {string}`
 
 Contains the URL of the response.
 
@@ -270,7 +270,7 @@ Contains the URL of the response.
 
 Contains the status code of the response (e.g., `200` for a `success`).
 
-##### `statusText -> {sting}`
+##### `statusText -> {string}`
 
 Contains the status message corresponding to the status code (e.g., `OK` for `200`).
 
