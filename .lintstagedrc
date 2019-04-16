@@ -1,4 +1,5 @@
 {
-  "lib/**/*.js": "node_modules/.bin/eslint",
-  "test/**/*.js": "node_modules/.bin/eslint"
+  "lib/**/*.js": "eslint",
+  "test/**/*.js": "eslint",
+  "readme.md": "eslint --ext md"
 }

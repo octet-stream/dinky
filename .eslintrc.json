@@ -3,7 +3,8 @@
     "browser": true
   },
   "plugins": [
-    "ava"
+    "ava",
+    "markdown"
   ],
   "extends": [
     "@octetstream",
@@ -11,8 +12,11 @@
   ],
   "rules": {
     "no-void": 0,
+    "func-names": 0,
 
-    "import/no-unresolved": "error",
+    "import/no-unresolved": ["error", {
+      "ignore": ["dinky.js"]
+    }],
     "operator-linebreak": ["error", "after", {
       "overrides": {
         "+": "ignore",
