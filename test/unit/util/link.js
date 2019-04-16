@@ -9,7 +9,7 @@ const {Response} = require("node-fetch")
 const Query = require("../../../lib/Query")
 const NetworkError = require("../../../lib/util/NetworkError")
 
-const pattern = /^https:\/\/(derpibooru|trixiebooru).org/
+const pattern = /^https:\/\/derpibooru.org/
 
 test("Creates fetcher with default url", async t => {
   const fetch = fm.sandbox().mock(pattern, {})
@@ -24,23 +24,6 @@ test("Creates fetcher with default url", async t => {
   const {hostname, protocol} = parse(fetch.lastUrl())
 
   t.is(format({hostname, protocol}), "https://derpibooru.org")
-})
-
-test("Creates fetcher with reserve url", async t => {
-  const expected = "https://trixiebooru.org"
-
-  const fetch = fm.sandbox().mock(pattern, {})
-  const createLink = pq("../../../lib/util/link", {"node-fetch": fetch})
-
-  const link = createLink({url: expected})
-
-  await link(["images"], new Query())
-
-  t.true(fetch.called())
-
-  const {hostname, protocol} = parse(fetch.lastUrl())
-
-  t.is(format({hostname, protocol}), expected)
 })
 
 test("Creates a correct request address from given path and query", async t => {
@@ -180,18 +163,4 @@ test("Throws an error for non 2xx response", async t => {
   t.is(err.status, 404)
   t.is(err.statusText, "Not Found")
   t.is(err.url, "https://derpibooru.org/search.json")
-})
-
-test("Throws an error when unknown url was set", async t => {
-  const link = pq("../../../lib/util/link", {"node-fetch": () => { }})({
-    url: "https://unknownhost.org"
-  })
-
-  const err = await t.throwsAsync(link([], new Query()))
-
-  t.is(
-    err.message,
-    "Dinky can send requests only to these hosts: " +
-    "trixiebooru.org, derpibooru.org"
-  )
 })
