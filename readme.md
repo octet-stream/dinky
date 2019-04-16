@@ -46,13 +46,11 @@ dinky().images().id(0).then(console.log)
 import dinky from "dinky.js"
 
 // You can specify tags right in the .search() method
-// By default all requests will be sent to derpibooru.org, but you can
-// manually set one of Derpibooru's host in constructor options if you need.
 // The following example is equivalent of these requests:
-// https://trixiebooru.org/search.json?q=artist:rainbow,safe&random_image=true
+// https://derpibooru.org/search.json?q=artist:rainbow,safe&random_image=true
 // ...and then this one:
-// https://trixiebooru.org/images/<received image id>.json
-dinky({url: "trixiebooru.org"}).search(["artist:rainbow", "safe"]).random()
+// https://derpibooru.org/images/<received image id>.json
+dinky().search(["artist:rainbow", "safe"]).random()
   .then(console.log)
 ```
 
@@ -127,7 +125,6 @@ dinky({key: "<your key here>"}).search(["trixie", "safe"]).faves()
 Creates a new instance of the Derpibooru API client
 
   - **{object}** [options = {}] – client options
-  - **{string}** [options.url = "derpibooru.org"] - Derpibooru API hostname (you can set trixiebooru.org or derpibooru.org)
   - **{string}** [options.key = undefined] – your personal API key taken from your account settings
   - **{number}** [options.filter = undefined] – ID of a filter. The ID can be found on [filters page](https://derpibooru.org/filters)
 
