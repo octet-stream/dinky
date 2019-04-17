@@ -1,5 +1,5 @@
 {
   "lib/**/*.js": "eslint",
   "test/**/*.js": "eslint",
-  "readme.md": "eslint --ext md"
+  "readme.md": "eslint"
 }
