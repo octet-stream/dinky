@@ -170,19 +170,25 @@ Appends a tag or a list of tags to the current search request
 
 Sets my:faves param to the search request.
 
-**Note that this method reques user's key.**
+**Note that this method requires user's key.**
 
 ##### `watched() -> {Search}`
 
 Sets my:watched param to the search request.
 
-**Note that this method reques user's key.**
+**Note that this method requires user's key.**
 
 ##### `upvotes() -> {Search}`
 
 Sets my:upvotes param to the search request.
 
-**Note that this method reques user's key.**
+**Note that this method requires user's key.**
+
+##### `favedBy(user) -> {Search}`
+
+Search for images faved by given user.
+
+  - **{string}** user – name of the user on Derpibooru
 
 ##### `limit(value) -> {Search}`
 
