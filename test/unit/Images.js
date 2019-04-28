@@ -1,8 +1,8 @@
 const test = require("ava")
 
-const createNoopLink = require("../helper/createNoopLink")
-
 const Images = require("../../lib/Images")
+
+const createNoopLink = require("../helper/createNoopLink")
 
 test.beforeEach(createNoopLink)
 
