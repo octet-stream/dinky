@@ -127,21 +127,6 @@ test(".faves() appends my:faves to the existent tags set", async t => {
   t.is(query.get("q"), "scootaloo,safe,my:faves")
 })
 
-test(".faves() don't add my:faves again", async t => {
-  const link = t.context.noopLink
-
-  const search = new Search({link}).tags(["scootaloo", "safe"])
-
-  search.faves()
-  search.faves()
-
-  await search
-
-  const [, query] = link.firstCall.args
-
-  t.is(query.get("q"), "scootaloo,safe,my:faves")
-})
-
 test(".watched() sets my:watched to request", async t => {
   const link = t.context.noopLink
 
@@ -156,21 +141,6 @@ test(".watched() appends my:watched to the existent tags set", async t => {
   const link = t.context.noopLink
 
   await new Search({link}).tags(["scootaloo", "safe"]).watched()
-
-  const [, query] = link.firstCall.args
-
-  t.is(query.get("q"), "scootaloo,safe,my:watched")
-})
-
-test(".watched() don't add my:watched again", async t => {
-  const link = t.context.noopLink
-
-  const search = new Search({link}).tags(["scootaloo", "safe"])
-
-  search.watched()
-  search.watched()
-
-  await search
 
   const [, query] = link.firstCall.args
 
@@ -197,19 +167,44 @@ test(".upvotes() appends my:upvotes to the existent tags set", async t => {
   t.is(query.get("q"), "scootaloo,safe,my:upvotes")
 })
 
-test(".upvotes() don't add my:upvotes again", async t => {
+test(".downvotes() sets my:downvotes to request", async t => {
   const link = t.context.noopLink
 
-  const search = new Search({link}).tags(["scootaloo", "safe"])
-
-  search.upvotes()
-  search.upvotes()
-
-  await search
+  await new Search({link}).downvotes()
 
   const [, query] = link.firstCall.args
 
-  t.is(query.get("q"), "scootaloo,safe,my:upvotes")
+  t.is(query.get("q"), "my:downvotes")
+})
+
+test(".downvotes() appends my:downvotes to the existent tags set", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags(["scootaloo", "safe"]).downvotes()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "scootaloo,safe,my:downvotes")
+})
+
+test(".uploads() sets my:uploads to request", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).uploads()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "my:uploads")
+})
+
+test(".uploads() appends my:uploads to the existent tags set", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags(["scootaloo", "safe"]).uploads()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "scootaloo,safe,my:uploads")
 })
 
 test(".favedBy() sets faved_by parameter with the given user", async t => {
