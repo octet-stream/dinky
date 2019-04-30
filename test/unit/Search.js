@@ -229,7 +229,6 @@ test(".limit() adds the page limit (perpage param) to query", async t => {
 
   const [, query] = link.firstCall.args
 
-  t.true(query.has("perpage"))
   t.is(query.get("perpage"), 42)
 })
 
@@ -240,7 +239,6 @@ test(".minScore() adds the minimal images score to query", async t => {
 
   const [, query] = link.firstCall.args
 
-  t.true(query.has("min_score"))
   t.is(query.get("min_score"), 420)
 })
 
@@ -251,8 +249,27 @@ test(".maxScore() adds the maximal images score to query", async t => {
 
   const [, query] = link.firstCall.args
 
-  t.true(query.has("max_score"))
   t.is(query.get("max_score"), 2600)
+})
+
+test(".ascending() sets ordering to the ascending", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).ascending()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("sd"), "asc")
+})
+
+test(".descending() sets ordering to the descending", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).descending()
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("sd"), "desc")
 })
 
 test(".random() adds random_image param to query", async t => {
@@ -262,7 +279,6 @@ test(".random() adds random_image param to query", async t => {
 
   const [, query] = link.firstCall.args
 
-  t.true(query.has("random_image"))
   t.true(query.get("random_image"))
 })
 
