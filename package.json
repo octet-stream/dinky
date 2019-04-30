@@ -45,6 +45,6 @@
   },
   "dependencies": {
     "camelcase-keys": "5.2.0",
-    "node-fetch": "2.3.0"
+    "node-fetch": "2.4.1"
   }
 }
