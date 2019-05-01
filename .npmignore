@@ -15,3 +15,6 @@ coverage
 /.travis.yml
 /yarn.lock
 /test.mjs
+
+# TODO: Remove this line before next release
+/lib/Lists.js
