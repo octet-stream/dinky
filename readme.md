@@ -184,6 +184,18 @@ Sets my:upvotes param to the search request.
 
 **Note that this method requires user's key.**
 
+##### `downvotes() -> {Search}`
+
+Sets my:downvotes param to the search request.
+
+**Note that this method requires user's key.**
+
+##### `uploads() -> {Search}`
+
+Sets my:uploads param to the search request.
+
+**Note that this method requires user's key.**
+
 ##### `favedBy(user) -> {Search}`
 
 Search for images faved by given user.
