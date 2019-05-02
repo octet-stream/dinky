@@ -202,7 +202,7 @@ Search for images faved by given user.
 
   - **{string}** user – name of the user on Derpibooru
 
-##### `favedBy(user) -> {Search}`
+##### `uploadedBy(user) -> {Search}`
 
 Search for images uploaded by given user.
 
