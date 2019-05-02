@@ -202,6 +202,12 @@ Search for images faved by given user.
 
   - **{string}** user – name of the user on Derpibooru
 
+##### `favedBy(user) -> {Search}`
+
+Search for images uploaded by given user.
+
+  - **{string}** user – name of the user on Derpibooru
+
 ##### `limit(value) -> {Search}`
 
 Specifies how many images per page should API return

@@ -217,6 +217,16 @@ test(".favedBy() sets faved_by parameter with the given user", async t => {
   t.is(query.get("q"), "faved_by:minuette")
 })
 
+test(".uploadedBy() sets uploader parameter with the given user", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).uploadedBy("minuette")
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("q"), "uploader:minuette")
+})
+
 test(".limit() adds the page limit (perpage param) to query", async t => {
   const link = t.context.noopLink
 
