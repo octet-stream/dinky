@@ -17,8 +17,8 @@
   "scripts": {
     "test": "ava",
     "report": "nyc npm run test",
-    "report:html": "nyc npm run test && nyc report --reporter=html npm run test",
-    "report:lcov": "nyc npm run test && nyc report --reporter=lcov npm run test",
+    "report:html": "nyc npm run test && nyc report --reporter=html",
+    "report:lcov": "nyc npm run test && nyc report --reporter=lcov",
     "ci": "npm run report:lcov && node_modules/.bin/codecov",
     "eslint": "eslint readme.md lib/**/*.js test/**/*.js",
     "staged": "lint-staged"
