@@ -32,19 +32,19 @@
   "devDependencies": {
     "@octetstream/eslint-config": "3.0.0",
     "ava": "1.4.1",
-    "codecov": "3.4.0",
+    "codecov": "3.5.0",
     "eslint": "5.16.0",
     "eslint-plugin-ava": "6.0.0",
     "eslint-plugin-markdown": "^1.0.0",
     "fetch-mock": "7.3.3",
-    "husky": "2.2.0",
-    "lint-staged": "8.1.6",
+    "husky": "2.3.0",
+    "lint-staged": "8.1.7",
     "nyc": "14.1.1",
     "proxyquire": "2.1.0",
     "sinon": "7.3.2"
   },
   "dependencies": {
     "camelcase-keys": "5.2.0",
-    "node-fetch": "2.5.0"
+    "node-fetch": "2.6.0"
   }
 }
