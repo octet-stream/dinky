@@ -31,10 +31,10 @@
   },
   "devDependencies": {
     "@octetstream/eslint-config": "3.0.0",
-    "ava": "1.4.1",
+    "ava": "2.0.0",
     "codecov": "3.5.0",
     "eslint": "5.16.0",
-    "eslint-plugin-ava": "6.0.0",
+    "eslint-plugin-ava": "7.0.0",
     "eslint-plugin-markdown": "^1.0.0",
     "fetch-mock": "7.3.3",
     "husky": "2.3.0",
