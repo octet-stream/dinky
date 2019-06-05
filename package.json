@@ -16,10 +16,10 @@
   ],
   "scripts": {
     "test": "ava",
-    "report": "nyc npm run test",
-    "report:html": "nyc npm run test && nyc report --reporter=html",
-    "report:lcov": "nyc npm run test && nyc report --reporter=lcov",
-    "ci": "npm run report:lcov && node_modules/.bin/codecov",
+    "report": "nyc npm test",
+    "report:html": "nyc npm test && nyc report --reporter=html",
+    "report:lcov": "nyc npm test && nyc report --reporter=lcov",
+    "ci": "npm report:lcov && node_modules/.bin/codecov",
     "eslint": "eslint readme.md lib/**/*.js test/**/*.js",
     "staged": "lint-staged"
   },
@@ -37,7 +37,7 @@
     "eslint-plugin-ava": "7.0.0",
     "eslint-plugin-markdown": "^1.0.0",
     "fetch-mock": "7.3.3",
-    "husky": "2.3.0",
+    "husky": "2.4.0",
     "lint-staged": "8.1.7",
     "nyc": "14.1.1",
     "proxyquire": "2.1.0",
