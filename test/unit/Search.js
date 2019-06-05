@@ -277,6 +277,16 @@ test(".descending() sets ordering to the descending", async t => {
   t.is(query.get("sd"), "desc")
 })
 
+test(".sortBy() sets sorting param with given field", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).sortBy("score")
+
+  const [, query] = link.firstCall.args
+
+  t.is(query.get("sf"), "score")
+})
+
 test(".random() adds random_image param to query", async t => {
   const link = t.context.noopLink
 
