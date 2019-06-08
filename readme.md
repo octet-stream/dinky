@@ -241,7 +241,7 @@ and bunch of shortcuts to search for specific images categories on `/search.json
 ##### `last(period) -> {Lists}`
 
 Creates a request that gets 3 images lists (top scoring, all time top scoring, top commented)
-for given period;
+for given period.
 
   - **{string}** period – Sampling period, specified in weeks, days, or hours
 
@@ -267,12 +267,6 @@ The most commented images will be at the top of the list.
 Creates a new request handler.
 
 #### Instance methods
-
-##### `ascending() -> {Request}`
-
-Sets images ordering to ascending
-
-##### `descending() -> {Request}`
 
 Sets images ordering to descending
 
