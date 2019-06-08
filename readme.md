@@ -231,6 +231,30 @@ Sets the **maximal** score of requested images
 
 If been called, the API will return random image
 
+### `class Lists > Request`
+
+##### `constructor() -> {Lists}`
+
+Creates a new Lists instance to give you ability to send requests to `/lists.json`
+and bunch of shortcuts to search for specific images categories on `/search.json`
+
+##### `last(period) -> {Lists}`
+
+##### `topScoring() -> {Search}`
+
+Creates a Search request that gets top scoring images of last 3 days.
+The most rated images will be at the top of the list.
+
+##### `topScoringAllTime() -> {Search}`
+
+Creates a Search request that gets top scoring images of the all time.
+The most rated images will be at the top of the list.
+
+##### `topCommented() -> {Search}`
+
+Creates a Search request that gets top commented images of last 3 days.
+The most commented images will be at the top of the list.
+
 ### `class Request`
 
 ##### `constructor() -> {Request}`
