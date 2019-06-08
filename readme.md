@@ -240,6 +240,11 @@ and bunch of shortcuts to search for specific images categories on `/search.json
 
 ##### `last(period) -> {Lists}`
 
+Creates a request that gets 3 images lists (top scoring, all time top scoring, top commented)
+for given period;
+
+  - **{string}** period – Sampling period, specified in weeks, days, or hours
+
 ##### `topScoring() -> {Search}`
 
 Creates a Search request that gets top scoring images of last 3 days.
