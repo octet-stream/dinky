@@ -31,20 +31,20 @@
   },
   "devDependencies": {
     "@octetstream/eslint-config": "3.0.0",
-    "ava": "2.0.0",
+    "ava": "2.1.0",
     "codecov": "3.5.0",
     "eslint": "5.16.0",
-    "eslint-plugin-ava": "7.0.0",
+    "eslint-plugin-ava": "7.1.0",
     "eslint-plugin-markdown": "^1.0.0",
     "fetch-mock": "7.3.3",
-    "husky": "2.4.0",
-    "lint-staged": "8.2.0",
+    "husky": "2.4.1",
+    "lint-staged": "8.2.1",
     "nyc": "14.1.1",
     "proxyquire": "2.1.0",
     "sinon": "7.3.2"
   },
   "dependencies": {
-    "camelcase-keys": "5.2.0",
+    "camelcase-keys": "6.0.0",
     "node-fetch": "2.6.0"
   }
 }
