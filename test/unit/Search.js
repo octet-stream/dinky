@@ -320,6 +320,26 @@ test(
   }
 )
 
+test(
+  ".random() will apply the * wildcard when no tags has been set", async t => {
+    const link = spy((_, query) => {
+      if (query.has("q")) {
+        return {id: 1328192}
+      }
+    })
+
+    const dinky = pq("../../lib/Dinky", {"./util/link": () => link})()
+
+    await new Search({link, dinky}).random()
+
+    t.true(link.calledTwice)
+
+    const [, actual] = link.firstCall.args
+
+    t.is(actual.get("q"), "*")
+  }
+)
+
 test("Throws an error when given limit is not a number", async t => {
   const link = t.context.noopLink
 
