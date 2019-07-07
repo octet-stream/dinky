@@ -40,7 +40,37 @@ test("Allows to pass tags to the constructor", async t => {
   t.is(query.get("q"), "princess luna,safe")
 })
 
-test("Allows to pass a one tag from the string", async t => {
+test(".tags() allows to pass an empty array as an argument", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags([])
+
+  const [, query] = link.firstCall.args
+
+  t.false(query.has("q"))
+})
+
+test(".tags() allows to pass multiple empty arrays as an argument", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags([], [], [])
+
+  const [, query] = link.firstCall.args
+
+  t.false(query.has("q"))
+})
+
+test(".tags() will not set any tags when called without arguments", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags()
+
+  const [, query] = link.firstCall.args
+
+  t.false(query.has("q"))
+})
+
+test(".tags() allows to pass a one tag from the string", async t => {
   const link = t.context.noopLink
 
   await new Search({link}).tags("scootaloo")
