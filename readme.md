@@ -162,7 +162,8 @@ Creates a request handler for `/search.json`.
 
 ##### `tags([list]) -> {Search}`
 
-Appends a tag or a list of tags to the current search request
+Appends a tag or a list of tags to the current search request.
+This method will not apply the `q=` parameter to the request for query when no tags has been set.
 
   - **{string | string[]}** [list = []] – a tag or a list of tags you want to append
 
