@@ -6,6 +6,14 @@ test("Returns given empty array as-is", t => {
   t.deepEqual(flat([]), [])
 })
 
+test("Flattens multiple empty arrays on 1st level", t => {
+  t.deepEqual(flat([[], [], []]), [])
+})
+
+test("Flattens empty array in depth", t => {
+  t.deepEqual(flat([[[[[[]]]]]], Infinity), [])
+})
+
 test("Returns flatten array", t => {
   t.deepEqual(
     flat([
