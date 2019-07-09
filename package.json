@@ -7,7 +7,7 @@
   "author": "Nick K. <nick.kruchinin@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=8 < 9 || >= 10"
+    "node": ">=8 < 9 || >= 10 < 11 || >= 12"
   },
   "keywords": [
     "api-bindings",
