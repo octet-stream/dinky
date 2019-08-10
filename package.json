@@ -4,7 +4,7 @@
   "description": "JavaScript bindings for Derpibooru API",
   "main": "lib/Dinky",
   "repository": "https://github.com/octet-stream/dinky",
-  "author": "Nick K. <nick.kruchinin@gmail.com>",
+  "author": "Nick K. <io@octetstream.me>",
   "license": "MIT",
   "engines": {
     "node": ">=8 < 9 || >= 10 < 11 || >= 12"

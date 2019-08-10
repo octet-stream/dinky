@@ -18,30 +18,6 @@ test("Request calls the link on given path", async t => {
   t.deepEqual(path, ["search"])
 })
 
-test(".ascending() sets images ordering to \"a\"", async t => {
-  const link = t.context.noopLink
-
-  // The Request class is thenable so we can avoid of
-  // explicit .exec() method calls
-  await new Request({link}).ascending()
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("order"))
-  t.is(query.get("order"), "a")
-})
-
-test(".descending() sets images ordering to \"d\"", async t => {
-  const link = t.context.noopLink
-
-  await new Request({link}).descending()
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("order"))
-  t.is(query.get("order"), "d")
-})
-
 test(".page() sets the page offset in query", async t => {
   const link = t.context.noopLink
 
