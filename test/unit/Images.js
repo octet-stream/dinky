@@ -24,5 +24,5 @@ test("Creates a link with path for specified image ID", async t => {
   const [path] = link.firstCall.args
 
   t.is(path.length, 2)
-  t.deepEqual(path[1], 0)
+  t.is(path[1], 0)
 })
