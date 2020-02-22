@@ -36,7 +36,7 @@ Dinky implements chainable API to build each request and all requests will retur
 import dinky from "dinky.js"
 
 // The following request will return the 1th uploaded image from Derpibooru.
-// Equivalent to https://derpibooru.org/images/0.json request
+// Equivalent to https://derpibooru.org/api/v1/json/images/0 request
 dinky().images().id(0).then(console.log)
 ```
 
@@ -47,9 +47,10 @@ import dinky from "dinky.js"
 
 // You can specify tags right in the .search() method
 // The following example is equivalent of these requests:
-// https://derpibooru.org/search.json?q=artist:rainbow,safe&random_image=true
+// https://derpibooru.org/api/v1/json/search/images?q=artist:rainbow,safe
+// &random_image=true
 // ...and then this one:
-// https://derpibooru.org/images/<received image id>.json
+// https://derpibooru.org/api/v1/json/images/<received image id>
 dinky().search(["artist:rainbow", "safe"]).random()
   .then(console.log)
 ```
@@ -132,11 +133,11 @@ Creates a new instance of the Derpibooru API client
 
 ##### `images() -> {Images}`
 
-Creates a request handler for `/images.json`
+Creates a request handler for `/api/v1/json/images`
 
 ##### `search([tags]) -> {Search}`
 
-Creates a request handler for `/search.json`. This method takes a list of tags
+Creates a request handler for `/api/v1/json/search/images`. This method takes a list of tags
 
   - **{string | string[]}** [tags = []] – a tag or a list of tags and returns Search instance
 
@@ -144,7 +145,7 @@ Creates a request handler for `/search.json`. This method takes a list of tags
 
 ##### `constructor() -> {Images}`
 
-Creates a request handler for `/images.json`
+Creates a request handler for `/api/v1/json/images`
 
 #### Instance methods
 
@@ -156,7 +157,7 @@ Returns an image with given ID
 
 ##### `constructor() -> {Search}`
 
-Creates a request handler for `/search.json`.
+Creates a request handler for `/api/v1/json/search/images`.
 
 #### Instance methods
 
@@ -232,7 +233,7 @@ Sets the **maximal** score of requested images
 
 If been called, the API will return random image
 
-### `class Lists > Request`
+### `class Lists > Request (currently unavailable)`
 
 ##### `constructor() -> {Lists}`
 

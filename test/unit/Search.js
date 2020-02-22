@@ -9,14 +9,14 @@ const Search = require("../../lib/Search")
 
 test.beforeEach(createNoopLink)
 
-test("Creates a link with path to /search.json", async t => {
+test("Creates a link with path to /api/v1/json/search/images", async t => {
   const link = t.context.noopLink
 
   await new Search({link})
 
   const [path] = link.firstCall.args
 
-  t.deepEqual(path, ["search"])
+  t.deepEqual(path, ["search/images"])
 })
 
 test("Creates search request without tags by default", async t => {

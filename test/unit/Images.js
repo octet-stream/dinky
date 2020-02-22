@@ -6,7 +6,7 @@ const createNoopLink = require("../helper/createNoopLink")
 
 test.beforeEach(createNoopLink)
 
-test("Creates a link with path to /images.json", async t => {
+test("Creates a link with path to /api/v1/json/images", async t => {
   const link = t.context.noopLink
 
   await new Images({link})
