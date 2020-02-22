@@ -36,13 +36,13 @@ test("Creates a correct request address from given path and query", async t => {
 
   query.set("q", "princess luna")
 
-  await link(["search"], query)
+  await link(["search", "images"], query)
 
   t.true(fetch.called())
 
   const actual = parse(fetch.lastUrl())
 
-  t.is(actual.pathname, "/search.json")
+  t.is(actual.pathname, "/api/v1/json/search/images")
   t.is(actual.query, "q=princess+luna")
 })
 
@@ -162,5 +162,5 @@ test("Throws an error for non 2xx response", async t => {
   t.true(err.response instanceof Response)
   t.is(err.status, 404)
   t.is(err.statusText, "Not Found")
-  t.is(err.url, "https://derpibooru.org/search.json")
+  t.is(err.url, "https://derpibooru.org/api/v1/json/search")
 })

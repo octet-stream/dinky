@@ -4,13 +4,14 @@ const pq = require("proxyquire")
 const {spy} = require("sinon")
 
 const dinky = require("../../lib/Dinky")
-const Lists = require("../../lib/Lists")
+// const Lists = require("../../lib/Lists")
 const Images = require("../../lib/Images")
 const Search = require("../../lib/Search")
 
-test(".lists() returns the Lists instance", t => {
-  t.true(dinky().lists() instanceof Lists)
-})
+// TODO: see lib/Dinky.js:63
+// test(".lists() returns the Lists instance", t => {
+//   t.true(dinky().lists() instanceof Lists)
+// })
 
 test(".images() returns the Images instance", t => {
   t.true(dinky().images() instanceof Images)
