@@ -1,7 +1,4 @@
 const test = require("ava")
-const pq = require("proxyquire")
-
-const {spy} = require("sinon")
 
 const createNoopLink = require("../helper/createNoopLink")
 
@@ -16,7 +13,7 @@ test("Creates a link with path to /api/v1/json/search/images", async t => {
 
   const [path] = link.firstCall.args
 
-  t.deepEqual(path, ["search/images"])
+  t.deepEqual(path, ["search", "images"])
 })
 
 test("Creates search request without tags by default", async t => {
@@ -264,7 +261,7 @@ test(".limit() adds the page limit (perpage param) to query", async t => {
 
   const [, query] = link.firstCall.args
 
-  t.is(query.get("perpage"), 42)
+  t.is(query.get("per_page"), 42)
 })
 
 test(".minScore() adds the minimal images score to query", async t => {
@@ -317,52 +314,21 @@ test(".sortBy() sets sorting param with given field", async t => {
   t.is(query.get("sf"), "score")
 })
 
-test(".random() adds random_image param to query", async t => {
+test(".random() adds sf=random param to query", async t => {
   const link = t.context.noopLink
 
   await new Search({link}).random()
 
   const [, query] = link.firstCall.args
 
-  t.true(query.get("random_image"))
+  t.is(query.get("sf"), "random")
 })
 
 test(
-  ".random() sends another request to get an image with returned ID",
-  async t => {
-    const expected = 1328192
-
-    const link = spy((_, query) => {
-      if (query.get("q") === "scootaloo") {
-        return {id: expected}
-      }
-    })
-
-    const dinky = pq("../../lib/Dinky", {"./util/link": () => link})()
-
-    await new Search({link, dinky}).tags("scootaloo").random()
-
-    t.true(link.calledTwice)
-
-    const [[, actual]] = link.lastCall.args
-
-    t.is(actual, expected)
-  }
-)
-
-test(
   ".random() will apply the * wildcard when no tags has been set", async t => {
-    const link = spy((_, query) => {
-      if (query.has("q")) {
-        return {id: 1328192}
-      }
-    })
+    const link = t.context.noopLink
 
-    const dinky = pq("../../lib/Dinky", {"./util/link": () => link})()
-
-    await new Search({link, dinky}).random()
-
-    t.true(link.calledTwice)
+    await new Search({link}).random()
 
     const [, actual] = link.firstCall.args
 
