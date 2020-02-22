@@ -42,7 +42,7 @@ test("Creates a correct request address from given path and query", async t => {
 
   const actual = parse(fetch.lastUrl())
 
-  t.is(actual.pathname, "/search.json")
+  t.is(actual.pathname, "/v1/json/search")
   t.is(actual.query, "q=princess+luna")
 })
 
@@ -162,5 +162,5 @@ test("Throws an error for non 2xx response", async t => {
   t.true(err.response instanceof Response)
   t.is(err.status, 404)
   t.is(err.statusText, "Not Found")
-  t.is(err.url, "https://derpibooru.org/search.json")
+  t.is(err.url, "https://derpibooru.org/v1/json/search")
 })
