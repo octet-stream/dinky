@@ -56,16 +56,6 @@ test(".posts() sets the search type to posts", async t => {
   t.is(actual, "posts")
 })
 
-test(".reverse() sets the search type to reverse", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).reverse()
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, "reverse")
-})
-
 test(".tags() sets the search type to tags", async t => {
   const link = t.context.noopLink
 
