@@ -46,11 +46,9 @@ dinky().images().id(0).then(console.log)
 import dinky from "dinky.js"
 
 // You can specify tags right in the .search() method
-// The following example is equivalent of these requests:
-// https://derpibooru.org/api/v1/json/search/images?q=artist:rainbow,safe
-// &random_image=true
-// ...and then this one:
-// https://derpibooru.org/api/v1/json/images/<received image id>
+// The following example is equivalent of this requests:
+// https://derpibooru.org/api/v1/json/search/images
+//   ?q=artist:rainbow,safe&sf=random
 dinky().search(["artist:rainbow", "safe"]).random()
   .then(console.log)
 ```
@@ -62,15 +60,17 @@ you can store it into variable for the further usage:
 import dinky from "dinky.js"
 
 (async function() {
-  const search = dinky()
+  const random = dinky()
     .search(["scootaloo", "princess luna", "safe", "sleepless in ponyville"])
     .minScore(200)
+    .random()
+    .limit(1)
 
   // Will search for random image with parameters from above
-  await search.random()
+  await random
 
   // ...and once more
-  await search.random()
+  await random
 }()).catch(console.error)
 ```
 

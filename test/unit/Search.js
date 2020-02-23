@@ -29,7 +29,7 @@ test("Creates search request without tags by default", async t => {
 test("Allows to pass tags to the constructor", async t => {
   const link = t.context.noopLink
 
-  await new Search({link, tags: ["princess luna", "safe"]})
+  await new Search({link, query: ["princess luna", "safe"]})
 
   const [, query] = link.firstCall.args
 
@@ -37,40 +37,46 @@ test("Allows to pass tags to the constructor", async t => {
   t.is(query.get("q"), "princess luna,safe")
 })
 
-test(".tags() allows to pass an empty array as an argument", async t => {
+test(".query() allows to pass an empty array as an argument", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags([])
+  await new Search({link}).query([])
 
   const [, query] = link.firstCall.args
 
   t.false(query.has("q"))
 })
 
-test(".tags() allows to pass multiple empty arrays as an argument", async t => {
+test(
+  ".query() allows to pass multiple empty arrays as an argument",
+  async t => {
+    const link = t.context.noopLink
+
+    await new Search({link}).query([], [], [])
+
+    const [, query] = link.firstCall.args
+
+    t.false(query.has("q"))
+  }
+)
+
+test(
+  ".query() will not set any tags when called without arguments",
+  async t => {
+    const link = t.context.noopLink
+
+    await new Search({link}).query()
+
+    const [, query] = link.firstCall.args
+
+    t.false(query.has("q"))
+  }
+)
+
+test(".query() allows to pass a one tag from the string", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags([], [], [])
-
-  const [, query] = link.firstCall.args
-
-  t.false(query.has("q"))
-})
-
-test(".tags() will not set any tags when called without arguments", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).tags()
-
-  const [, query] = link.firstCall.args
-
-  t.false(query.has("q"))
-})
-
-test(".tags() allows to pass a one tag from the string", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).tags("scootaloo")
+  await new Search({link}).query("scootaloo")
 
   const [, query] = link.firstCall.args
 
@@ -78,11 +84,11 @@ test(".tags() allows to pass a one tag from the string", async t => {
   t.is(query.get("q"), "scootaloo")
 })
 
-test(".tags() appends more tags to request", async t => {
+test(".query() appends more tags to request", async t => {
   const link = t.context.noopLink
 
-  await new Search({link, tags: ["princess luna", "safe"]})
-    .tags(["scootaloo", "sleepless in ponyville"])
+  await new Search({link, query: ["princess luna", "safe"]})
+    .query(["scootaloo", "sleepless in ponyville"])
 
   const [, query] = link.firstCall.args
 
@@ -90,10 +96,10 @@ test(".tags() appends more tags to request", async t => {
   t.is(query.get("q"), "princess luna,safe,scootaloo,sleepless in ponyville")
 })
 
-test(".tags() allows to add a tag from the string", async t => {
+test(".query() allows to add a tag from the string", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags("for whom the sweetie belle toils")
+  await new Search({link}).query("for whom the sweetie belle toils")
 
   const [, query] = link.firstCall.args
 
@@ -101,10 +107,10 @@ test(".tags() allows to add a tag from the string", async t => {
   t.is(query.get("q"), "for whom the sweetie belle toils")
 })
 
-test(".tags() appends a tag from the string", async t => {
+test(".query() appends a tag from the string", async t => {
   const link = t.context.noopLink
 
-  await new Search({link, tags: ["minuette"]}).tags("amending fences")
+  await new Search({link, query: ["minuette"]}).query("amending fences")
 
   const [, query] = link.firstCall.args
 
@@ -112,10 +118,10 @@ test(".tags() appends a tag from the string", async t => {
   t.is(query.get("q"), "minuette,amending fences")
 })
 
-test(".tags() allows to set tags from multiple strings", async t => {
+test(".query() allows to set tags from multiple strings", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags("artist:rainbow", "scootaloo")
+  await new Search({link}).query("artist:rainbow", "scootaloo")
 
   const [, query] = link.firstCall.args
 
@@ -123,10 +129,10 @@ test(".tags() allows to set tags from multiple strings", async t => {
   t.is(query.get("q"), "artist:rainbow,scootaloo")
 })
 
-test(".tags() allows to set tags from multiple arrays", async t => {
+test(".query() allows to set tags from multiple arrays", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags(["artist:rainbow"], ["scootaloo"])
+  await new Search({link}).query(["artist:rainbow"], ["scootaloo"])
 
   const [, query] = link.firstCall.args
 
@@ -147,7 +153,7 @@ test(".faves() sets my:faves to request", async t => {
 test(".faves() appends my:faves to the existent tags set", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags(["scootaloo", "safe"]).faves()
+  await new Search({link}).query(["scootaloo", "safe"]).faves()
 
   const [, query] = link.firstCall.args
 
@@ -167,7 +173,7 @@ test(".watched() sets my:watched to request", async t => {
 test(".watched() appends my:watched to the existent tags set", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags(["scootaloo", "safe"]).watched()
+  await new Search({link}).query(["scootaloo", "safe"]).watched()
 
   const [, query] = link.firstCall.args
 
@@ -187,7 +193,7 @@ test(".upvotes() sets my:upvotes to request", async t => {
 test(".upvotes() appends my:upvotes to the existent tags set", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags(["scootaloo", "safe"]).upvotes()
+  await new Search({link}).query(["scootaloo", "safe"]).upvotes()
 
   const [, query] = link.firstCall.args
 
@@ -207,7 +213,7 @@ test(".downvotes() sets my:downvotes to request", async t => {
 test(".downvotes() appends my:downvotes to the existent tags set", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags(["scootaloo", "safe"]).downvotes()
+  await new Search({link}).query(["scootaloo", "safe"]).downvotes()
 
   const [, query] = link.firstCall.args
 
@@ -227,7 +233,7 @@ test(".uploads() sets my:uploads to request", async t => {
 test(".uploads() appends my:uploads to the existent tags set", async t => {
   const link = t.context.noopLink
 
-  await new Search({link}).tags(["scootaloo", "safe"]).uploads()
+  await new Search({link}).query(["scootaloo", "safe"]).uploads()
 
   const [, query] = link.firstCall.args
 
