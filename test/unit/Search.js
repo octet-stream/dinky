@@ -6,14 +6,84 @@ const Search = require("../../lib/Search")
 
 test.beforeEach(createNoopLink)
 
-test("Creates a link with path to /api/v1/json/search/images", async t => {
+test("Creates a link to /api/v1/json/search", async t => {
   const link = t.context.noopLink
 
   await new Search({link})
 
-  const [path] = link.firstCall.args
+  const [[actual]] = link.firstCall.args
 
-  t.deepEqual(path, ["search", "images"])
+  t.is(actual, "search")
+})
+
+test("Sets default search type to images", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link})
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "images")
+})
+
+test(".comments() sets the search type to comments", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).comments()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "comments")
+})
+
+test(".galleries() sets the search type to galleries", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).galleries()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "galleries")
+})
+
+test(".posts() sets the search type to posts", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).posts()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "posts")
+})
+
+test(".reverse() sets the search type to reverse", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).reverse()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "reverse")
+})
+
+test(".tags() sets the search type to tags", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).tags()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "tags")
+})
+
+test(".images() sets the search type to images", async t => {
+  const link = t.context.noopLink
+
+  await new Search({link}).images()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "images")
 })
 
 test("Creates search request without tags by default", async t => {
