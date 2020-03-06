@@ -16,7 +16,7 @@ test("Creates a link with path to /api/v1/json/tags", async t => {
   t.deepEqual(path, ["tags"])
 })
 
-test("Creates a link with path for specified tag ID", async t => {
+test(".id() creates a link with path for specified tag ID", async t => {
   const link = t.context.noopLink
 
   await new Tags({link}).id(0)

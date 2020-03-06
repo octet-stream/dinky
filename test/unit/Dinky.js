@@ -1,5 +1,5 @@
-const test = require("ava")
 const pq = require("proxyquire")
+const test = require("ava")
 
 const {spy} = require("sinon")
 
@@ -9,6 +9,10 @@ const Images = require("../../lib/Images")
 const dinky = require("../../lib/Dinky")
 const Lists = require("../../lib/Lists")
 const Tags = require("../../lib/Tags")
+
+const createNoopLink = require("../helper/createNoopLink")
+
+test.beforeEach(createNoopLink)
 
 test(".lists() returns the Lists instance", t => {
   t.true(dinky().lists() instanceof Lists)
@@ -42,3 +46,57 @@ test(".search() creates Search handler with given tags", t => {
 
   t.deepEqual(FakeSearch.firstCall.lastArg.query, [expected])
 })
+
+test(
+  "Tags#search() creates a Search request that points to /search/tags",
+  async t => {
+    const link = t.context.noopLink
+
+    // eslint-disable-next-line no-shadow
+    const dinky = pq("../../lib/Dinky", {
+      "./util/link": () => link
+    })
+
+    await dinky().tags().search()
+
+    const [actual] = link.firstCall.args
+
+    t.deepEqual(actual, ["search", "tags"])
+  }
+)
+
+test(
+  "Images#search() creates a Search request that points to /search/images",
+  async t => {
+    const link = t.context.noopLink
+
+    // eslint-disable-next-line no-shadow
+    const dinky = pq("../../lib/Dinky", {
+      "./util/link": () => link
+    })
+
+    await dinky().images().search()
+
+    const [actual] = link.firstCall.args
+
+    t.deepEqual(actual, ["search", "images"])
+  }
+)
+
+test(
+  "Comments#search() creates a Search request that points to /search/comments",
+  async t => {
+    const link = t.context.noopLink
+
+    // eslint-disable-next-line no-shadow
+    const dinky = pq("../../lib/Dinky", {
+      "./util/link": () => link
+    })
+
+    await dinky().comments().search()
+
+    const [actual] = link.firstCall.args
+
+    t.deepEqual(actual, ["search", "comments"])
+  }
+)
