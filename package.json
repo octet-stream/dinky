@@ -15,19 +15,13 @@
     "api-client"
   ],
   "scripts": {
-    "test": "ava",
+    "test": "ava --config .avarc.js",
     "report": "nyc npm test",
     "report:html": "nyc npm test && nyc report --reporter=html",
     "report:lcov": "nyc npm test && nyc report --reporter=lcov",
     "ci": "npm run report:lcov && node_modules/.bin/codecov",
     "eslint": "eslint readme.md lib/**/*.js test/**/*.js",
     "staged": "lint-staged"
-  },
-  "ava": {
-    "files": [
-      "test/**/*.js",
-      "!test/helper/**"
-    ]
   },
   "devDependencies": {
     "@octetstream/eslint-config": "4.0.0",
