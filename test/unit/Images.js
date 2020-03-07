@@ -26,3 +26,13 @@ test("Creates a link with path for specified image ID", async t => {
   t.is(path.length, 2)
   t.is(path[1], 0)
 })
+
+test("Creates a link that points to /api/v1/json/images/featured", async t => {
+  const link = t.context.noopLink
+
+  await new Images({link}).featured()
+
+  const [[, actual]] = link.firstCall.args
+
+  t.is(actual, "featured")
+})
