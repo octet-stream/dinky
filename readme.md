@@ -37,7 +37,7 @@ import dinky from "dinky.js"
 
 // The following request will return the 1th uploaded image from Derpibooru.
 // Equivalent to https://derpibooru.org/api/v1/json/images/0 request
-dinky().images().id(0).then(console.log)
+dinky().images().findById(0).then(console.log)
 ```
 
 2. Search for images by their tags using the `.search()` method:
@@ -135,13 +135,13 @@ Creates a new instance of the Derpibooru API client
 
 Creates a request handler for `/api/v1/json/images`
 
-##### `search([tags]) -> {Search}`
+##### `search([query]) -> {Search}`
 
-Creates a request handler for `/api/v1/json/search/images`. This method takes a list of tags
+Creates a request handler for `/api/v1/json/search/images`. This method takes a list of query params
 
-  - **{string | string[]}** [tags = []] – a tag or a list of tags and returns Search instance
+  - **{string | string[]}** [query = []] – a tag or a list of query params and returns Search instance
 
-### `class Images > Request`
+### `class Images > Entities`
 
 ##### `constructor() -> {Images}`
 
@@ -149,15 +149,35 @@ Creates a request handler for `/api/v1/json/images`
 
 #### Instance methods
 
-##### `id(id) -> {Promise<object>}`
+##### `findById(id) -> {Promise<object>}`
 
 Returns an image with given ID
+
+##### `featured() -> {Promise<object>}`
+
+Returns featured image
+
+##### `search([query]) -> {Search}`
+
+Creates a new Search request that points to `/api/v1/json/search/images`.
+
+### `class Comments > Entities`
+
+##### `constructor() -> {Comments}`
+
+Creates a request handler for `/api/v1/json/comments`.
+
+### `class Tags > Entities`
+
+##### `constructor() -> {Tags}`
+
+Creates a request handler for `/api/v1/json/tags`.
 
 ### `class Search > Request`
 
 ##### `constructor() -> {Search}`
 
-Creates a request handler for `/api/v1/json/search/images`.
+Creates a request handler for `/api/v1/json/search`.
 
 #### Instance methods
 
