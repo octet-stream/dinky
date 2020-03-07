@@ -16,17 +16,6 @@ test("Creates a link with path to /api/v1/json/images", async t => {
   t.deepEqual(path, ["images"])
 })
 
-test("Creates a link with path for specified image ID", async t => {
-  const link = t.context.noopLink
-
-  await new Images({link}).id(0)
-
-  const [path] = link.firstCall.args
-
-  t.is(path.length, 2)
-  t.is(path[1], 0)
-})
-
 test("Creates a link that points to /api/v1/json/images/featured", async t => {
   const link = t.context.noopLink
 
