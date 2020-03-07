@@ -15,7 +15,7 @@
     "api-client"
   ],
   "scripts": {
-    "test": "ava --config .avarc.js",
+    "test": "ava",
     "report": "nyc npm test",
     "report:html": "nyc npm test && nyc report --reporter=html",
     "report:lcov": "nyc npm test && nyc report --reporter=lcov",
