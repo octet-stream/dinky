@@ -289,7 +289,7 @@ Sets the **maximal** score of requested images
 
   - **{number}** value – a value of maximal socre
 
-##### `random() -> {Promise<object>}`
+##### `random() -> {Search}`
 
 If been called, the API will return random image
 
