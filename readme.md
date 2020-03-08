@@ -293,7 +293,7 @@ Sets the **maximal** score of requested images
 
 If been called, the API will return random image
 
-### `class Lists > Request (currently unavailable)`
+### `class Lists > Request`
 
 ##### `constructor() -> {Lists}`
 
