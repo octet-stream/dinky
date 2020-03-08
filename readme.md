@@ -149,6 +149,10 @@ Creates a request handler for `/api/v1/json/images`
 
 #### Instance methods
 
+##### `search([query]) -> {Search}`
+
+Creates a new Search request that points to `/api/v1/json/search/images`.
+
 ##### `findById(id) -> {Promise<object>}`
 
 Returns an image with given ID
@@ -157,21 +161,37 @@ Returns an image with given ID
 
 Returns featured image
 
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/images`.
-
 ### `class Comments > Entities`
 
 ##### `constructor() -> {Comments}`
 
 Creates a request handler for `/api/v1/json/comments`.
 
+#### Instance methods
+
+##### `search([query]) -> {Search}`
+
+Creates a new Search request that points to `/api/v1/json/search/comments`.
+
+##### `findById(id) -> {Promise<object>}`
+
+Returns a comment with given ID
+
 ### `class Tags > Entities`
 
 ##### `constructor() -> {Tags}`
 
 Creates a request handler for `/api/v1/json/tags`.
+
+#### Instance methods
+
+##### `search([query]) -> {Search}`
+
+Creates a new Search request that points to `/api/v1/json/search/tags`.
+
+##### `findById(id) -> {Promise<object>}`
+
+Returns a tag with given ID
 
 ### `class Search > Request`
 
