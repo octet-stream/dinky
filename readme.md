@@ -201,12 +201,32 @@ Creates a request handler for `/api/v1/json/search`.
 
 #### Instance methods
 
-##### `tags([list]) -> {Search}`
+##### `comments() -> {Seatch}`
 
-Appends a tag or a list of tags to the current search request.
-This method will not apply the `q=` parameter to the request for query when no tags has been set.
+Sets Search type to "comments"
 
-  - **{string | string[]}** [list = []] – a tag or a list of tags you want to append
+##### `galleries() -> {Seatch}`
+
+Sets Search type to "galleries"
+
+##### `posts() -> {Seatch}`
+
+Sets Search type to "posts"
+
+##### `tags() -> {Seatch}`
+
+Sets Search type to "tags"
+
+##### `images() -> {Seatch}`
+
+Sets Search type to "images"
+
+##### `query([list]) -> {Search}`
+
+Appends list of query params to the current search request.
+This method will not apply the `q=` parameter to if called without arguments.
+
+  - **{string | string[]}** [list = []] – list of query params you want to append
 
 ##### `faves() -> {Seatch}`
 
