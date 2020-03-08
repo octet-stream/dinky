@@ -314,6 +314,22 @@ The most rated images will be at the top of the list.
 Creates a Search request that gets top commented images of last 3 days.
 The most commented images will be at the top of the list.
 
+### `class Entities > Request`
+
+##### `constructor() -> {Entities}`
+
+Creates an Entity providing a few common methods for `Images`, `Comments` and `Tags`
+
+#### Instance methods
+
+##### `search([query]) -> {Search}`
+
+Creates a new Search request that points to `/api/v1/json/search`.
+
+##### `findById(id) -> {Promise<object>}`
+
+Finds an entity by given ID
+
 ### `class Request`
 
 ##### `constructor() -> {Request}`
