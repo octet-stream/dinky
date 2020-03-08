@@ -297,15 +297,7 @@ If been called, the API will return random image
 
 ##### `constructor() -> {Lists}`
 
-Creates a new Lists instance to give you ability to send requests to `/lists.json`
-and bunch of shortcuts to search for specific images categories on `/search.json`
-
-##### `last(period) -> {Lists}`
-
-Creates a request that gets 3 images lists (top scoring, all time top scoring, top commented)
-for given period.
-
-  - **{string}** period – Sampling period, specified in weeks, days, or hours
+Provides a bunch of shortcuts for `Search` request
 
 ##### `topScoring() -> {Search}`
 
