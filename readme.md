@@ -201,23 +201,23 @@ Creates a request handler for `/api/v1/json/search`.
 
 #### Instance methods
 
-##### `comments() -> {Seatch}`
+##### `comments() -> {Search}`
 
 Sets Search type to "comments"
 
-##### `galleries() -> {Seatch}`
+##### `galleries() -> {Search}`
 
 Sets Search type to "galleries"
 
-##### `posts() -> {Seatch}`
+##### `posts() -> {Search}`
 
 Sets Search type to "posts"
 
-##### `tags() -> {Seatch}`
+##### `tags() -> {Search}`
 
 Sets Search type to "tags"
 
-##### `images() -> {Seatch}`
+##### `images() -> {Search}`
 
 Sets Search type to "images"
 
@@ -228,7 +228,7 @@ This method will not apply the `q=` parameter to if called without arguments.
 
   - **{string | string[]}** [list = []] – list of query params you want to append
 
-##### `faves() -> {Seatch}`
+##### `faves() -> {Search}`
 
 Sets my:faves param to the search request.
 
