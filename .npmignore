@@ -8,6 +8,7 @@ test
 coverage
 .codecov
 
+/code-of-conduct.md
 /.editorconfig
 /.eslintrc.json
 /.huskyrc.json
