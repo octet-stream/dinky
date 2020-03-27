@@ -37,7 +37,7 @@ import dinky from "dinky.js"
 
 // The following request will return the 1th uploaded image from Derpibooru.
 // Equivalent to https://derpibooru.org/api/v1/json/images/0 request
-dinky().images().findById(0).then(console.log)
+dinky().images().getById(0).then(console.log)
 ```
 
 2. Search for images by their tags using the `.search()` method:
@@ -153,7 +153,7 @@ Creates a request handler for `/api/v1/json/images`
 
 Creates a new Search request that points to `/api/v1/json/search/images`.
 
-##### `findById(id) -> {Promise<object>}`
+##### `getById(id) -> {Promise<object>}`
 
 Returns an image with given ID
 
@@ -173,7 +173,7 @@ Creates a request handler for `/api/v1/json/comments`.
 
 Creates a new Search request that points to `/api/v1/json/search/comments`.
 
-##### `findById(id) -> {Promise<object>}`
+##### `getById(id) -> {Promise<object>}`
 
 Returns a comment with given ID
 
@@ -189,7 +189,7 @@ Creates a request handler for `/api/v1/json/tags`.
 
 Creates a new Search request that points to `/api/v1/json/search/tags`.
 
-##### `findById(id) -> {Promise<object>}`
+##### `getById(id) -> {Promise<object>}`
 
 Returns a tag with given ID
 
@@ -326,7 +326,7 @@ Creates an Entity providing a few common methods for `Images`, `Comments` and `T
 
 Creates a new Search request that points to `/api/v1/json/search`.
 
-##### `findById(id) -> {Promise<object>}`
+##### `getById(id) -> {Promise<object>}`
 
 Finds an entity by given ID
 
