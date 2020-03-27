@@ -1,9 +1,9 @@
 {
   "name": "dinky.js",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "JavaScript bindings for Derpibooru API",
   "main": "lib/Dinky",
-  "repository": "https://github.com/octet-stream/dinky",
+  "repository": "octet-stream/dinky",
   "author": "Nick K. <io@octetstream.me>",
   "license": "MIT",
   "engines": {
