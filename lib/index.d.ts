@@ -181,7 +181,9 @@ export interface Search<T> extends Request<T> {
   /**
    * Adds a param to sort result by given field.
    *
-   * @param field // TODO shoud it be string instead of keyof T?
+   * @param field Filed name to sort by. Note that sorting doesn't work for all fields.
+   *  Consult the [api docs](https://derpibooru.org/pages/api) to learn more
+   *
    */
   sortBy(field: string): this
 }
