@@ -51,7 +51,14 @@ export class Dinky {
   lists(): Lists
 }
 
-export function dinky(options: DinkyRequestOptions): Dinky
+/**
+ * Creates an instance of derpibooru API client.
+ * See `DinkyRequestOptions` for more details on configuration.
+ * This is effectively a shortcut for `new Dinky(options)`
+ *
+ * Default options: `{}`
+ */
+export function dinky(options?: DinkyRequestOptions): Dinky
 export default dinky
 
 export class NetworkError extends Error {
