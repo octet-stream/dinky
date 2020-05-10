@@ -73,7 +73,7 @@ interface Request<T> {
    *
    * Default offset: `1`
    */
-  page(offset: number): this
+  page(offset?: number): this
 
   /**
    * Executes current request.
