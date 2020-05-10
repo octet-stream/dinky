@@ -60,8 +60,11 @@ export class NetworkError extends Error {
   status: number
   statusText: string
 
-  // TODO: should this one be private?
-  constructor(message: string, response: Response)
+  /**
+   * The class constructor symbol is exported only for `instanceof` checks purposes.
+   * It is not intended to be invoked by client code.
+   */
+  private constructor(message: string, response: Response)
 }
 
 interface Request<T> {
@@ -83,8 +86,6 @@ interface Request<T> {
   catch: Promise<T>["catch"]
 }
 
-// TODO: its constructor is marked as public, so why does it have @private annotation then?
-// I guess this doesn't mean it is public to external users, but public inside of this lib or smth...
 interface Entities<Entity, EntitiesPage> extends Request<EntitiesPage> {
   /**
    * Creates a new `Search` request for given query
@@ -97,8 +98,6 @@ interface Entities<Entity, EntitiesPage> extends Request<EntitiesPage> {
   getById(id: number, options?: DinkyRequestOptions): Promise<Entity>
 }
 
-// TODO: Constructors of these types are not public, but they are described
-// in README, this is weird
 /**
  * Represents a request to `/api/v1/json/search/comments`
  */
