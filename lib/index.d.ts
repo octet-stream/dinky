@@ -1,5 +1,35 @@
 import type { Response } from "node-fetch"
-export { Response }
+interface Request<T> {
+  /**
+   * Sets the page offset.
+   *
+   * Default offset: `1`
+   */
+  page(offset?: number): this
+
+  /**
+   * Executes current request.
+   *
+   * Default options: `{}`
+   */
+  exec<T>(options?: DinkyRequestOptions): Promise<T>
+
+  then: Promise<T>["then"]
+  catch: Promise<T>["catch"]
+}
+
+interface Entities<Entity, EntitiesPage> extends Request<EntitiesPage> {
+  /**
+   * Creates a new `Search` request for given query
+   */
+  search(query: (string | string[])[]): Search<EntitiesPage>
+
+  /**
+  * Get one entity by its ID
+  */
+  getById(id: number, options?: DinkyRequestOptions): Promise<Entity>
+}
+
 
 export interface DinkyRequestOptions {
   /**
@@ -72,37 +102,6 @@ export class NetworkError extends Error {
    * It is not intended to be invoked by client code.
    */
   private constructor(message: string, response: Response)
-}
-
-interface Request<T> {
-  /**
-   * Sets the page offset.
-   *
-   * Default offset: `1`
-   */
-  page(offset?: number): this
-
-  /**
-   * Executes current request.
-   *
-   * Default options: `{}`
-   */
-  exec<T>(options?: DinkyRequestOptions): Promise<T>
-
-  then: Promise<T>["then"]
-  catch: Promise<T>["catch"]
-}
-
-interface Entities<Entity, EntitiesPage> extends Request<EntitiesPage> {
-  /**
-   * Creates a new `Search` request for given query
-   */
-  search(query: (string | string[])[]): Search<EntitiesPage>
-
-  /**
-  * Get one entity by its ID
-  */
-  getById(id: number, options?: DinkyRequestOptions): Promise<Entity>
 }
 
 /**
@@ -463,7 +462,7 @@ export namespace responses {
    * - [Trial link](https://derpibooru.org/api/v1/json/images/featured)
    * - [Api docs](https://derpibooru.org/pages/api#image-response)
    */
-  interface ImageResponse {
+  export interface ImageResponse {
     image: Image,
     interactions: UserInteraction[]
   }
@@ -805,3 +804,5 @@ export namespace responses {
     userId: null | number
   }
 }
+
+export { Response }
