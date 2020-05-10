@@ -1,4 +1,5 @@
 import type { Response } from "node-fetch"
+
 interface Request<T> {
   /**
    * Sets the page offset.
