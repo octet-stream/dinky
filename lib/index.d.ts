@@ -184,7 +184,6 @@ export interface Search<T> extends Request<T> {
    *
    * @param field Filed name to sort by. Note that sorting doesn't work for all fields.
    *  Consult the [api docs](https://derpibooru.org/pages/api) to learn more
-   *
    */
   sortBy(field: string): this
 }
@@ -250,14 +249,14 @@ export interface ImagesSearch extends Search<responses.ImagesResponse> {
   /**
    * Sets the MINIMAL score of requested images.
    *
-   * @param value – a value of minimal socre
+   * @param value – a value of minimal score
    */
   minScore(value: number): this
 
   /**
    * Sets the MAXIMAL score of requested images.
    *
-   * @param value – a value of maximal socre
+   * @param value – a value of maximal score
    */
   maxScore(value: number): this
 
