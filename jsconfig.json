@@ -1,0 +1,13 @@
+{
+  "include": [
+    "lib/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "checkJs": true
+  }
+}
