@@ -11,7 +11,8 @@ test("Casts dates from the list", t => {
     firstSeenAt: date,
     updatedAt: date,
     lastRepliedToAt: date,
-    avardedAt: date
+    avardedAt: date,
+    editedAt: date,
   }
 
   t.deepEqual(cast({
@@ -19,7 +20,8 @@ test("Casts dates from the list", t => {
     firstSeenAt: isoString,
     updatedAt: isoString,
     lastRepliedToAt: isoString,
-    avardedAt: isoString
+    avardedAt: isoString,
+    editedAt: isoString,
   }), expected)
 })
 
@@ -31,7 +33,8 @@ test("Keeps inappropriate dates as is", t => {
     firstSeenAt: date,
     updatedAt: date,
     lastRepliedToAt: date,
-    avardedAt: date
+    avardedAt: date,
+    editedAt: date,
   }
 
   t.deepEqual(cast(expected), expected)
