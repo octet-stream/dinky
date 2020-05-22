@@ -292,11 +292,6 @@ namespace responses {
   }
 
   /**
-   * String in RFC3339 datetime format
-   */
-  export type DateTimeString = string;
-
-  /**
    * - [Trial link](https://derpibooru.org/api/v1/json/search/comments/?q=*)
    * - [Api docs](https://derpibooru.org/pages/api#comment-response)
    */
@@ -323,7 +318,7 @@ namespace responses {
     /**
      * The creation time, in UTC, of the comment.
      */
-    createdAt: DateTimeString
+    createdAt: Date
 
     /**
      * The edit reason for this comment, or null if none provided.
@@ -333,7 +328,7 @@ namespace responses {
     /**
      * The time, in UTC, this comment was last edited at, or null if it was not edited.
      */
-    editedAt: null | DateTimeString
+    editedAt: null | Date
 
     /**
      * The comment's ID.
@@ -348,7 +343,7 @@ namespace responses {
     /**
      * The time, in UTC, the comment was last updated at.
      */
-    updatedAt: DateTimeString
+    updatedAt: Date
 
     /**
      * The ID of the user the comment belongs to, if any.
@@ -508,7 +503,7 @@ namespace responses {
     /**
      * The creation time, in UTC, of the image.
      */
-    createdAt: DateTimeString
+    createdAt: Date
 
     /**
      * The hide reason for the image, or null if none provided.
@@ -540,7 +535,7 @@ namespace responses {
     /**
      * The time, in UTC, this image was first seen (before any duplicate merging).
      */
-    firstSeenAt: DateTimeString
+    firstSeenAt: Date
 
     /**
      * The file extension of this image. One of "gif", "jpg", "jpeg", "png", "svg", "webm".
@@ -643,7 +638,7 @@ namespace responses {
     /**
      * The time, in UTC, the image was last updated.
      */
-    updatedAt: DateTimeString
+    updatedAt: Date
 
     /**
      * The image's uploader.
@@ -775,7 +770,7 @@ namespace responses {
     /**
      * The creation time, in UTC, of the post.
      */
-    createdAt: DateTimeString
+    createdAt: Date
 
     /**
      * The edit reason for this post.
@@ -785,7 +780,7 @@ namespace responses {
     /**
      * The time, in UTC, this post was last edited at, or null if it was not edited.
      */
-    editedAt: null | DateTimeString
+    editedAt: null | Date
 
     /**
      * The post's ID (used to identify it).
@@ -795,7 +790,7 @@ namespace responses {
     /**
      * The time, in UTC, the post was last updated at.
      */
-    updatedAt: DateTimeString
+    updatedAt: Date
 
     /**
      * The ID of the user the post belongs to, if any.
