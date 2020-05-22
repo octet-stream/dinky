@@ -813,7 +813,6 @@ export type {
   Comments,
   Search,
   ImagesSearch,
-  Response,
   DinkyRequestOptions,
   responses,
 }
