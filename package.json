@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript bindings for Derpibooru API",
   "main": "lib/Dinky",
-  "types": "lib/index.d.ts",
+  "types": "lib/Dinky.d.ts",
   "repository": "octet-stream/dinky",
   "author": "Nick K. <io@octetstream.me>",
   "license": "MIT",

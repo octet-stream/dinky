@@ -1,4 +1,4 @@
-import type { Response } from "node-fetch"
+import type {Response} from "node-fetch"
 
 interface Request<T> {
   /**
@@ -31,8 +31,7 @@ interface Entities<Entity, EntitiesPage> extends Request<EntitiesPage> {
   getById(id: number, options?: DinkyRequestOptions): Promise<Entity>
 }
 
-
-export interface DinkyRequestOptions {
+interface DinkyRequestOptions {
   /**
    * User's personal API key taken from their account.
    */
@@ -45,7 +44,7 @@ export interface DinkyRequestOptions {
   filter?: number
 }
 
-export class Dinky {
+class Dinky {
   /**
    * Creates an instance of derpibooru API client.
    * See `DinkyRequestOptions` for more details on configuration.
@@ -89,10 +88,9 @@ export class Dinky {
  *
  * Default options: `{}`
  */
-export function dinky(options?: DinkyRequestOptions): Dinky
-export default dinky
+function dinky(options?: DinkyRequestOptions): Dinky
 
-export class NetworkError extends Error {
+class NetworkError extends Error {
   response: Response
   url: string
   status: number
@@ -108,17 +106,17 @@ export class NetworkError extends Error {
 /**
  * Represents a request to `/api/v1/json/search/comments`
  */
-export interface Comments extends Entities<responses.Comment, responses.CommentsResponse> {}
+interface Comments extends Entities<responses.Comment, responses.CommentsResponse> {}
 
 /**
  * Represents a request to `/api/v1/json/search/tags`
  */
-export interface Tags extends Entities<responses.Tag, responses.TagsResponse> {}
+interface Tags extends Entities<responses.Tag, responses.TagsResponse> {}
 
 /**
  * Represents a request to `/api/v1/json/search/images`
  */
-export interface Images extends Entities<responses.Image, responses.ImagesResponse> {
+interface Images extends Entities<responses.Image, responses.ImagesResponse> {
   search(query: (string | string[])[]): ImagesSearch
   /**
    * Get a featured image
@@ -126,7 +124,7 @@ export interface Images extends Entities<responses.Image, responses.ImagesRespon
   featured(options?: DinkyRequestOptions): Promise<responses.ImageResponse>
 }
 
-export interface Lists {
+interface Lists {
   /**
    * Creates a `Search` request that gets top scoring images of last 3 days.
    * The most rated images will be at the top of the list.
@@ -146,7 +144,7 @@ export interface Lists {
   topCommented(): ImagesSearch
 }
 
-export interface Search<T> extends Request<T> {
+interface Search<T> extends Request<T> {
   /**
    * Sets Search type to "comments"
    */
@@ -188,7 +186,7 @@ export interface Search<T> extends Request<T> {
   sortBy(field: string): this
 }
 
-export interface ImagesSearch extends Search<responses.ImagesResponse> {
+interface ImagesSearch extends Search<responses.ImagesResponse> {
   /**
    * Sets `my:faves` param to the search request.
    *
@@ -276,14 +274,13 @@ export interface ImagesSearch extends Search<responses.ImagesResponse> {
   random(): this
 }
 
-
 /**
  * Contains interface declarations of all the API responses that are sent back
  * from derpibooru. Note that though the original reponses use snake_case
  * properties naming, in TypeScript `camelCase` is more conventional, so these are
  * transformed to `camelCase` in `dinky.js`
  */
-export namespace responses {
+namespace responses {
   // There are no strict schema declarations, the types
   // are manually written using https://derpibooru.org/pages/api
 
@@ -807,4 +804,18 @@ export namespace responses {
   }
 }
 
-export { Response }
+export {
+  dinky as default,
+  dinky,
+  Dinky,
+  Images,
+  Lists,
+  Tags,
+  Comments,
+  Search,
+  ImagesSearch,
+  Response,
+  DinkyRequestOptions,
+  responses,
+  NetworkError
+}
