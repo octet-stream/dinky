@@ -803,6 +803,9 @@ export {
   dinky as default,
   dinky,
   Dinky,
+}
+
+export type {
   Images,
   Lists,
   Tags,
