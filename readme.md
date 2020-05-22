@@ -281,13 +281,13 @@ Specifies how many images per page should API return
 
 Sets the **minimal** score of requested images.
 
-  - **{number}** value – a value of minimal socre
+  - **{number}** value – a value of minimal score
 
 ##### `maxScore(value) -> {Search}`
 
 Sets the **maximal** score of requested images
 
-  - **{number}** value – a value of maximal socre
+  - **{number}** value – a value of maximal score
 
 ##### `random() -> {Search}`
 
