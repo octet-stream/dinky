@@ -803,6 +803,7 @@ export {
   dinky as default,
   dinky,
   Dinky,
+  NetworkError,
 }
 
 export type {
@@ -815,5 +816,4 @@ export type {
   Response,
   DinkyRequestOptions,
   responses,
-  NetworkError
 }
