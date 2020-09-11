@@ -42,6 +42,6 @@
   "dependencies": {
     "@types/node-fetch": "2.*",
     "camelcase-keys": "6.2.2",
-    "node-fetch": "2.6.0"
+    "node-fetch": "2.6.1"
   }
 }
