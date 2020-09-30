@@ -44,7 +44,7 @@ interface DinkyRequestOptions {
   filter?: number
 }
 
-class Dinky {
+declare class Dinky {
   /**
    * Creates an instance of derpibooru API client.
    * See `DinkyRequestOptions` for more details on configuration.
@@ -88,9 +88,9 @@ class Dinky {
  *
  * Default options: `{}`
  */
-function dinky(options?: DinkyRequestOptions): Dinky
+declare function dinky(options?: DinkyRequestOptions): Dinky
 
-class NetworkError extends Error {
+declare class NetworkError extends Error {
   response: Response
   url: string
   status: number
@@ -280,7 +280,7 @@ interface ImagesSearch extends Search<responses.ImagesResponse> {
  * properties naming, in TypeScript `camelCase` is more conventional, so these are
  * transformed to `camelCase` in `dinky.js`
  */
-namespace responses {
+declare namespace responses {
   // There are no strict schema declarations, the types
   // are manually written using https://derpibooru.org/pages/api
 
