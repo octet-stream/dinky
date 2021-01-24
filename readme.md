@@ -60,7 +60,7 @@ you can store it into variable for the further usage:
 ```js
 import dinky from "dinky.js"
 
-(async function() {
+(async function () {
   const random = dinky()
     .search(["scootaloo", "princess luna", "safe", "sleepless in ponyville"])
     .minScore(200)
@@ -80,7 +80,7 @@ import dinky from "dinky.js"
 ```js
 import dinky from "dinky.js"
 
-(async function() {
+(async function () {
   const search = dinky().search(["twilight sparkle"]).minScore(200)
 
   // Search class is thenable, so you don't have to call `.exec()` method
