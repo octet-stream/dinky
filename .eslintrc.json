@@ -3,8 +3,7 @@
     "browser": true
   },
   "plugins": [
-    "ava",
-    "markdown"
+    "ava"
   ],
   "extends": [
     "@octetstream",
