@@ -1,6 +1,6 @@
 {
   "hooks": {
     "pre-commit": "yarn staged",
-    "pre-push": "yarn test && yarn coverage"
+    "pre-push": "yarn coverage"
   }
 }
