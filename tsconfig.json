@@ -1,12 +1,12 @@
 {
   "include": [
-    "lib/**/*"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"
   ],
   "compilerOptions": {
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "baseUrl": ".",
     "checkJs": true
   }
