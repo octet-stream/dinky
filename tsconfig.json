@@ -6,8 +6,10 @@
     "node_modules"
   ],
   "compilerOptions": {
+    "target": "es2018",
     "moduleResolution": "node",
-    "baseUrl": ".",
+    "esModuleInterop": true,
+    "baseUrl": "src",
     "checkJs": true
   }
 }
