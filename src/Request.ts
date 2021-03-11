@@ -17,9 +17,9 @@ export interface RequestOptions {
 export class Request<R extends TypedObject = TypedObject> {
   private _link: ReturnType<typeof createLink>
 
-  private _path: string[]
+  protected _path: string[]
 
-  private _query = new Query()
+  protected _query = new Query()
 
   constructor({link, path}: RequestOptions) {
     this._link = link
