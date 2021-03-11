@@ -3,8 +3,6 @@ import {URL} from "url"
 import fetch from "isomorphic-fetch"
 import camelCase from "camelcase-keys"
 
-import TypedObject from "../type/TypedObject"
-
 import NetworkError from "./NetworkError"
 import waterfall from "./waterfall"
 import cast from "./castDates"
@@ -41,19 +39,17 @@ const defaults: LinkOptions = {
 
 export const DEFAULT_URL = "https://derpibooru.org"
 
-const normalize = <
-  T extends TypedObject = TypedObject
->(input: T): T => camelCase<T>(input, {deep: true})
+const normalize = <T>(input: T): T => camelCase<T>(input, {deep: true})
 
-function parse<
-  R extends TypedObject = TypedObject
->(response: Response): Promise<R> {
+function parse<T>(response: Response): Promise<T> {
   if (!response.ok) {
     throw new NetworkError(`Network error: ${response.statusText}`, response)
   }
 
-  return response.json() as Promise<R>
+  return response.json() as Promise<T>
 }
+
+export type Link = ReturnType<typeof createLink>
 
 /**
  * Creates a new link for target url
@@ -75,11 +71,11 @@ export function createLink(url: string = DEFAULT_URL, options?: LinkOptions) {
   /**
    * Sends a request to Phelomena API
    */
-  return async function link<R extends TypedObject = TypedObject>(
+  return async function link<T>(
     path: string[],
     query: Query,
     requestOptions?: LinkOptions
-  ): Promise<R> {
+  ): Promise<T> {
     // TODO: Should probably make base endpoint configurable
     path = ["/v1/json", ...path].filter(Boolean)
 
@@ -104,7 +100,7 @@ export function createLink(url: string = DEFAULT_URL, options?: LinkOptions) {
 
     const promise = call(target.toString(), fetchOptions)
 
-    return waterfall([parse, normalize, cast], promise) as Promise<R>
+    return waterfall([parse, normalize, cast], promise) as Promise<T>
   }
 }
 

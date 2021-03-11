@@ -1,22 +1,25 @@
 import {Request} from "./Request"
 
-import {createLink, LinkOptions} from "./util/link"
+import {Link, LinkOptions} from "./util/link"
 
 const {isArray} = Array
 
 export interface SearchOptions {
-  link?: ReturnType<typeof createLink>
-  query?: string[]
+  link?: Link
+  query?: string[],
+  type?: SearchTypes
 }
 
-export type SEARCH_TYPES = "comments"
+export type SearchTypes = "comments"
   | "galleries"
   | "posts"
   | "tags"
   | "images"
 
-class Search extends Request {
-  private _type: SEARCH_TYPES = "images"
+export const DEFAULT_SEARCH_TYPE: SearchTypes = "images"
+
+export class Search<T> extends Request<T> {
+  private _type: SearchTypes = DEFAULT_SEARCH_TYPE
 
   constructor({query, link}: SearchOptions = {}) {
     super({link, path: "search"})
@@ -26,7 +29,7 @@ class Search extends Request {
     }
   }
 
-  private _setType(searchType: SEARCH_TYPES): this {
+  private _setType(searchType: SearchTypes): this {
     this._type = searchType
 
     return this
@@ -207,7 +210,7 @@ class Search extends Request {
    *
    * @param {DinkyRequestOptions} [options]
    */
-  async exec(options?: LinkOptions) {
+  async exec<T>(options?: LinkOptions) {
     const params = this._query.get("q")
     if (isArray(params) && params.length > 0) {
       this._query.set("q", params.join(","))
@@ -219,8 +222,6 @@ class Search extends Request {
 
     this._path.push(this._type)
 
-    return super.exec(options)
+    return super.exec<T>(options)
   }
 }
-
-export default Search

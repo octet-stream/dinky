@@ -1,6 +1,6 @@
 import TypedObject from "./type/TypedObject"
 
-import {createLink, LinkOptions} from "./util/link"
+import {createLink, Link, LinkOptions} from "./util/link"
 
 import {OnFulfilled, OnRejected} from "./type/PromiseCallbacks"
 
@@ -11,18 +11,19 @@ const {isArray} = Array
 export interface RequestOptions {
   readonly url?: string
   readonly path: string | string[]
-  readonly link: ReturnType<typeof createLink>
+  readonly link: Link
+  readonly linkOptions?: LinkOptions
 }
 
-export class Request<R extends TypedObject = TypedObject> {
-  private _link: ReturnType<typeof createLink>
+export class Request<T> {
+  private _link: Link
 
   protected _path: string[]
 
   protected _query = new Query()
 
-  constructor({link, path}: RequestOptions) {
-    this._link = link
+  constructor({url, path, link, linkOptions}: RequestOptions) {
+    this._link = link ? link : createLink(url, linkOptions)
 
     this._path = isArray(path) ? path : [path]
   }
@@ -34,16 +35,16 @@ export class Request<R extends TypedObject = TypedObject> {
     this._query.set("page", value)
   }
 
-  exec(options?: LinkOptions): Promise<R> {
-    return this._link<R>(this._path, this._query, options)
+  exec<T>(options?: LinkOptions): Promise<T> {
+    return this._link<T>(this._path, this._query, options)
   }
 
-  then(onFulfilled?: OnFulfilled<R>, onRejected?: OnRejected): Promise<R> {
-    return this.exec().then(onFulfilled, onRejected) as Promise<R>
+  then(onFulfilled?: OnFulfilled<T>, onRejected?: OnRejected): Promise<T> {
+    return this.exec<T>().then(onFulfilled, onRejected) as Promise<T>
   }
 
   catch(onRejected?: OnRejected): Promise<unknown> {
-    return this.exec().catch(onRejected) as Promise<unknown>
+    return this.exec<T>().catch(onRejected) as Promise<unknown>
   }
 }
 

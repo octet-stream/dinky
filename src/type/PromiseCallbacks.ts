@@ -1,10 +1,9 @@
 import MaybePromise from "./MaybePromise"
-import TypedObject from "./TypedObject"
 
 export interface OnRejected {
   (reason: unknown): MaybePromise<unknown>
 }
 
-export interface OnFulfilled<T extends TypedObject = TypedObject> {
+export interface OnFulfilled<T = unknown> {
   (value: T): MaybePromise<unknown>
 }
