@@ -1,3 +1,5 @@
 export * from "./Entities"
+export * from "./Comments"
 export * from "./Images"
 export * from "./Search"
+export * from "./Tags"

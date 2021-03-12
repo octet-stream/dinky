@@ -7,10 +7,16 @@
   ],
   "compilerOptions": {
     "target": "es2018",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
+    "noImplicitAny": false,
     "baseUrl": "src",
-    "checkJs": true,
-    "experimentalDecorators": true
+    "moduleResolution": "node",
+    "checkJs": false,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true
   }
 }

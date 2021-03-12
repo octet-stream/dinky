@@ -4,7 +4,7 @@ import {Entities, EntitiesOptions} from "./Entities"
 import {LinkOptions} from "./util/link"
 
 export class Images extends Entities<payloads.Image, payloads.ImagesResponse> {
-  constructor({url, link}: EntitiesOptions) {
+  constructor({url, link}: EntitiesOptions = {}) {
     super({url, link, path: "images"})
   }
 

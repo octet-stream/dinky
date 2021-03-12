@@ -2,6 +2,8 @@ import {Request} from "./Request"
 
 import {Link, LinkOptions} from "./util/link"
 
+import flat from "./util/flat"
+
 const {isArray} = Array
 
 export interface SearchOptions {
@@ -55,7 +57,9 @@ export class Search<T> extends Request<T> {
     return this._setType("images")
   }
 
-  query(list: string[]): this {
+  query(...list: Array<string[] | string>): this {
+    list = flat(list)
+
     if (!list.length) {
       return this
     }
