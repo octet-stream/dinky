@@ -12,7 +12,8 @@ export interface SearchOptions {
   type?: SearchTypes
 }
 
-export type SearchTypes = "comments"
+export type SearchTypes =
+  | "comments"
   | "galleries"
   | "posts"
   | "tags"

@@ -1,5 +1,3 @@
-import TypedObject from "./type/TypedObject"
-
 import {createLink, Link, LinkOptions} from "./util/link"
 
 import {OnFulfilled, OnRejected} from "./type/PromiseCallbacks"
