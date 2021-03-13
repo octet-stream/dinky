@@ -4,8 +4,6 @@ import test from "ava"
 import pq from "proxyquire"
 import fm from "fetch-mock"
 
-import {Response} from "node-fetch"
-
 import Query from "./Query"
 import NetworkError from "./NetworkError"
 
