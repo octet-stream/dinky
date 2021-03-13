@@ -11,11 +11,12 @@ import NetworkError from "./NetworkError"
 
 import {createLink as actualCreateLink, DEFAULT_URL} from "./link"
 
+// * Just a hack to prevent unnecessary outgonig requests when linkOptions.fetch is not set
 const {createLink} = pq<{createLink: typeof actualCreateLink}>("./link", {
   "isomorphic-fetch": () => {
     throw new Error(
       "Please mock fetch in all tests from createLink options, like so: "
-        + "createLink({linkOptions: <fetch function from fetch-mock>})"
+        + "createLink({linkOptions: {fetch: <fetch function from fetch-mock>}})"
     )
   }
 })
@@ -34,7 +35,6 @@ test("Allows to bring your own fetch function", async t => {
 
 test("Creates fetcher with default url", async t => {
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {fetch}})
 
@@ -58,8 +58,6 @@ test("Creates a link to the given url", async t => {
 test("Creates a correct request address from given path and query", async t => {
   const fetch = fm.sandbox().mock(pattern, {})
 
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
-
   const link = createLink({linkOptions: {fetch}})
   const query = new Query()
 
@@ -79,7 +77,6 @@ test("Appends given key to query params", async t => {
   const expected = "secret"
 
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {key: expected, fetch}})
   const query = new Query()
@@ -98,7 +95,6 @@ test("Appends given filter_id to query params", async t => {
   const expected = 419
 
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {filter: expected, fetch}})
   const query = new Query()
@@ -117,7 +113,6 @@ test("Allows to set per-request key in the third argument", async t => {
   const expected = "secret"
 
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {fetch}})
 
@@ -133,7 +128,6 @@ test("Per-request key have priority over the default one", async t => {
   const expected = "another-key"
 
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {key: "secret", fetch}})
 
@@ -149,7 +143,6 @@ test("Allows to set per-request filter in the third argument", async t => {
   const expected = 419
 
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {fetch}})
 
@@ -165,7 +158,6 @@ test("Per-request filter have priority over the default one", async t => {
   const expected = 451
 
   const fetch = fm.sandbox().mock(pattern, {})
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {filter: 419, fetch}})
 
@@ -179,7 +171,6 @@ test("Per-request filter have priority over the default one", async t => {
 
 test("Throws an error for non 2xx response", async t => {
   const fetch = fm.sandbox().mock(pattern, 404)
-  // const createLink = pq("../../../lib/util/link", {"isomorphic-fetch": fetch})
 
   const link = createLink({linkOptions: {fetch}})
 

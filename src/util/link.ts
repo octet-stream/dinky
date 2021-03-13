@@ -68,7 +68,7 @@ export type Link = ReturnType<typeof createLink>
  * @param options Link options
  */
 export function createLink(options: CreateLinkOptions = {}) {
-  let {url, linkOptions}: CreateLinkOptions = {
+  const {url, linkOptions}: CreateLinkOptions = {
     ...defaults, ...options,
 
     linkOptions: {
@@ -89,13 +89,13 @@ export function createLink(options: CreateLinkOptions = {}) {
     // TODO: Should probably make base endpoint configurable
     path = ["/api/v1/json", ...path].filter(Boolean)
 
-    const {key, filter, fetch: call, fetchOptions} = {
+    const {key, filter, fetch: call, fetchOptions}: LinkOptions = {
       ...linkOptions, ...requestOptions,
 
       fetchOptions: {
         ...linkOptions.fetchOptions, ...requestOptions?.fetchOptions
       }
-    } as LinkOptions
+    }
 
     if (key) {
       query.set("key", key)
