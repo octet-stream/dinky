@@ -16,7 +16,7 @@
     "api-client"
   ],
   "scripts": {
-    "test": "ava",
+    "test": "ava --fail-fast",
     "coverage": "c8 npm test",
     "ci": "c8 npm test && c8 report --reporter=json",
     "eslint": "eslint lib/**/*.js test/**/*.js",

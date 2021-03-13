@@ -10,14 +10,15 @@
     "target": "es2018",
     "noImplicitAny": false,
     "baseUrl": "src",
-    "moduleResolution": "node",
     "checkJs": false,
     "allowJs": false,
     "skipLibCheck": true,
     "strict": false,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "module": "commonjs"
   }

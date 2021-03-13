@@ -69,18 +69,10 @@ export type Link = ReturnType<typeof createLink>
  */
 export function createLink(options: CreateLinkOptions = {}) {
   let {url, linkOptions}: CreateLinkOptions = {
-    ...options, ...defaults,
+    ...defaults, ...options,
 
     linkOptions: {
-      ...options?.linkOptions, ...defaults?.linkOptions
-    }
-  }
-
-  linkOptions: linkOptions = {
-    ...linkDefaults, ...linkOptions,
-
-    fetchOptions: {
-      ...linkDefaults.fetchOptions, ...linkOptions?.fetchOptions
+      ...defaults?.linkOptions, ...options?.linkOptions
     }
   }
 
@@ -95,7 +87,7 @@ export function createLink(options: CreateLinkOptions = {}) {
     requestOptions?: LinkOptions
   ): Promise<T> {
     // TODO: Should probably make base endpoint configurable
-    path = ["/v1/json", ...path].filter(Boolean)
+    path = ["/api/v1/json", ...path].filter(Boolean)
 
     const {key, filter, fetch: call, fetchOptions} = {
       ...linkOptions, ...requestOptions,
