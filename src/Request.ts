@@ -23,7 +23,7 @@ export class Request<T> {
   protected _query = new Query()
 
   constructor({url, path, link, linkOptions}: RequestOptions) {
-    this._link = link ? link : createLink(url, linkOptions)
+    this._link = link ? link : createLink({url, linkOptions})
 
     this._path = isArray(path) ? path : [path]
   }
@@ -35,7 +35,7 @@ export class Request<T> {
     this._query.set("page", value)
   }
 
-  exec<T>(options?: LinkOptions): Promise<T> {
+  exec<T = unknown>(options?: LinkOptions): Promise<T> {
     return this._link<T>(this._path, this._query, options)
   }
 

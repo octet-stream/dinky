@@ -6,6 +6,7 @@
     "node_modules"
   ],
   "compilerOptions": {
+    "outDir": "lib",
     "target": "es2018",
     "noImplicitAny": false,
     "baseUrl": "src",
@@ -17,6 +18,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs"
   }
 }

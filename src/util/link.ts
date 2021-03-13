@@ -12,7 +12,7 @@ export interface LinkOptions {
   /**
    * Fetch API compatible function
    */
-  readonly fetch: typeof fetch
+  readonly fetch?: typeof fetch
 
   /**
    * Fetch options
@@ -30,14 +30,24 @@ export interface LinkOptions {
   readonly key?: string
 }
 
-const defaults: LinkOptions = {
+export interface CreateLinkOptions {
+  url?: string
+  linkOptions?: LinkOptions
+}
+
+export const DEFAULT_URL = "https://derpibooru.org"
+
+const linkDefaults: LinkOptions = {
   fetch,
   fetchOptions: {
     method: "get"
   }
 }
 
-export const DEFAULT_URL = "https://derpibooru.org"
+const defaults: CreateLinkOptions = {
+  url: DEFAULT_URL,
+  linkOptions: linkDefaults
+}
 
 const normalize = <T>(input: T): T => camelCase<T>(input, {deep: true})
 
@@ -57,12 +67,20 @@ export type Link = ReturnType<typeof createLink>
  * @param url URL which is the target for link requests. Defaults to https://derpibooru.org
  * @param options Link options
  */
-export function createLink(url: string = DEFAULT_URL, options?: LinkOptions) {
-  options = {
-    ...defaults, ...options,
+export function createLink(options: CreateLinkOptions = {}) {
+  let {url, linkOptions}: CreateLinkOptions = {
+    ...options, ...defaults,
+
+    linkOptions: {
+      ...options?.linkOptions, ...defaults?.linkOptions
+    }
+  }
+
+  linkOptions: linkOptions = {
+    ...linkDefaults, ...linkOptions,
 
     fetchOptions: {
-      ...defaults.fetchOptions, ...options?.fetchOptions
+      ...linkDefaults.fetchOptions, ...linkOptions?.fetchOptions
     }
   }
 
@@ -80,10 +98,10 @@ export function createLink(url: string = DEFAULT_URL, options?: LinkOptions) {
     path = ["/v1/json", ...path].filter(Boolean)
 
     const {key, filter, fetch: call, fetchOptions} = {
-      ...options, ...requestOptions,
+      ...linkOptions, ...requestOptions,
 
       fetchOptions: {
-        ...options.fetchOptions, ...requestOptions?.fetchOptions
+        ...linkOptions.fetchOptions, ...requestOptions?.fetchOptions
       }
     } as LinkOptions
 
