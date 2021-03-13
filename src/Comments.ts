@@ -1,11 +1,7 @@
-import payloads from "./type/responses"
+import r from "./type/responses"
 
-import {Entities, EntitiesOptions} from "./Entities"
+import {Entities} from "./Entities"
 
-export class Comments extends Entities<
-  payloads.Comment, payloads.CommentsResponse
-> {
-  constructor({url, link}: EntitiesOptions = {}) {
-    super({url, link, path: "comments"})
-  }
+export class Comments extends Entities<r.Comment, r.CommentsResponse> {
+  protected _path = ["comments"]
 }

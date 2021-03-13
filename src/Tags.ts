@@ -1,9 +1,7 @@
-import payloads from "./type/responses"
+import r from "./type/responses"
 
-import {Entities, EntitiesOptions} from "./Entities"
+import {Entities} from "./Entities"
 
-export class Tags extends Entities<payloads.Tag, payloads.TagsResponse> {
-  constructor({url, link}: EntitiesOptions = {}) {
-    super({url, link, path: "tags"})
-  }
+export class Tags extends Entities<r.Tag, r.TagsResponse> {
+  protected _path = ["tags"]
 }
