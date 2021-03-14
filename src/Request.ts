@@ -29,8 +29,10 @@ export class Request<T> {
   /**
    * Sets the page number.
    */
-  page(value: number = 1) {
+  page(value: number = 1): this {
     this._query.set("page", value)
+
+    return this
   }
 
   exec<T>(options?: LinkOptions): Promise<T> {
