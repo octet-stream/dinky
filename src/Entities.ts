@@ -8,11 +8,11 @@ export interface EntitiesOptions {
   linkOptions?: LinkOptions
 }
 
-export abstract class Entities<R, P> extends Request<P> {
+export abstract class Entities<Response, Page> extends Request<Page> {
   /**
    * Gets one entity by ID
    */
-  getById(id: number, options?: LinkOptions): Promise<R> {
+  getById(id: number, options?: LinkOptions): Promise<Response> {
     this._path.push(String(id))
 
     return this.exec(options)
