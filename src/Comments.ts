@@ -1,7 +1,9 @@
 import r from "./type/responses"
 
-import {Entities} from "./Entities"
+import {Entities, EntitiesOptions} from "./Entities"
 
 export class Comments extends Entities<r.Comment, r.CommentsResponse> {
-  protected _path = ["comments"]
+  constructor(options?: EntitiesOptions) {
+    super({...options, path: "comments"})
+  }
 }

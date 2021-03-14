@@ -1,10 +1,12 @@
 import r from "./type/responses"
 
-import {Entities} from "./Entities"
+import {Entities, EntitiesOptions} from "./Entities"
 import {LinkOptions} from "./util/link"
 
 export class Images extends Entities<r.Image, r.ImagesResponse> {
-  protected _path = ["images"]
+  constructor(options?: EntitiesOptions) {
+    super({...options, path: "images"})
+  }
 
   /**
    * Get a featured image

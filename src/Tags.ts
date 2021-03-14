@@ -1,7 +1,9 @@
 import r from "./type/responses"
 
-import {Entities} from "./Entities"
+import {Entities, EntitiesOptions} from "./Entities"
 
 export class Tags extends Entities<r.Tag, r.TagsResponse> {
-  protected _path = ["tags"]
+  constructor(options?: EntitiesOptions) {
+    super({...options, path: "tags"})
+  }
 }

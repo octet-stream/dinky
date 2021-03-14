@@ -8,8 +8,8 @@ const {isArray} = Array
 
 export interface RequestOptions {
   readonly url?: string
+  readonly link?: Link
   readonly path: string | string[]
-  readonly link: Link
   readonly linkOptions?: LinkOptions
 }
 

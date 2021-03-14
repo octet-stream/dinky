@@ -9,11 +9,6 @@ export interface EntitiesOptions {
 }
 
 export abstract class Entities<R, P> extends Request<P> {
-  constructor({url, link, linkOptions}: EntitiesOptions) {
-    // Path must be set in actual Entity through _path field inheritance!
-    super({url, link, linkOptions, path: []})
-  }
-
   /**
    * Gets one entity by ID
    */
