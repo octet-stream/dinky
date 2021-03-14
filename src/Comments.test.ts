@@ -17,7 +17,7 @@ test("Creates a link with path to /api/v1/json/comments", async t => {
 
   await new Comments({link: link as any as Link})
 
-  const [path] = link.firstCall.args
+  const [[path]] = link.firstCall.args as [[string]]
 
-  t.deepEqual(path, ["comments"])
+  t.deepEqual(path, "comments")
 })
