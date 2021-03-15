@@ -84,7 +84,7 @@ export class Search<T> extends Request<T> {
    * **Note that this method requires user's key.**
    */
   faves() {
-    return this.query(["my:faves"])
+    return this.query("my:faves")
   }
 
   /**
@@ -93,7 +93,7 @@ export class Search<T> extends Request<T> {
    * **Note that this method requires user's key.**
    */
   watched() {
-    return this.query(["my:watched"])
+    return this.query("my:watched")
   }
 
   /**
@@ -102,7 +102,7 @@ export class Search<T> extends Request<T> {
    * **Note that this method requires user's key.**
    */
   upvotes() {
-    return this.query(["my:upvotes"])
+    return this.query("my:upvotes")
   }
 
   /**
@@ -111,7 +111,7 @@ export class Search<T> extends Request<T> {
    * **Note that this method requires user's key.**
    */
   downvotes() {
-    return this.query(["my:downvotes"])
+    return this.query("my:downvotes")
   }
 
   /**
@@ -120,7 +120,7 @@ export class Search<T> extends Request<T> {
    * **Note that this method requires user's key.**
    */
   uploads() {
-    return this.query(["my:uploads"])
+    return this.query("my:uploads")
   }
 
   /**
@@ -129,16 +129,16 @@ export class Search<T> extends Request<T> {
    * @param user Name of the user on booru
    */
   favedBy(user: string) {
-    return this.query([`faved_by:${user}`])
+    return this.query(`faved_by:${user}`)
   }
 
   /**
    * Search for images uploaded by specified user
    *
-   * @param user – name of the user on booru
+   * @param user Name of the user on booru
    */
   uploadedBy(user: string) {
-    return this.query([`uploader:${user}`])
+    return this.query(`uploader:${user}`)
   }
 
   /**
@@ -166,7 +166,7 @@ export class Search<T> extends Request<T> {
   /**
    * Sets the **maximal** score of requested images.
    *
-   * @param value – a value of maximal score
+   * @param value A value of maximal score
    */
   maxScore(value: number): this {
     this._query.set("max_score", value)
