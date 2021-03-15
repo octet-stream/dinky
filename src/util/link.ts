@@ -31,6 +31,9 @@ export interface LinkOptions {
 }
 
 export interface CreateLinkOptions {
+  /**
+   * URL which is the target for link requests. Defaults to https://derpibooru.org
+   */
   url?: string
   linkOptions?: LinkOptions
 }
@@ -63,9 +66,6 @@ export type Link = ReturnType<typeof createLink>
 
 /**
  * Creates a new link for target url
- *
- * @param url URL which is the target for link requests. Defaults to https://derpibooru.org
- * @param options Link options
  */
 export function createLink(options: CreateLinkOptions = {}) {
   const {url, linkOptions}: CreateLinkOptions = {
