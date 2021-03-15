@@ -1,10 +1,8 @@
-import {ExecutionContext} from "ava"
 import {spy, SinonSpy} from "sinon"
 
-export interface CreateNoopLinkContext {
-  noopLink: SinonSpy<any[], Promise<{}>>
-}
+const createNoopLink = <
+  Args extends any[] = any[],
+  Result = any
+>() => spy(() => Promise.resolve({})) as any as SinonSpy<Args, Result>
 
-export const createNoopLink = (t: ExecutionContext<CreateNoopLinkContext>) => {
-  t.context.noopLink = spy(() => Promise.resolve({}))
-}
+export default createNoopLink
