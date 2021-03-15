@@ -521,6 +521,120 @@ declare namespace responses {
      */
     userId: null | number
   }
+
+  interface User {
+    /**
+     * The ID of the user.
+     */
+    id: number
+
+    /**
+     * The name of the user.
+     */
+    name: string
+
+    /**
+     * The slug of the user.
+     */
+    slug: string
+
+    /**
+     * The role of the user.
+     */
+    role: string
+
+    /**
+     * The description (bio) of the user.
+     */
+    description: string
+
+    /**
+     * The URL of the user's thumbnail. null if the avatar is not set.
+     */
+    avatarUrl: string
+
+    /**
+     * The creation time, in UTC, of the user.
+     */
+    createdAt: Date
+
+    /**
+     * The comment count of the user.
+     */
+    commentCount: number
+
+    /**
+     * The upload count of the user.
+     */
+    uploadsCount: number
+
+    /**
+     * The forum posts count of the user.
+     */
+    postsCount: number
+
+    /**
+     * The forum topics count of the user.
+     */
+    topicsCount: number
+
+    // TODO: Add awards and links responses
+    // links: object
+    // awards: object
+  }
+
+  interface UserResponse {
+    user: User
+  }
+
+  interface Link {
+    /**
+     * The ID of the user who owns this link.
+     */
+    userId: number
+
+    /**
+     * The creation time, in UTC, of this link.
+     */
+    createdAt: Date
+
+    /**
+     * The state of this link.
+     */
+    state: string
+
+    /**
+     * The ID of an associated tag for this link. null if no tag linked.
+     */
+    tagId: number
+  }
+
+  interface Award {
+    /**
+     * 	The ID of the badge this award is derived from.
+     */
+    id: number
+
+    /**
+     * The title of this award.
+     */
+    title: string
+
+    /**
+     * The URL of this award.
+     */
+    imageUrl: string
+
+    /**
+     * 	The label of this award.
+     */
+    label: string
+
+    /**
+     * 	The time, in UTC, when this award was given.
+     */
+    awardedOn: Date
+  }
 }
 
 export default responses
