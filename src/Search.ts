@@ -6,12 +6,6 @@ import flat from "./util/flat"
 
 const {isArray} = Array
 
-export interface SearchOptions {
-  link?: Link
-  query?: string[],
-  type?: SearchTypes
-}
-
 export type SearchTypes =
   | "comments"
   | "galleries"
@@ -19,43 +13,21 @@ export type SearchTypes =
   | "tags"
   | "images"
 
+// ? Should probably extend it from RequestOptions by omitting "path" field
+export interface SearchOptions {
+  readonly url?: string
+  readonly link?: Link
+  readonly linkOptions?: LinkOptions
+  readonly type?: SearchTypes
+}
+
 export const DEFAULT_SEARCH_TYPE: SearchTypes = "images"
 
 export class Search<T> extends Request<T> {
-  private _type: SearchTypes = DEFAULT_SEARCH_TYPE
+  constructor({type, url, link, linkOptions}: SearchOptions = {}) {
+    const path: string[] = ["search", type ?? DEFAULT_SEARCH_TYPE]
 
-  constructor({query, link}: SearchOptions = {}) {
-    super({link, path: "search"})
-
-    if (query.length) {
-      this.query(query)
-    }
-  }
-
-  private _setType(searchType: SearchTypes): this {
-    this._type = searchType
-
-    return this
-  }
-
-  comments() {
-    return this._setType("comments")
-  }
-
-  galleries() {
-    return this._setType("galleries")
-  }
-
-  posts() {
-    return this._setType("posts")
-  }
-
-  tags() {
-    return this._setType("tags")
-  }
-
-  images() {
-    return this._setType("images")
+    super({url, link, linkOptions, path})
   }
 
   query(...list: Array<string[] | string>): this {
@@ -224,8 +196,6 @@ export class Search<T> extends Request<T> {
       // but no tags has been set
       this._query.set("q", "*")
     }
-
-    this._path.push(this._type)
 
     return super.exec<T>(options)
   }

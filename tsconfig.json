@@ -4,8 +4,8 @@
   ],
   "exclude": [
     "node_modules",
-    "__helper__",
-    "*.test.ts"
+    "src/__helper__/**",
+    "src/**/*.test.ts"
   ],
   "compilerOptions": {
     "outDir": "lib",
