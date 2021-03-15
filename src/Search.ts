@@ -65,12 +65,12 @@ export class Search<T> extends Request<T> {
       return this
     }
 
-    let params = this._query.get("q")
+    let params = this._query.get("q") as string[]
 
     if (isArray(params)) {
-      params = params.concat(list)
+      params = params.concat(list as string[])
     } else {
-      params = Array.from(list)
+      params = Array.from(list as string[])
     }
 
     this._query.set("q", params)
@@ -216,7 +216,7 @@ export class Search<T> extends Request<T> {
    * @param {DinkyRequestOptions} [options]
    */
   async exec<T>(options?: LinkOptions) {
-    const params = this._query.get("q")
+    const params = this._query.get("q") as string[]
     if (isArray(params) && params.length > 0) {
       this._query.set("q", params.join(","))
     } else if (this._query.get("sf") === "random") {
