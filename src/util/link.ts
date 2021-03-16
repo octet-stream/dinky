@@ -69,10 +69,12 @@ export type Link = ReturnType<typeof createLink>
  */
 export function createLink(options: CreateLinkOptions = {}) {
   const {url, linkOptions}: CreateLinkOptions = {
-    ...defaults, ...options,
+    ...defaults,
+    ...options,
 
     linkOptions: {
-      ...defaults?.linkOptions, ...options?.linkOptions
+      ...defaults?.linkOptions,
+      ...options?.linkOptions
     }
   }
 
@@ -90,10 +92,12 @@ export function createLink(options: CreateLinkOptions = {}) {
     path = ["/api/v1/json", ...path].filter(Boolean)
 
     const {key, filter, fetch: call, fetchOptions}: LinkOptions = {
-      ...linkOptions, ...requestOptions,
+      ...linkOptions,
+      ...requestOptions,
 
       fetchOptions: {
-        ...linkOptions.fetchOptions, ...requestOptions?.fetchOptions
+        ...linkOptions.fetchOptions,
+        ...requestOptions?.fetchOptions
       }
     }
 
