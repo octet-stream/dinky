@@ -1,13 +1,17 @@
-const test = require("ava")
+import test from "ava"
 
-const createNoopLink = require("../helper/createNoopLink")
+import createNoopLink from "./__helper__/createNoopLink"
 
-const Search = require("../../lib/Search")
+import {LinkOptions} from "./util/link"
 
-test.beforeEach(createNoopLink)
+import Query from "./util/Query"
+
+import {Search, DEFAULT_SEARCH_TYPE} from "./Search"
+
+type LinkParams = [string[], Query, LinkOptions]
 
 test("Creates a link to /api/v1/json/search", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link})
 
@@ -16,68 +20,28 @@ test("Creates a link to /api/v1/json/search", async t => {
   t.is(actual, "search")
 })
 
-test("Sets default search type to images", async t => {
-  const link = t.context.noopLink
+test("Sets default search type", async t => {
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link})
 
   const [[, actual]] = link.firstCall.args
 
-  t.is(actual, "images")
+  t.is(actual, DEFAULT_SEARCH_TYPE)
 })
 
-test(".comments() sets the search type to comments", async t => {
-  const link = t.context.noopLink
+test("Sets the search type from option", async t => {
+  const link = createNoopLink<LinkParams>()
 
-  await new Search({link}).comments()
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, "comments")
-})
-
-test(".galleries() sets the search type to galleries", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).galleries()
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, "galleries")
-})
-
-test(".posts() sets the search type to posts", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).posts()
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, "posts")
-})
-
-test(".tags() sets the search type to tags", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).tags()
+  await new Search({link, type: "tags"})
 
   const [[, actual]] = link.firstCall.args
 
   t.is(actual, "tags")
 })
 
-test(".images() sets the search type to images", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).images()
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, "images")
-})
-
 test("Creates search request without tags by default", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link})
 
@@ -86,44 +50,10 @@ test("Creates search request without tags by default", async t => {
   t.false(query.has("q"))
 })
 
-test("Allows to pass tags to the constructor", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link, query: ["princess luna", "safe"]})
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("q"))
-  t.is(query.get("q"), "princess luna,safe")
-})
-
-test(".query() allows to pass an empty array as an argument", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).query([])
-
-  const [, query] = link.firstCall.args
-
-  t.false(query.has("q"))
-})
-
-test(
-  ".query() allows to pass multiple empty arrays as an argument",
-  async t => {
-    const link = t.context.noopLink
-
-    await new Search({link}).query([], [], [])
-
-    const [, query] = link.firstCall.args
-
-    t.false(query.has("q"))
-  }
-)
-
 test(
   ".query() will not set any tags when called without arguments",
   async t => {
-    const link = t.context.noopLink
+    const link = createNoopLink<LinkParams>()
 
     await new Search({link}).query()
 
@@ -134,7 +64,7 @@ test(
 )
 
 test(".query() allows to pass a one tag from the string", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query("scootaloo")
 
@@ -144,42 +74,8 @@ test(".query() allows to pass a one tag from the string", async t => {
   t.is(query.get("q"), "scootaloo")
 })
 
-test(".query() appends more tags to request", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link, query: ["princess luna", "safe"]})
-    .query(["scootaloo", "sleepless in ponyville"])
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("q"))
-  t.is(query.get("q"), "princess luna,safe,scootaloo,sleepless in ponyville")
-})
-
-test(".query() allows to add a tag from the string", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link}).query("for whom the sweetie belle toils")
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("q"))
-  t.is(query.get("q"), "for whom the sweetie belle toils")
-})
-
-test(".query() appends a tag from the string", async t => {
-  const link = t.context.noopLink
-
-  await new Search({link, query: ["minuette"]}).query("amending fences")
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("q"))
-  t.is(query.get("q"), "minuette,amending fences")
-})
-
 test(".query() allows to set tags from multiple strings", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query("artist:rainbow", "scootaloo")
 
@@ -189,8 +85,19 @@ test(".query() allows to set tags from multiple strings", async t => {
   t.is(query.get("q"), "artist:rainbow,scootaloo")
 })
 
+test(".query() allows to set tags from array", async t => {
+  const link = createNoopLink<LinkParams>()
+
+  await new Search({link}).query(["artist:rainbow", "scootaloo"])
+
+  const [, query] = link.firstCall.args
+
+  t.true(query.has("q"))
+  t.is(query.get("q"), "artist:rainbow,scootaloo")
+})
+
 test(".query() allows to set tags from multiple arrays", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query(["artist:rainbow"], ["scootaloo"])
 
@@ -201,7 +108,7 @@ test(".query() allows to set tags from multiple arrays", async t => {
 })
 
 test(".faves() sets my:faves to request", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).faves()
 
@@ -211,7 +118,7 @@ test(".faves() sets my:faves to request", async t => {
 })
 
 test(".faves() appends my:faves to the existent tags set", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query(["scootaloo", "safe"]).faves()
 
@@ -221,7 +128,7 @@ test(".faves() appends my:faves to the existent tags set", async t => {
 })
 
 test(".watched() sets my:watched to request", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).watched()
 
@@ -231,7 +138,7 @@ test(".watched() sets my:watched to request", async t => {
 })
 
 test(".watched() appends my:watched to the existent tags set", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query(["scootaloo", "safe"]).watched()
 
@@ -241,7 +148,7 @@ test(".watched() appends my:watched to the existent tags set", async t => {
 })
 
 test(".upvotes() sets my:upvotes to request", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).upvotes()
 
@@ -251,7 +158,7 @@ test(".upvotes() sets my:upvotes to request", async t => {
 })
 
 test(".upvotes() appends my:upvotes to the existent tags set", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query(["scootaloo", "safe"]).upvotes()
 
@@ -261,7 +168,7 @@ test(".upvotes() appends my:upvotes to the existent tags set", async t => {
 })
 
 test(".downvotes() sets my:downvotes to request", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).downvotes()
 
@@ -271,7 +178,7 @@ test(".downvotes() sets my:downvotes to request", async t => {
 })
 
 test(".downvotes() appends my:downvotes to the existent tags set", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query(["scootaloo", "safe"]).downvotes()
 
@@ -281,7 +188,7 @@ test(".downvotes() appends my:downvotes to the existent tags set", async t => {
 })
 
 test(".uploads() sets my:uploads to request", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).uploads()
 
@@ -291,7 +198,7 @@ test(".uploads() sets my:uploads to request", async t => {
 })
 
 test(".uploads() appends my:uploads to the existent tags set", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).query(["scootaloo", "safe"]).uploads()
 
@@ -301,7 +208,7 @@ test(".uploads() appends my:uploads to the existent tags set", async t => {
 })
 
 test(".favedBy() sets faved_by parameter with the given user", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).favedBy("minuette")
 
@@ -311,7 +218,7 @@ test(".favedBy() sets faved_by parameter with the given user", async t => {
 })
 
 test(".uploadedBy() sets uploader parameter with the given user", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).uploadedBy("minuette")
 
@@ -321,7 +228,7 @@ test(".uploadedBy() sets uploader parameter with the given user", async t => {
 })
 
 test(".limit() adds the page limit (per_page param) to query", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).limit(42)
 
@@ -331,7 +238,7 @@ test(".limit() adds the page limit (per_page param) to query", async t => {
 })
 
 test(".minScore() adds the minimal images score to query", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).minScore(420)
 
@@ -341,7 +248,7 @@ test(".minScore() adds the minimal images score to query", async t => {
 })
 
 test(".maxScore() adds the maximal images score to query", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).maxScore(2600)
 
@@ -351,7 +258,7 @@ test(".maxScore() adds the maximal images score to query", async t => {
 })
 
 test(".ascending() sets ordering to the ascending", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).ascending()
 
@@ -361,7 +268,7 @@ test(".ascending() sets ordering to the ascending", async t => {
 })
 
 test(".descending() sets ordering to the descending", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).descending()
 
@@ -371,7 +278,7 @@ test(".descending() sets ordering to the descending", async t => {
 })
 
 test(".sortBy() sets sorting param with given field", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).sortBy("score")
 
@@ -381,7 +288,7 @@ test(".sortBy() sets sorting param with given field", async t => {
 })
 
 test(".random() adds sf=random param to query", async t => {
-  const link = t.context.noopLink
+  const link = createNoopLink<LinkParams>()
 
   await new Search({link}).random()
 
@@ -391,8 +298,10 @@ test(".random() adds sf=random param to query", async t => {
 })
 
 test(
-  ".random() will apply the * wildcard when no tags has been set", async t => {
-    const link = t.context.noopLink
+  ".random() will apply the * wildcard when no tags has been set",
+
+  async t => {
+    const link = createNoopLink<LinkParams>()
 
     await new Search({link}).random()
 
