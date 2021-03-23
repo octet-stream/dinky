@@ -8,7 +8,6 @@
     "src/**/*.test.ts"
   ],
   "compilerOptions": {
-    "outDir": "lib",
     "target": "es2018",
     "noImplicitAny": false,
     "baseUrl": "src",
@@ -18,10 +17,8 @@
     "strict": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "module": "commonjs"
+    "allowSyntheticDefaultImports": true
   }
 }

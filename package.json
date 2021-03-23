@@ -16,7 +16,11 @@
     "api-client"
   ],
   "scripts": {
-    "test": "ava --fail-fast",
+    "make:esm": "tsc --project tsconfig.esm.json",
+    "make:cjs": "tsc --project tsconfig.cjs.json",
+    "make": "npm run make:esm && npm run make:cjs",
+    "cleanup": "rm -rf lib",
+    "test": "TS_NODE_PROJECT=tsconfig.cjs.json ava --fail-fast",
     "coverage": "c8 npm test",
     "ci": "c8 npm test && c8 report --reporter=json",
     "eslint": "eslint src/**/*.ts --ext .ts",
