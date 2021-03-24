@@ -7,8 +7,7 @@ export default {
   },
   nodeArguments: [
     "--experimental-modules",
-    "--loader=ts-node/esm/transpile-only",
-    "--experimental-specifier-resolution=node"
+    "--loader=ts-node/esm/transpile-only"
   ],
   files: [
     "src/**/*.test.ts",
