@@ -1,6 +1,6 @@
 import test from "ava"
 
-import flat from "./flat.js"
+import flat from "./flat"
 
 test("Returns given empty array as-is", t => {
   t.deepEqual(flat([]), [])

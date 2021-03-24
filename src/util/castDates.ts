@@ -1,4 +1,4 @@
-import map from "./objectFlatMap.js"
+import map from "./objectFlatMap"
 
 const fields = [
   "createdAt",

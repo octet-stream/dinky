@@ -3,10 +3,10 @@ import {URL} from "url"
 import fetch from "isomorphic-fetch"
 import camelCase from "camelcase-keys"
 
-import NetworkError from "./NetworkError.js"
-import waterfall from "./waterfall.js"
-import cast from "./castDates.js"
-import Query from "./Query.js"
+import NetworkError from "./NetworkError"
+import waterfall from "./waterfall"
+import cast from "./castDates"
+import Query from "./Query"
 
 export interface LinkOptions {
   /**

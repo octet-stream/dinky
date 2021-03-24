@@ -2,12 +2,12 @@ import test from "ava"
 
 import sinon from "sinon"
 
-import createNoopLink from "./__helper__/createNoopLink.js"
+import createNoopLink from "./__helper__/createNoopLink"
 
-import Query from "./util/Query.js"
+import Query from "./util/Query"
 
-import {Link} from "./util/link.js"
-import {Request} from "./Request.js"
+import {Link} from "./util/link"
+import {Request} from "./Request"
 
 const {spy} = sinon
 

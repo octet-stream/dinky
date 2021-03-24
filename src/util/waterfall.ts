@@ -1,4 +1,4 @@
-import MaybePromise from "../type/MaybePromise.js"
+import MaybePromise from "../type/MaybePromise"
 
 interface Task {
   (...args: unknown[]): MaybePromise

@@ -1,7 +1,7 @@
-import r from "./type/responses.js"
+import r from "./type/responses"
 
-import {Entities, EntitiesOptions} from "./Entities.js"
-import {LinkOptions} from "./util/link.js"
+import {Entities, EntitiesOptions} from "./Entities"
+import {LinkOptions} from "./util/link"
 
 export class Images extends Entities<r.Image, r.ImagesResponse> {
   constructor(options?: EntitiesOptions) {

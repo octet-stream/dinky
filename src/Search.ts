@@ -1,8 +1,8 @@
-import {Request} from "./Request.js"
+import {Request} from "./Request"
 
-import {Link, LinkOptions} from "./util/link.js"
+import {Link, LinkOptions} from "./util/link"
 
-import flat from "./util/flat.js"
+import flat from "./util/flat"
 
 const {isArray} = Array
 

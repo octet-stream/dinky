@@ -1,6 +1,6 @@
-import {LinkOptions, createLink} from "./util/link.js"
+import {LinkOptions, createLink} from "./util/link"
 
-import Request from "./Request.js"
+import Request from "./Request"
 
 export interface EntitiesOptions {
   url?: string

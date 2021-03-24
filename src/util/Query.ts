@@ -1,6 +1,6 @@
 import {URLSearchParams} from "url"
 
-import isString from "./isString.js"
+import isString from "./isString"
 
 function assertKey(key: unknown) {
   if (!isString(key)) {

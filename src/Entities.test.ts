@@ -1,9 +1,9 @@
 import test from "ava"
 
-import createNoopLink from "./__helper__/createNoopLink.js"
+import createNoopLink from "./__helper__/createNoopLink"
 
-import {Link} from "./util/link.js"
-import {Entities} from "./Entities.js"
+import {Link} from "./util/link"
+import {Entities} from "./Entities"
 
 class MyEntity extends Entities<any, any> { }
 

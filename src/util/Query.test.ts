@@ -1,6 +1,6 @@
 import test from "ava"
 
-import Query from "./Query.js"
+import Query from "./Query"
 
 test(".set() allows only string keys", t => {
   const query = new Query()
