@@ -2,8 +2,8 @@
   "name": "dinky.js",
   "version": "1.1.0",
   "description": "JavaScript bindings for Derpibooru API",
-  "type": "module",
   "main": "./lib/cjs/dinky.js",
+  "module": "./lib/esm/dinky.js",
   "types": "./type/dinky.d.ts",
   "exports": {
     "import": "./lib/esm/dinky.js",
@@ -26,7 +26,7 @@
     "make:esm": "ttsc --project tsconfig.esm.json",
     "make:cjs": "ttsc --project tsconfig.cjs.json",
     "make": "npm run make:esm && npm run make:cjs",
-    "cleanup": "rm -rf lib type",
+    "cleanup": "rm -rf type && find lib -name \"*.js\" -type f -delete",
     "test": "TS_NODE_COMPILER=ttypescript TS_NODE_PROJECT=tsconfig.cjs.json ava --fail-fast",
     "coverage": "c8 npm test",
     "ci": "c8 npm test && c8 report --reporter=json",

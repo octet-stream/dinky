@@ -6,6 +6,6 @@ yarn-error.log
 
 *.old
 
-/lib/
+/lib/**/*.js
 /type/
 /test.mjs
