@@ -1,4 +1,3 @@
 {
-  "lib/**/*.js": "eslint",
-  "test/**/*.js": "eslint"
+  "lib/**/*.ts": "eslint"
 }
