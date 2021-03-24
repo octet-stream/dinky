@@ -12,7 +12,7 @@ test("Creates a new request to /api/v1/json/images", async t => {
 
   const [[path]] = link.firstCall.args
 
-  t.deepEqual(path, "images")
+  t.is(path, "images")
 })
 
 test("Creates a new request to /api/v1/json/images/featured", async t => {

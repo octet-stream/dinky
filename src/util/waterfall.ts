@@ -8,7 +8,10 @@ const step = (prev: MaybePromise, next: Task) => (
   Promise.resolve(prev).then(res => next(res))
 )
 
-function waterfall(tasks: Task[], initial: unknown = undefined): Promise<unknown> {
+function waterfall(
+  tasks: Task[],
+  initial: unknown = undefined
+): Promise<unknown> {
   if (tasks.length <= 1) {
     return step(initial, tasks[0])
   }

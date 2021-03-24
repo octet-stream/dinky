@@ -21,7 +21,7 @@ export class Request<T> {
   protected _query = new Query()
 
   constructor({url, path, link, linkOptions}: RequestOptions) {
-    this._link = link ? link : createLink({url, linkOptions})
+    this._link = link ?? createLink({url, linkOptions})
 
     this._path = isArray(path) ? path : [path]
   }
@@ -47,5 +47,3 @@ export class Request<T> {
     return this.exec<T>().catch(onRejected) as Promise<unknown>
   }
 }
-
-export default Request

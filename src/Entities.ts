@@ -1,6 +1,6 @@
 import {LinkOptions, createLink} from "./util/link"
 
-import Request from "./Request"
+import {Request} from "./Request"
 
 export interface EntitiesOptions {
   url?: string

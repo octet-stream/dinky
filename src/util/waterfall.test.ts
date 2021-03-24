@@ -7,8 +7,6 @@ import waterfall from "./waterfall"
 const {spy} = sinon
 
 test("Always returns a Promise", async t => {
-  t.plan(1)
-
   const actual = waterfall([
     () => Promise.resolve(0)
   ])
@@ -21,16 +19,11 @@ test("Always returns a Promise", async t => {
 test(
   "Correctly resolves values even if tasks aren't return Promise",
   async t => {
-    t.plan(2)
-
-    t.notThrowsAsync(waterfall([() => 0]))
     t.is(await waterfall([() => 0]), 0)
   }
 )
 
 test("Passes the result of previous task to the next", async t => {
-  t.plan(1)
-
   const taskOne = spy(() => "Hello")
 
   const taskTwo = spy(res => `${res}, world!`)
@@ -54,8 +47,6 @@ test("Resolves a correct value", async t => {
 })
 
 test("Throws an error given task is not a function", async t => {
-  t.plan(2)
-
   await Promise.all([
     // @ts-ignore
     t.throwsAsync(waterfall([451])),

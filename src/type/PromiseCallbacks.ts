@@ -1,4 +1,4 @@
-import MaybePromise from "./MaybePromise.js"
+import MaybePromise from "./MaybePromise"
 
 export interface OnRejected {
   (reason: unknown): MaybePromise<unknown>

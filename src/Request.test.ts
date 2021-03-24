@@ -18,7 +18,7 @@ test("Request calls the link on given path", async t => {
 
   const [[path]] = link.firstCall.args as [[string]]
 
-  t.deepEqual(path, "search")
+  t.is(path, "search")
 })
 
 test(".page() sets the page offset in query", async t => {

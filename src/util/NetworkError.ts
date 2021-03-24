@@ -11,7 +11,7 @@ class NetworkError extends Error {
     super(message)
 
     this.url = response.url
-    this.status =  response.status
+    this.status = response.status
     this.statusText = response.statusText
     this.response = response
 

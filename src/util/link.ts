@@ -62,6 +62,7 @@ function parse<T>(response: Response): Promise<T> {
   return response.json() as Promise<T>
 }
 
+// eslint-disable-next-line no-use-before-define
 export type Link = ReturnType<typeof createLink>
 
 /**

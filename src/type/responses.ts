@@ -75,13 +75,12 @@ declare namespace responses {
     userId: null | number
   }
 
-
   /**
    * - [Trial link](https://derpibooru.org/api/v1/json/search/tags?q=*)
    * - [Api docs](https://derpibooru.org/pages/api#tag-response)
    */
   export interface TagsResponse extends WithTotal {
-      tags: Tag[]
+    tags: Tag[]
   }
 
   export interface Tag {
@@ -208,9 +207,17 @@ declare namespace responses {
       userId: number
     }
 
-    export type Hidden = Common & { interactionType: "hidden", value: "" }
-    export type Faved = Common & { interactionType: "faved", value: "" }
-    export type Voted = Common & { interactionType: "voted", value: "up" | "down" }
+    export type Hidden = Common & {
+      interactionType: "hidden", value: ""
+    }
+
+    export type Faved = Common & {
+      interactionType: "faved", value: ""
+    }
+
+    export type Voted = Common & {
+      interactionType: "voted", value: "up" | "down"
+    }
   }
 
   export interface Image {
@@ -611,7 +618,7 @@ declare namespace responses {
 
   interface Award {
     /**
-     * 	The ID of the badge this award is derived from.
+     * The ID of the badge this award is derived from.
      */
     id: number
 
@@ -626,12 +633,12 @@ declare namespace responses {
     imageUrl: string
 
     /**
-     * 	The label of this award.
+     * The label of this award.
      */
     label: string
 
     /**
-     * 	The time, in UTC, when this award was given.
+     * The time, in UTC, when this award was given.
      */
     awardedOn: Date
   }
