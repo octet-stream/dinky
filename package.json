@@ -3,9 +3,13 @@
   "version": "1.1.0",
   "description": "JavaScript bindings for Derpibooru API",
   "type": "module",
-  "main": "lib/cjs/dinky.js",
-  "module": "lib/esm/dinky.js",
-  "types": "lib/Dinky.d.ts",
+  "main": "./lib/cjs/dinky.js",
+  "module": "./lib/esm/dinky.js",
+  "types": "./lib/Dinky.d.ts",
+  "exports": {
+    "require": "./lib/cjs/dinky.js",
+    "import": "./lib/esm/dinky.js"
+  },
   "repository": "octet-stream/dinky",
   "author": "Nick K. <io@octetstream.me>",
   "license": "MIT",
@@ -15,7 +19,9 @@
   "keywords": [
     "api-bindings",
     "derpibooru",
-    "api-client"
+    "furbooru",
+    "api-client",
+    "philomena"
   ],
   "scripts": {
     "make:esm": "tsc --project tsconfig.esm.json",
