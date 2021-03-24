@@ -7,4 +7,5 @@ yarn-error.log
 *.old
 
 /lib/
+/type/
 /test.mjs
