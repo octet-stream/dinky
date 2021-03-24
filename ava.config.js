@@ -6,7 +6,9 @@ export default {
     configurableModuleFormat: true
   },
   nodeArguments: [
-    "--loader=ts-node/esm/transpile-only"
+    "--experimental-modules",
+    "--loader=ts-node/esm/transpile-only",
+    "--experimental-specifier-resolution=node"
   ],
   files: [
     "src/**/*.test.ts",
