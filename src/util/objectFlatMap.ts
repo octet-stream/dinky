@@ -1,4 +1,4 @@
-import isPlainObject from "./isPlainObject"
+import isPlainObject from "./isPlainObject.js"
 
 const {isArray} = Array
 const {entries} = Object

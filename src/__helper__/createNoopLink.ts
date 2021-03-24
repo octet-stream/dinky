@@ -1,4 +1,6 @@
-import {spy, SinonSpy} from "sinon"
+import sinon, {SinonSpy} from "sinon"
+
+const {spy} = sinon
 
 const createNoopLink = <
   Args extends any[] = any[],

@@ -1,8 +1,8 @@
-import {createLink, Link, LinkOptions} from "./util/link"
+import {createLink, Link, LinkOptions} from "./util/link.js"
 
-import {OnFulfilled, OnRejected} from "./type/PromiseCallbacks"
+import {OnFulfilled, OnRejected} from "./type/PromiseCallbacks.js"
 
-import Query from "./util/Query"
+import Query from "./util/Query.js"
 
 const {isArray} = Array
 

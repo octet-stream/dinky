@@ -1,13 +1,15 @@
 import test from "ava"
 
-import {spy} from "sinon"
+import sinon from "sinon"
 
-import createNoopLink from "./__helper__/createNoopLink"
+import createNoopLink from "./__helper__/createNoopLink.js"
 
-import Query from "./util/Query"
+import Query from "./util/Query.js"
 
-import {Link} from "./util/link"
-import {Request} from "./Request"
+import {Link} from "./util/link.js"
+import {Request} from "./Request.js"
+
+const {spy} = sinon
 
 test("Request calls the link on given path", async t => {
   const link = createNoopLink<[[string]]>()

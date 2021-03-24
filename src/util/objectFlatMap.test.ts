@@ -1,10 +1,11 @@
 import test from "ava"
 
-import {spy} from "sinon"
+import sinon from "sinon"
 
-import map from "./objectFlatMap"
+import map from "./objectFlatMap.js"
 
 const {keys} = Object
+const {spy} = sinon
 
 const noop = (value: unknown) => value
 

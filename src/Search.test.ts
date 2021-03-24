@@ -1,12 +1,12 @@
 import test from "ava"
 
-import createNoopLink from "./__helper__/createNoopLink"
+import createNoopLink from "./__helper__/createNoopLink.js"
 
-import {LinkOptions} from "./util/link"
+import {LinkOptions} from "./util/link.js"
 
-import Query from "./util/Query"
+import Query from "./util/Query.js"
 
-import {Search, DEFAULT_SEARCH_TYPE} from "./Search"
+import {Search, DEFAULT_SEARCH_TYPE} from "./Search.js"
 
 type LinkParams = [string[], Query, LinkOptions]
 

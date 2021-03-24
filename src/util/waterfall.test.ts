@@ -1,8 +1,10 @@
 import test from "ava"
 
-import {spy} from "sinon"
+import sinon from "sinon"
 
-import waterfall from "./waterfall"
+import waterfall from "./waterfall.js"
+
+const {spy} = sinon
 
 test("Always returns a Promise", async t => {
   t.plan(1)

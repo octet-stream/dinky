@@ -1,23 +1,12 @@
 import {URLSearchParams, URL} from "url"
 
 import test from "ava"
-import pq from "proxyquire"
 import fm from "fetch-mock"
 
-import Query from "./Query"
-import NetworkError from "./NetworkError"
+import Query from "./Query.js"
+import NetworkError from "./NetworkError.js"
 
-import {createLink as actualCreateLink, DEFAULT_URL} from "./link"
-
-// * Just a hack to prevent unnecessary outgonig requests when linkOptions.fetch is not set
-const {createLink} = pq<{createLink: typeof actualCreateLink}>("./link", {
-  "isomorphic-fetch": () => {
-    throw new Error(
-      "Please mock fetch in all tests from createLink options, like so: "
-        + "createLink({linkOptions: {fetch: <fetch function from fetch-mock>}})"
-    )
-  }
-})
+import {createLink, DEFAULT_URL} from "./link.js"
 
 const pattern = /^https:\/\/derpibooru.org/
 

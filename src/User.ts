@@ -1,6 +1,6 @@
-import r from "./type/responses"
+import r from "./type/responses.js"
 
-import {Entities, EntitiesOptions} from "./Entities";
+import {Entities, EntitiesOptions} from "./Entities.js"
 
 export class User extends Entities<r.User, r.UserResponse> {
   constructor(options?: EntitiesOptions) {
