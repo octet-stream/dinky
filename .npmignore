@@ -1,14 +1,12 @@
 .DS_Store
 .github
 node_modules
-.nyc_output
 coverage
-yarn-error.log
-
-test
+__helper__
 coverage
 .codecov
 .husky
+yarn-error.log
 
 /code-of-conduct.md
 /.editorconfig
@@ -20,3 +18,7 @@ coverage
 /yarn.lock
 /test.mjs
 /tsconfig.json
+/tsconfig.esm.json
+/tsconfig.cjs.json
+/tsconfig.eslint.json
+lib/**/*.ts
