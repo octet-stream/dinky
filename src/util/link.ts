@@ -34,8 +34,12 @@ export interface CreateLinkOptions {
   /**
    * URL which is the target for link requests. Defaults to https://derpibooru.org
    */
-  url?: string
-  linkOptions?: LinkOptions
+  readonly url?: string
+
+  /**
+   * Link request options
+   */
+  readonly linkOptions?: LinkOptions
 }
 
 export const DEFAULT_URL = "https://derpibooru.org"

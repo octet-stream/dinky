@@ -1,4 +1,4 @@
-import {createLink, Link, LinkOptions} from "./util/link"
+import {createLink, Link, CreateLinkOptions, LinkOptions} from "./util/link"
 
 import {OnFulfilled, OnRejected} from "./type/PromiseCallbacks"
 
@@ -6,12 +6,12 @@ import Query from "./util/Query"
 
 const {isArray} = Array
 
-export interface RequestOptions {
-  readonly url?: string
-  readonly link?: Link
+export interface RequestOptions extends CreateLinkOptions {
   readonly path: string | string[]
-  readonly linkOptions?: LinkOptions
+  readonly link?: Link
 }
+
+export type RequestOptionsWithoutPath = Omit<RequestOptions, "path">
 
 export class Request<T> {
   private _link: Link

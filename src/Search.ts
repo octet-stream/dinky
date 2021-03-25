@@ -1,6 +1,6 @@
-import {Request} from "./Request"
+import {Request, RequestOptionsWithoutPath} from "./Request"
 
-import {Link, LinkOptions} from "./util/link"
+import {LinkOptions} from "./util/link"
 
 import flat from "./util/flat"
 
@@ -13,11 +13,10 @@ export type SearchTypes =
   | "tags"
   | "images"
 
-// ? Should probably extend it from RequestOptions by omitting "path" field
-export interface SearchOptions {
-  readonly url?: string
-  readonly link?: Link
-  readonly linkOptions?: LinkOptions
+export interface SearchOptions extends RequestOptionsWithoutPath {
+  /**
+   * Indicates the type of search request
+   */
   readonly type?: SearchTypes
 }
 
@@ -30,6 +29,11 @@ export class Search<T> extends Request<T> {
     super({url, link, linkOptions, path})
   }
 
+  /**
+   * Adds given tags to the request
+   *
+   * @param list A list of tags
+   */
   query(...list: Array<string[] | string>): this {
     list = flat(list)
 
@@ -185,7 +189,7 @@ export class Search<T> extends Request<T> {
   /**
    * Executes current search request.
    *
-   * @param {DinkyRequestOptions} [options]
+   * @param options
    */
   async exec<T>(options?: LinkOptions) {
     const params = this._query.get("q") as string[]

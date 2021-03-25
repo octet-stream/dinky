@@ -1,12 +1,8 @@
-import {LinkOptions, createLink} from "./util/link"
+import {LinkOptions} from "./util/link"
 
-import {Request} from "./Request"
+import {Request, RequestOptionsWithoutPath} from "./Request"
 
-export interface EntitiesOptions {
-  url?: string
-  link?: ReturnType<typeof createLink>
-  linkOptions?: LinkOptions
-}
+export type EntitiesOptions = RequestOptionsWithoutPath
 
 export abstract class Entities<Response, Page> extends Request<Page> {
   /**
