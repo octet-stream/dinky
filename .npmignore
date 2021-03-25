@@ -8,6 +8,7 @@ yarn-error.log
 test
 coverage
 .codecov
+.husky
 
 /code-of-conduct.md
 /.editorconfig
@@ -18,5 +19,4 @@ coverage
 /ava.config.cjs
 /yarn.lock
 /test.mjs
-/jsconfig.json
 /tsconfig.json

@@ -30,7 +30,7 @@ export class Search<T> extends Request<T> {
   }
 
   /**
-   * Adds given tags to the request
+   * Add a tag or set of tags to the request
    *
    * @param list A list of tags
    */
