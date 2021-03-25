@@ -1,6 +1,6 @@
 # dinky.js
 
-JavaScript bindings for [Derpibooru](https://derpibooru.org) API
+JavaScript bindings for [Philomena](https://github.com/philomena-dev/philomena) JSON API. Supports sites such as [Derpibooru](https://derpibooru.org) and [Furbooru](https://furbooru.org).
 
 ![ESLint](https://github.com/octet-stream/dinky/workflows/ESLint/badge.svg)
 ![CI](https://github.com/octet-stream/dinky/workflows/CI/badge.svg)
