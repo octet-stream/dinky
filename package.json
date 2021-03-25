@@ -30,7 +30,7 @@
     "test": "TS_NODE_COMPILER=ttypescript TS_NODE_PROJECT=tsconfig.cjs.json ava --fail-fast",
     "coverage": "c8 npm test",
     "ci": "c8 npm test && c8 report --reporter=json",
-    "eslint": "eslint src/**/*.ts --ext .ts",
+    "eslint": "eslint lib/**/*.ts --ext .ts",
     "staged": "lint-staged",
     "prepare": "npm run cleanup && npm run make"
   },

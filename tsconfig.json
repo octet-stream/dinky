@@ -1,11 +1,11 @@
 {
   "include": [
-    "src/**/*.ts"
+    "lib/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "src/__helper__/**",
-    "src/**/*.test.ts"
+    "lib/__helper__/**",
+    "lib/**/*.test.ts"
   ],
   "compilerOptions": {
     "target": "es2018",
