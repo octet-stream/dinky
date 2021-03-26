@@ -4,15 +4,13 @@ on:
   push:
     branches: [master]
     paths:
-      - "**.js"
-      - "**.mjs"
+      - "**.ts"
       - package.json
       - .github/workflows/ci.yml
   pull_request:
     branches: [master]
     paths:
-      - "**.js"
-      - "**.mjs"
+      - "**.ts"
       - package.json
       - .github/workflows/ci.yml
 
@@ -21,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14.x, 12.x, 10.x]
+        node: [15.x, 14.x, 12.x]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2

@@ -4,16 +4,18 @@ on:
   pull_request:
     branches: [master]
     paths:
-      - "**.js"
+      - "**.ts"
       - readme.md
       - package.json
+      - lib/**/package.jsom
       - .github/workflows/eslint.yml
   push:
     branches: [master]
     paths:
-      - "**.js"
+      - "**.ts"
       - readme.md
       - package.json
+      - lib/**/package.jsom
       - .github/workflows/eslint.yml
 
 jobs:

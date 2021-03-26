@@ -1,6 +1,6 @@
 # dinky.js
 
-JavaScript bindings for [Derpibooru](https://derpibooru.org) API
+JavaScript bindings for [Philomena](https://github.com/philomena-dev/philomena) JSON API. Supports sites such as [Derpibooru](https://derpibooru.org) and [Furbooru](https://furbooru.org).
 
 ![ESLint](https://github.com/octet-stream/dinky/workflows/ESLint/badge.svg)
 ![CI](https://github.com/octet-stream/dinky/workflows/CI/badge.svg)
@@ -22,125 +22,108 @@ Or with yarn:
 yarn add dinky.js
 ```
 
-## Native ESM support
-
-Dinky expose `.mjs` entry point, so you can use ESM natively
-in Node.js context using the [`--experimental-modules`](https://nodejs.org/api/esm.html#esm_enabling) flag.
-
 ## Usage
 
-Dinky implements chainable API to build each request and all requests will return a Promise that resolves data taken from Derpibooru API.
+Dinky implements individual class for each API resourse to build a request. All requests will return a Promise that resolves data taken from API.
 
 1. The minimal example that will return an image by known ID:
 
 ```js
-import dinky from "dinky.js"
+import {Images} from "dinky.js"
+
+const images = new Images()
 
 // The following request will return the 1th uploaded image from Derpibooru.
 // Equivalent to https://derpibooru.org/api/v1/json/images/0 request
-dinky().images().getById(0).then(console.log)
+images.getById(0).then(console.log)
 ```
 
-2. Search for images by their tags using the `.search()` method:
+2. Search for images by their tags using the `Search` class:
 
 ```js
-import dinky from "dinky.js"
+import {Search} from "dinky.js"
 
-// You can specify tags right in the .search() method
+// You can specify tags right in the .query() method
 // The following example is equivalent of this requests:
-// https://derpibooru.org/api/v1/json/search/images
-//   ?q=artist:rainbow,safe&sf=random
-dinky().search(["artist:rainbow", "safe"]).random()
+// https://derpibooru.org/api/v1/json/search/images?q=artist:rainbow,safe&sf=random&per_page=1
+search.query(["artist:rainbow", "safe"]).random().limit(1)
   .then(console.log)
 ```
 
-3. Since `.search()` method returns [`Search`](#class-search--request) instance
-you can store it into variable for the further usage:
+3. Every dinky.js class constructor allows to set a custom base URL, allowing you to use it with any Philomena compatible APIs.
 
 ```js
-import dinky from "dinky.js"
+import {Search} from "dinky.js"
 
-(async function () {
-  const random = dinky()
-    .search(["scootaloo", "princess luna", "safe", "sleepless in ponyville"])
-    .minScore(200)
-    .random()
-    .limit(1)
+const search = new Search({url: "https://furbooru.org"})
 
-  // Will search for random image with parameters from above
-  await random
-
-  // ...and once more
-  await random
-}()).catch(console.error)
+search.query(["safe", "loona"]).then(console.log)
 ```
 
-4. Walking through the search results:
+4. Every class keeps its state between request, which means you can re-use same object to perform multiple requests.
 
 ```js
-import dinky from "dinky.js"
+import {Search} from "dinky.js"
 
-(async function () {
-  const search = dinky().search(["twilight sparkle"]).minScore(200)
+const search = new Search()
 
-  // Search class is thenable, so you don't have to call `.exec()` method
-  // in async functions context.
-  // This request will return search results from the first page
-  await search
+search
+  .query(["scootaloo", "princess luna", "safe", "sleepless in ponyville"])
+  .minScore(200)
+  .random()
+  .limit(1)
 
-  await search.page(2)
+// Will search for random image with parameters from above
+await search
 
-  // Same thing for Images class:
-  const images = dinky().images()
-
-  await images.page(2)
-}()).catch(console.error)
+// ...and once more
+await search
 ```
 
-5. You can set a filter to use for requests:
+5. You can navigate through search results with `.page()` method. Note that after each `.page()` call you have to send a new request to API:
 
 ```js
-import dinky from "dinky.js"
+import {Search} from "dinky.js"
 
-dinky({filter: 37430}).search(["dinky", "derpy hooves"]).then(console.log)
+const search = new Search()
+
+serch.query("twilight sparkle").minScore(200)
+
+// Search class is thenable, so you don't have to call `.exec()`,`.then()` and `.catch()` methods to commit a request.
+// By default, will API will return results from the first page
+await search
+
+// Results for 2nd page
+await search.page(2)
+```
+
+6. You can set a filter to use for requests:
+
+```js
+import {Search} from "dinky.js"
+
+const search = new Search({filter: 37430})
+
+search.query(["dinky", "derpy hooves"])
+
+await search.exec()
 
 // You can also set per-request filter from .exec() method
-dinky({filter: 37430}).search(["dinky", "derpy hooves"]).exec({filter: 100073})
-  .then(console.log)
+await search.exec({filter: 100073})
 ```
 
-6. Search for "my:faves" images using a key taken from account page:
+7. Search for "my:faves" images using a key taken from account page:
 
 ```js
-import dinky from "dinky.js"
+import {Search} from "dinky.js"
 
-dinky({key: "<your key here>"}).search(["trixie", "safe"]).faves()
+const search = new Search({key: "<your key here>"})
+
+search.query(["trixie", "safe"]).faves()
   .then(console.log)
 ```
 
 ## API
-
-### `class Dinky`
-
-##### `constructor([options]) -> {Dinky}`
-
-Creates a new instance of the Derpibooru API client
-
-  - **{object}** [options = {}] – client options
-  - **{string}** [options.key = undefined] – your personal API key taken from your account settings
-  - **{number}** [options.filter = undefined] – ID of a filter. The ID can be found on [filters page](https://derpibooru.org/filters)
-
-#### Instance methods
-
-##### `images() -> {Images}`
-
-Creates a request handler for `/api/v1/json/images`
-
-##### `search([query]) -> {Search}`
-
-Creates a request handler for `/api/v1/json/search/images`. This method takes a list of query params
-
-  - **{string | string[]}** [query = []] – a tag or a list of query params and returns Search instance
 
 ### `class Images > Entities`
 
@@ -149,10 +132,6 @@ Creates a request handler for `/api/v1/json/search/images`. This method takes a 
 Creates a request handler for `/api/v1/json/images`
 
 #### Instance methods
-
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/images`.
 
 ##### `getById(id) -> {Promise<object>}`
 
@@ -170,10 +149,6 @@ Creates a request handler for `/api/v1/json/comments`.
 
 #### Instance methods
 
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/comments`.
-
 ##### `getById(id) -> {Promise<object>}`
 
 Returns a comment with given ID
@@ -186,10 +161,6 @@ Creates a request handler for `/api/v1/json/tags`.
 
 #### Instance methods
 
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/tags`.
-
 ##### `getById(id) -> {Promise<object>}`
 
 Returns a tag with given ID
@@ -201,26 +172,6 @@ Returns a tag with given ID
 Creates a request handler for `/api/v1/json/search`.
 
 #### Instance methods
-
-##### `comments() -> {Search}`
-
-Sets Search type to "comments"
-
-##### `galleries() -> {Search}`
-
-Sets Search type to "galleries"
-
-##### `posts() -> {Search}`
-
-Sets Search type to "posts"
-
-##### `tags() -> {Search}`
-
-Sets Search type to "tags"
-
-##### `images() -> {Search}`
-
-Sets Search type to "images"
 
 ##### `query([list]) -> {Search}`
 
@@ -292,28 +243,7 @@ Sets the **maximal** score of requested images
 
 ##### `random() -> {Search}`
 
-If been called, the API will return random image
-
-### `class Lists > Request`
-
-##### `constructor() -> {Lists}`
-
-Provides a bunch of shortcuts for `Search` request
-
-##### `topScoring() -> {Search}`
-
-Creates a Search request that gets top scoring images of last 3 days.
-The most rated images will be at the top of the list.
-
-##### `topScoringAllTime() -> {Search}`
-
-Creates a Search request that gets top scoring images of the all time.
-The most rated images will be at the top of the list.
-
-##### `topCommented() -> {Search}`
-
-Creates a Search request that gets top commented images of last 3 days.
-The most commented images will be at the top of the list.
+Sets the "sf" parameter to "random"
 
 ### `class Entities > Request`
 
@@ -322,10 +252,6 @@ The most commented images will be at the top of the list.
 Creates an Entity providing a few common methods for `Images`, `Comments` and `Tags`
 
 #### Instance methods
-
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search`.
 
 ##### `getById(id) -> {Promise<object>}`
 

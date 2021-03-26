@@ -4,4 +4,8 @@ node_modules
 coverage
 yarn-error.log
 
+*.old
+
+/lib/**/*.js
+/type/
 /test.mjs

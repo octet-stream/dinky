@@ -1,44 +1,68 @@
 {
   "name": "dinky.js",
   "version": "1.1.0",
-  "description": "JavaScript bindings for Derpibooru API",
-  "main": "lib/Dinky",
-  "types": "lib/Dinky.d.ts",
+  "description": "JavaScript bindings for Philomena JSON API. Supports sites such as Derpibooru and Furbooru.",
+  "main": "./lib/cjs/dinky.js",
+  "module": "./lib/esm/dinky.js",
+  "types": "./type/dinky.d.ts",
+  "exports": {
+    "import": "./lib/esm/dinky.js",
+    "require": "./lib/cjs/dinky.js"
+  },
   "repository": "octet-stream/dinky",
   "author": "Nick K. <io@octetstream.me>",
   "license": "MIT",
   "engines": {
-    "node": ">= 10 < 11 || >= 12 < 13 || >= 14"
+    "node": ">= 12.17 < 13 || >= 14"
   },
   "keywords": [
     "api-bindings",
     "derpibooru",
-    "api-client"
+    "furbooru",
+    "api-client",
+    "philomena"
   ],
   "scripts": {
-    "test": "ava",
+    "make:esm": "ttsc --project tsconfig.esm.json",
+    "make:cjs": "ttsc --project tsconfig.cjs.json",
+    "make": "npm run make:esm && npm run make:cjs",
+    "cleanup": "rm -rf type && find lib -name \"*.js\" -type f -delete",
+    "test": "TS_NODE_COMPILER=ttypescript TS_NODE_PROJECT=tsconfig.cjs.json ava --fail-fast",
     "coverage": "c8 npm test",
     "ci": "c8 npm test && c8 report --reporter=json",
-    "eslint": "eslint lib/**/*.js test/**/*.js",
-    "staged": "lint-staged"
+    "eslint": "eslint lib/**/*.ts --ext .ts",
+    "staged": "lint-staged",
+    "prepare": "npm run cleanup && npm run make"
   },
   "devDependencies": {
     "@octetstream/eslint-config": "5.0.0",
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/node": "14.14.35",
+    "@types/proxyquire": "1.3.28",
+    "@types/sinon": "9.0.11",
+    "@typescript-eslint/eslint-plugin": "4.19.0",
+    "@typescript-eslint/parser": "4.19.0",
+    "@zoltu/typescript-transformer-append-js-extension": "1.0.1",
     "ava": "3.15.0",
     "c8": "7.6.0",
     "codecov": "3.8.1",
-    "eslint": "7.21.0",
+    "eslint": "7.22.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-airbnb-typescript": "12.3.1",
     "eslint-plugin-ava": "11.0.0",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.23.0",
     "fetch-mock": "9.11.0",
     "husky": "4.3.8",
     "lint-staged": "10.5.4",
     "proxyquire": "2.1.3",
-    "sinon": "9.2.4",
-    "typescript": "4.2.2"
+    "sinon": "10.0.0",
+    "ts-node": "9.1.1",
+    "ttypescript": "1.5.12",
+    "typescript": "4.2.3"
   },
   "dependencies": {
-    "@types/node-fetch": "2.5.8",
     "camelcase-keys": "6.2.2",
-    "node-fetch": "2.6.1"
+    "isomorphic-fetch": "3.0.0"
   }
 }
