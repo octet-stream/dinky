@@ -6,6 +6,7 @@ __helper__
 coverage
 .codecov
 .husky
+.eslintignore
 yarn-error.log
 
 /code-of-conduct.md
