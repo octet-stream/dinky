@@ -165,6 +165,18 @@ Creates a request handler for `/api/v1/json/tags`.
 
 Returns a tag with given ID
 
+### `class Profiles > Entities`
+
+##### `constructor() -> {Profiles}`
+
+Creates a request handler for `/api/v1/json/tags`.
+
+#### Instance methods
+
+##### `getById(id) -> {Promise<object>}`
+
+Returns a user with given ID
+
 ### `class Search > Request`
 
 ##### `constructor() -> {Search}`
