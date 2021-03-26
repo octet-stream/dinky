@@ -133,10 +133,6 @@ Creates a request handler for `/api/v1/json/images`
 
 #### Instance methods
 
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/images`.
-
 ##### `getById(id) -> {Promise<object>}`
 
 Returns an image with given ID
@@ -153,10 +149,6 @@ Creates a request handler for `/api/v1/json/comments`.
 
 #### Instance methods
 
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/comments`.
-
 ##### `getById(id) -> {Promise<object>}`
 
 Returns a comment with given ID
@@ -169,10 +161,6 @@ Creates a request handler for `/api/v1/json/tags`.
 
 #### Instance methods
 
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search/tags`.
-
 ##### `getById(id) -> {Promise<object>}`
 
 Returns a tag with given ID
@@ -184,26 +172,6 @@ Returns a tag with given ID
 Creates a request handler for `/api/v1/json/search`.
 
 #### Instance methods
-
-##### `comments() -> {Search}`
-
-Sets Search type to "comments"
-
-##### `galleries() -> {Search}`
-
-Sets Search type to "galleries"
-
-##### `posts() -> {Search}`
-
-Sets Search type to "posts"
-
-##### `tags() -> {Search}`
-
-Sets Search type to "tags"
-
-##### `images() -> {Search}`
-
-Sets Search type to "images"
 
 ##### `query([list]) -> {Search}`
 
@@ -275,28 +243,7 @@ Sets the **maximal** score of requested images
 
 ##### `random() -> {Search}`
 
-If been called, the API will return random image
-
-### `class Lists > Request`
-
-##### `constructor() -> {Lists}`
-
-Provides a bunch of shortcuts for `Search` request
-
-##### `topScoring() -> {Search}`
-
-Creates a Search request that gets top scoring images of last 3 days.
-The most rated images will be at the top of the list.
-
-##### `topScoringAllTime() -> {Search}`
-
-Creates a Search request that gets top scoring images of the all time.
-The most rated images will be at the top of the list.
-
-##### `topCommented() -> {Search}`
-
-Creates a Search request that gets top commented images of last 3 days.
-The most commented images will be at the top of the list.
+Sets the "sf" parameter to "random"
 
 ### `class Entities > Request`
 
@@ -305,10 +252,6 @@ The most commented images will be at the top of the list.
 Creates an Entity providing a few common methods for `Images`, `Comments` and `Tags`
 
 #### Instance methods
-
-##### `search([query]) -> {Search}`
-
-Creates a new Search request that points to `/api/v1/json/search`.
 
 ##### `getById(id) -> {Promise<object>}`
 

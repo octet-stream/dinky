@@ -180,7 +180,7 @@ export class Search<T> extends Request<T> {
   }
 
   /**
-   * If been called, the API will return random image.
+   * Sets the "sf" parameter to "random"
    */
   random() {
     return this.sortBy("random")
