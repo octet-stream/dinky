@@ -310,3 +310,15 @@ test(
     t.is(actual.get("q"), "*")
   }
 )
+
+test(".reverse() adds proper params for the image reverse-searching", async t => {
+  const expected = "https://derpicdn.net/img/2019/12/24/2228439/full.jpg"
+  const link = createNoopLink<LinkParams>()
+
+  await new Search({link}).reverse(expected)
+
+  const [[, searchType], query] = link.firstCall.args
+
+  t.is(searchType, "reverse")
+  t.is(query.get("url"), expected)
+})

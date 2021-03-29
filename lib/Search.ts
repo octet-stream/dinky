@@ -23,10 +23,12 @@ export interface SearchOptions extends RequestOptionsWithoutPath {
 export const DEFAULT_SEARCH_TYPE: SearchTypes = "images"
 
 export class Search<T> extends Request<T> {
-  constructor({type, url, link, linkOptions}: SearchOptions = {}) {
-    const path: string[] = ["search", type ?? DEFAULT_SEARCH_TYPE]
+  protected _type: string
 
-    super({url, link, linkOptions, path})
+  constructor({type, url, link, linkOptions}: SearchOptions = {}) {
+    super({url, link, linkOptions, path: "search"})
+
+    this._type = type ?? DEFAULT_SEARCH_TYPE
   }
 
   /**
@@ -187,9 +189,42 @@ export class Search<T> extends Request<T> {
   }
 
   /**
-   * Executes current search request.
+   * Executes reverse-searching the image given by the url query parameter.
+   *
+   * @param url The URL of image
+   * @param options Request options
+   *
+   * @example
+   *
+   * ```
+   * const search = new Search()
+   *
+   * await search.reverse("https://derpicdn.net/img/2019/12/24/2228439/full.jpg")
+   * ```
+   */
+  reverse<T>(url: string, options?: LinkOptions): Promise<T> {
+    this._type = "reverse"
+
+    this._query.set("url", url)
+
+    return this.exec<T>(options)
+  }
+
+  /**
+   * Commits current search request.
+   * This method will be called implicitly once you use `await`, `.then()` or `.catch()` to perform the request.
+   * You'll probably need to call it only if you want to pass per-request options.
    *
    * @param options
+   *
+   * @example
+   * ```
+   * const search = new Search()
+   *
+   * search.query("princess luna", "scootaloo", "sleepless in ponyville")
+   *
+   * await search.exec()
+   * ```
    */
   async exec<T>(options?: LinkOptions) {
     const params = this._query.get("q") as string[]
@@ -200,6 +235,8 @@ export class Search<T> extends Request<T> {
       // but no tags has been set
       this._query.set("q", "*")
     }
+
+    this._path[1] = this._type
 
     return super.exec<T>(options)
   }
