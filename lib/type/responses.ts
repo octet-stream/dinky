@@ -642,6 +642,63 @@ declare namespace responses {
      */
     awardedOn: Date
   }
+
+  interface Filter {
+    /**
+     * The id of the filter.
+     */
+    id: number
+
+    /**
+     * The name of the filter.
+     */
+    name: string
+
+    /**
+     * The description of the filter.
+     */
+    description: string
+
+    /**
+     * The id of the user the filter belongs to. null if it isn't assigned to a user (usually system filters only).
+     */
+    userId: number
+
+    /**
+     * The amount of users employing this filter.
+     */
+    userCount: number
+
+    /**
+     * If true, is a system filter. System filters are usable by anyone and don't have a user_id set.
+     */
+    system: boolean
+
+    /**
+     * If true, is a public filter. Public filters are usable by anyone.
+     */
+    public: boolean
+
+    /**
+     * A list of tag IDs (as integers) that this filter will spoil.
+     */
+    spoileredTagIds: number[]
+
+    /**
+     * The complex spoiled filter.
+     */
+    spoileredComplex: string
+
+    /**
+     * A list of tag IDs (as integers) that this filter will hide.
+     */
+    hiddenTagIds: number[]
+
+    /**
+     * The complex hidden filter.
+     */
+    hiddenComlex: string
+  }
 }
 
 export default responses
