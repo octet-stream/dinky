@@ -35,6 +35,37 @@ export class Search<T> extends Request<T> {
    * Add a tag or set of tags to the request
    *
    * @param list A list of tags
+   *
+   * @example
+   *
+   * ```
+   * // Basic example
+   * import {Search} from "dinky.js"
+   *
+   * const search = new Search()
+   *
+   * search.query("princess luna")
+   * ```
+   *
+   * @example
+   * ```
+   * // With a few tags to search
+   * import {Search} from "dinky.js"
+   *
+   * const search = new Search()
+   *
+   * search.query("princess luna", "moonstuck")
+   * ```
+   *
+   * @example
+   * ```
+   * // With a few tags, applied as a single array
+   * import {Search} from "dinky.js"
+   *
+   * const search = new Search()
+   *
+   * search.query(["princess luna", "moonstuck"])
+   * ```
    */
   query(...list: Array<string[] | string>): this {
     list = flat(list)

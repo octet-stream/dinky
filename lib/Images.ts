@@ -9,7 +9,16 @@ export class Images extends Entities<r.Image, r.ImagesResponse> {
   }
 
   /**
-   * Get a featured image
+   * Returns featured image
+   *
+   * @example
+   * ```
+   * import {Images} from "dinky.js"
+   *
+   * const images = new Images()
+   *
+   * await images.featured()
+   * ```
    */
   featured(options?: LinkOptions): Promise<r.ImageResponse> {
     this._path.push("featured")
