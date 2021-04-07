@@ -22,6 +22,7 @@ test("Returns flatten array", t => {
       [2, 3]
     ]),
 
+    // @ts-ignore
     ["Testing", "Testing", 1, 2, 3]
   )
 })
@@ -35,6 +36,7 @@ test("Returns 1-level flatten array by default", t => {
     ]),
 
     [
+      // @ts-ignore
       ["value"]
     ]
   )
@@ -53,6 +55,7 @@ test("Flattens array deeply when second argument is set", t => {
       Infinity
     ),
 
+    // @ts-ignore
     ["value", "another value"]
   )
 })
@@ -74,6 +77,7 @@ test("Flattens array on given depth level", t => {
       2
     ),
 
+    // @ts-ignore
     ["value", ["another value"]]
   )
 })

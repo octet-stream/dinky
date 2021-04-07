@@ -5,7 +5,7 @@ import createNoopLink from "./__helper__/createNoopLink"
 import {Link} from "./util/link"
 import {Entities} from "./Entities"
 
-class MyEntity extends Entities<any, any> { }
+class MyEntity extends Entities<unknown, unknown> { }
 
 test("Creates a link request that points to given path", async t => {
   const link = createNoopLink<[[string]]>()
