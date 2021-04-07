@@ -8,11 +8,11 @@ import {Entities} from "./Entities"
 class MyEntity extends Entities<unknown, unknown> { }
 
 test("Creates a link request that points to given path", async t => {
-  const link = createNoopLink<[[string]]>()
+  const link = createNoopLink()
 
   const expected = "my-entity"
 
-  await new MyEntity({link: link as any as Link, path: expected})
+  await new MyEntity({link, path: expected})
 
   const [[actual]] = link.firstCall.args
 
@@ -20,11 +20,11 @@ test("Creates a link request that points to given path", async t => {
 })
 
 test(".getById() creates a request to entity's ID", async t => {
-  const link = createNoopLink<[[unknown, string]]>()
+  const link = createNoopLink()
 
   const expected = "0"
 
-  await new MyEntity({link: link as any as Link, path: "my-entity"}).getById(0)
+  await new MyEntity({link, path: "my-entity"}).getById(0)
 
   const [[, actual]] = link.firstCall.args
 

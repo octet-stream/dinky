@@ -6,11 +6,11 @@ import {Link} from "./util/link"
 import {Profiles} from "./Profiles"
 
 test("Creates a new request to /api/v1/json/profiles", async t => {
-  const link = createNoopLink<[[string]]>()
+  const link = createNoopLink()
 
-  await new Profiles({link: link as any as Link})
+  await new Profiles({link})
 
-  const [[path]] = link.firstCall.args as [[string]]
+  const [[path]] = link.firstCall.args
 
   t.is(path, "profiles")
 })

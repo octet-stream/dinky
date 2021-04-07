@@ -6,9 +6,9 @@ import {Link} from "./util/link"
 import {Tags} from "./Tags"
 
 test("Creates a new request to /api/v1/json/tags", async t => {
-  const link = createNoopLink<[[string]]>()
+  const link = createNoopLink()
 
-  await new Tags({link: link as any as Link})
+  await new Tags({link})
 
   const [[path]] = link.firstCall.args
 

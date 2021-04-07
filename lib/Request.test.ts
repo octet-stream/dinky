@@ -12,19 +12,19 @@ import {Request} from "./Request"
 const {spy} = sinon
 
 test("Request calls the link on given path", async t => {
-  const link = createNoopLink<[[string]]>()
+  const link = createNoopLink()
 
-  await new Request({link: link as any as Link, path: "search"}).exec()
+  await new Request({link, path: "search"}).exec()
 
-  const [[path]] = link.firstCall.args as [[string]]
+  const [[path]] = link.firstCall.args
 
   t.is(path, "search")
 })
 
 test(".page() sets the page offset in query", async t => {
-  const link = createNoopLink<[unknown, Query]>()
+  const link = createNoopLink()
 
-  await new Request({link: link as any as Link, path: []}).page(42)
+  await new Request({link, path: []}).page(42)
 
   const [, query] = link.firstCall.args
 
@@ -33,9 +33,9 @@ test(".page() sets the page offset in query", async t => {
 })
 
 test(".page() sets default page offset in query", async t => {
-  const link = createNoopLink<[unknown, Query]>()
+  const link = createNoopLink()
 
-  await new Request({link: link as any as Link, path: []}).page()
+  await new Request({link, path: []}).page()
 
   const [, query] = link.firstCall.args
 
@@ -46,9 +46,9 @@ test(".page() sets default page offset in query", async t => {
 test(".exec() takes per-request options", async t => {
   const expected = {key: "secret", filter: 100073}
 
-  const link = createNoopLink<[string, string, typeof expected]>()
+  const link = createNoopLink()
 
-  await new Request({link: link as any as Link, path: []}).exec(expected)
+  await new Request({link, path: []}).exec(expected)
 
   const [, , actual] = link.firstCall.args
 
@@ -59,7 +59,7 @@ test(".catch() correctly handles errors", async t => {
   const link = () => Promise.reject(new Error("Some error."))
   const onRejected = spy()
 
-  await new Request({link: link as any as Link, path: []}).catch(onRejected)
+  await new Request({link, path: []}).catch(onRejected)
 
   t.true(onRejected.called)
 

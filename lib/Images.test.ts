@@ -6,9 +6,9 @@ import {Link} from "./util/link"
 import {Images} from "./Images"
 
 test("Creates a new request to /api/v1/json/images", async t => {
-  const link = createNoopLink<[[string]]>()
+  const link = createNoopLink()
 
-  await new Images({link: link as any as Link})
+  await new Images({link})
 
   const [[path]] = link.firstCall.args
 
@@ -16,9 +16,9 @@ test("Creates a new request to /api/v1/json/images", async t => {
 })
 
 test("Creates a new request to /api/v1/json/images/featured", async t => {
-  const link = createNoopLink<[[unknown, string]]>()
+  const link = createNoopLink()
 
-  await new Images({link: link as any as Link}).featured()
+  await new Images({link}).featured()
 
   const [[, actual]] = link.firstCall.args
 
