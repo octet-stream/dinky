@@ -1,6 +1,0 @@
-{
-  "hooks": {
-    "pre-push": "npm run coverage",
-    "pre-commit": "npm run staged"
-  }
-}
