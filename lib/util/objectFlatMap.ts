@@ -4,10 +4,10 @@ const {isArray} = Array
 const {entries} = Object
 
 interface Callback {
-  (value: unknown, key: string, object: unknown): unknown
+  (value: any, key: string, object: unknown): any
 }
 
-function objectFlatMap(object: unknown, fn: Callback, ctx?: unknown): unknown {
+function objectFlatMap(object: object, fn: Callback, ctx?: unknown): unknown {
   const result = isArray(object) ? [] : {}
 
   for (const [key, value] of entries(object)) {
