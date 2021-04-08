@@ -1,6 +1,5 @@
 import {createLink, Link, CreateLinkOptions, LinkOptions} from "./util/link"
-
-import {OnFulfilled, OnRejected} from "./type/PromiseCallbacks"
+import {OnFulfilled, OnRejected} from "./util/PromiseCallbacks"
 
 import Query from "./util/Query"
 
