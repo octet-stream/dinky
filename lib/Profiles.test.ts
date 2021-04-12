@@ -2,7 +2,6 @@ import test from "ava"
 
 import createNoopLink from "./__helper__/createNoopLink"
 
-import {Link} from "./util/link"
 import {Profiles} from "./Profiles"
 
 test("Creates a new request to /api/v1/json/profiles", async t => {

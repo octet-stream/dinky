@@ -83,7 +83,7 @@ export function createLink(options: CreateLinkOptions = {}) {
     }
   }
 
-  const target = new URL(url)
+  const target = new URL(url as string)
 
   /**
    * Sends a request to Phelomena API
@@ -117,7 +117,7 @@ export function createLink(options: CreateLinkOptions = {}) {
     target.pathname = path.join("/").replace(/\/{2,}/g, "/")
     target.search = query.toString()
 
-    const promise = call(target.toString(), fetchOptions)
+    const promise = (call as typeof fetch)(target.toString(), fetchOptions)
 
     return waterfall([parse, normalize, cast], promise) as Promise<T>
   }
