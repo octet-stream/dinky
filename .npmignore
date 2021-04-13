@@ -7,6 +7,7 @@ coverage
 .codecov
 .husky
 .eslintignore
+.env
 yarn-error.log
 
 /code-of-conduct.md
