@@ -1,6 +1,6 @@
 import test from "ava"
 
-import createNoopLink from "./__helper__/createNoopLink"
+import {createNoopLink} from "./__helper__/createNoopLink"
 
 import {Search, DEFAULT_SEARCH_TYPE} from "./Search"
 
@@ -305,14 +305,18 @@ test(
   }
 )
 
-test(".reverse() adds proper params for the image reverse-searching", async t => {
-  const expected = "https://derpicdn.net/img/2019/12/24/2228439/full.jpg"
-  const link = createNoopLink()
+test(
+  ".reverse() adds proper params for the image reverse-searching",
 
-  await new Search({link}).reverse(expected)
+  async t => {
+    const expected = "https://derpicdn.net/img/2019/12/24/2228439/full.jpg"
+    const link = createNoopLink()
 
-  const [[, searchType], query] = link.firstCall.args
+    await new Search({link}).reverse(expected)
 
-  t.is(searchType, "reverse")
-  t.is(query.get("url"), expected)
-})
+    const [[, searchType], query] = link.firstCall.args
+
+    t.is(searchType, "reverse")
+    t.is(query.get("url"), expected)
+  }
+)

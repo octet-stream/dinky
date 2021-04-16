@@ -13,7 +13,7 @@ export interface RequestOptions extends CreateLinkOptions {
 export type RequestOptionsWithoutPath = Omit<RequestOptions, "path">
 
 export class Request<T> {
-  private _link: Link
+  protected _link: Link
 
   protected _path: string[]
 

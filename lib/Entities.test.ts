@@ -1,8 +1,6 @@
 import test from "ava"
 
-import createNoopLink from "./__helper__/createNoopLink"
-
-import {Link} from "./util/link"
+import {createNoopLink} from "./__helper__/createNoopLink"
 import {Entities} from "./Entities"
 
 class MyEntity extends Entities<unknown, unknown> { }

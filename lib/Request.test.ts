@@ -2,7 +2,7 @@ import test from "ava"
 
 import sinon from "sinon"
 
-import createNoopLink from "./__helper__/createNoopLink"
+import {createNoopLink} from "./__helper__/createNoopLink"
 
 import {Request} from "./Request"
 

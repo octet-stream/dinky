@@ -529,7 +529,7 @@ declare namespace responses {
     userId: null | number
   }
 
-  interface User {
+  export interface User {
     /**
      * The ID of the user.
      */
@@ -589,11 +589,11 @@ declare namespace responses {
     awards: Award[]
   }
 
-  interface UserResponse {
+  export interface UserResponse {
     user: User
   }
 
-  interface Link {
+  export interface Link {
     /**
      * The ID of the user who owns this link.
      */
@@ -615,7 +615,7 @@ declare namespace responses {
     tagId: number
   }
 
-  interface Award {
+  export interface Award {
     /**
      * The ID of the badge this award is derived from.
      */
@@ -642,7 +642,7 @@ declare namespace responses {
     awardedOn: Date
   }
 
-  interface Filter {
+  export interface Filter {
     /**
      * The id of the filter.
      */
@@ -697,6 +697,13 @@ declare namespace responses {
      * The complex hidden filter.
      */
     hiddenComlex: string
+  }
+
+  export interface FiltersResponse {
+    /**
+     * Containes a list of filters
+     */
+    filters: Filter[]
   }
 }
 

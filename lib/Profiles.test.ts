@@ -1,6 +1,6 @@
 import test from "ava"
 
-import createNoopLink from "./__helper__/createNoopLink"
+import {createNoopLink} from "./__helper__/createNoopLink"
 
 import {Profiles} from "./Profiles"
 

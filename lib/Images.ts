@@ -21,8 +21,6 @@ export class Images extends Entities<r.Image, r.ImagesResponse> {
    * ```
    */
   featured(options?: LinkOptions): Promise<r.ImageResponse> {
-    this._path.push("featured")
-
-    return this.exec(options)
+    return this._link([...this._path, "featured"], this._query, options)
   }
 }
