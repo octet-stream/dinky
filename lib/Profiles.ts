@@ -1,4 +1,4 @@
-import r from "./type/responses"
+import r from "./responses"
 
 import {Entities, EntitiesOptions} from "./Entities"
 

@@ -585,9 +585,8 @@ declare namespace responses {
      */
     topicsCount: number
 
-    // TODO: Add awards and links responses
-    // links: object
-    // awards: object
+    links: Link[]
+    awards: Award[]
   }
 
   interface UserResponse {
