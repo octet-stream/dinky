@@ -3,9 +3,12 @@ node_modules
 .nyc_output
 coverage
 @type
-yarn-error.log
 
 *.old
 
 /lib/**/*.js
 /test.mjs
+/yarn.lock
+/package-lock.json
+/yarn-error.log
+/npm-debug.log

@@ -18,6 +18,7 @@ yarn-error.log
 /.travis.yml
 /ava.config.cjs
 /yarn.lock
+/pnpm-lock.yaml
 /test.mjs
 /tsconfig.json
 /tsconfig.esm.json
