@@ -2,11 +2,9 @@
 
 JavaScript bindings for [Philomena](https://github.com/philomena-dev/philomena) JSON API. Supports sites such as [Derpibooru](https://derpibooru.org) and [Furbooru](https://furbooru.org).
 
-![ESLint](https://github.com/octet-stream/dinky/workflows/ESLint/badge.svg)
-![CI](https://github.com/octet-stream/dinky/workflows/CI/badge.svg)
+[![ESLint](https://github.com/octet-stream/dinky/workflows/ESLint/badge.svg)](https://github.com/octet-stream/dinky/actions/workflows/eslint.yml)
+[![CI](https://github.com/octet-stream/dinky/workflows/CI/badge.svg)](https://github.com/octet-stream/dinky/actions/workflows/ci.yml)
 [![Code Coverage](https://codecov.io/github/octet-stream/dinky/coverage.svg?branch=master)](https://codecov.io/github/octet-stream/dinky?branch=master)
-[![dependencies Status](https://david-dm.org/octet-stream/dinky/status.svg)](https://david-dm.org/octet-stream/dinky)
-[![devDependencies Status](https://david-dm.org/octet-stream/dinky/dev-status.svg)](https://david-dm.org/octet-stream/dinky?type=dev)
 
 ## Installation
 
