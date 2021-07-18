@@ -20,7 +20,7 @@ specifiers:
   eslint-plugin-jsx-a11y: 6.4.1
   eslint-plugin-react: 7.24.0
   fetch-mock: 9.11.0
-  husky: 6.0.0
+  husky: 7.0.1
   isomorphic-fetch: 3.0.0
   lint-staged: 11.0.1
   pinst: 2.1.6
@@ -53,7 +53,7 @@ devDependencies:
   eslint-plugin-jsx-a11y: 6.4.1_eslint@7.31.0
   eslint-plugin-react: 7.24.0_eslint@7.31.0
   fetch-mock: 9.11.0
-  husky: 6.0.0
+  husky: 7.0.1
   lint-staged: 11.0.1
   pinst: 2.1.6
   proxyquire: 2.1.3
@@ -2305,8 +2305,9 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /husky/6.0.0:
-    resolution: {integrity: sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==}
+  /husky/7.0.1:
+    resolution: {integrity: sha512-gceRaITVZ+cJH9sNHqx5tFwbzlLCVxtVZcusME8JYQ8Edy5mpGDOqD8QBCdMhpyo9a+JXddnujQ4rpY2Ff9SJA==}
+    engines: {node: '>=12'}
     hasBin: true
     dev: true
 
