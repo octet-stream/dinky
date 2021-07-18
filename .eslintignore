@@ -1,5 +1,7 @@
 node_modules
 @type
 
+ava.config.js
 ava.config.cjs
+ava.config.mjs
 lib/**/*.js
