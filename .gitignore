@@ -6,8 +6,7 @@ coverage
 
 *.old
 
-/lib/**/*.js
-/test.mjs
+/lib
 /yarn.lock
 /package-lock.json
 /yarn-error.log

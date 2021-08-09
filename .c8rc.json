@@ -1,9 +1,9 @@
 {
   "include": [
-    "lib/**/**.ts"
+    "src/**/**.ts"
   ],
   "exclude": [
-    "lib/__helper__",
-    "lib/**/*.test.ts"
+    "src/__helper__",
+    "src/**/*.test.ts"
   ]
 }

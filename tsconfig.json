@@ -1,14 +1,18 @@
 {
   "include": [
-    "lib/**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "lib/__helper__/**",
-    "lib/**/*.test.ts"
+    "src/__helper__/**",
+    "src/**/*.test.ts"
   ],
   "compilerOptions": {
     "target": "es2018",
+    "module": "es2020",
+    "outDir": "lib",
+    "declaration": true,
+    "declarationDir": "@type",
     "noImplicitAny": false,
     "baseUrl": "src",
     "checkJs": false,
