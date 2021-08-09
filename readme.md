@@ -41,6 +41,8 @@ images.getById(0).then(console.log)
 ```js
 import {Search} from "dinky.js"
 
+const search = new Search()
+
 // You can specify tags right in the .query() method
 // The following example is equivalent of this requests:
 // https://derpibooru.org/api/v1/json/search/images?q=artist:rainbow,safe&sf=random&per_page=1
