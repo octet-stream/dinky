@@ -18,6 +18,8 @@ yarn-error.log
 /.lintstagedrc
 /.travis.yml
 /ava.config.cjs
+/ava.config.mjs
+/ava.config.js
 /yarn.lock
 /pnpm-lock.yaml
 /test.mjs
