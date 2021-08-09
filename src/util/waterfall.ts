@@ -4,7 +4,7 @@ interface Task {
   (...args: any[]): MaybePromise<unknown>
 }
 
-const step = (prev: MaybePromise, next: Task) => (
+const step = (prev: MaybePromise<unknown>, next: Task) => (
   Promise.resolve(prev).then(res => next(res))
 )
 
