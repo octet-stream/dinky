@@ -1,5 +1,7 @@
 import {URLSearchParams, URL} from "url"
 
+import {Response} from "cross-fetch"
+
 import test from "ava"
 import fm from "fetch-mock"
 

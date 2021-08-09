@@ -1,6 +1,6 @@
 import {URL} from "url"
 
-import fetch from "isomorphic-fetch"
+import fetch from "cross-fetch"
 import camelCase from "camelcase-keys"
 
 import NetworkError from "./NetworkError.js"

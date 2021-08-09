@@ -2,9 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@octetstream/eslint-config': 5.0.0
-  '@types/isomorphic-fetch': 0.0.35
   '@types/node': 16.4.13
-  '@types/proxyquire': 1.3.28
   '@types/sinon': 10.0.2
   '@typescript-eslint/eslint-plugin': 4.29.1
   '@typescript-eslint/parser': 4.29.1
@@ -12,6 +10,7 @@ specifiers:
   c8: 7.8.0
   camelcase-keys: 7.0.0
   codecov: 3.8.3
+  cross-fetch: ^3.1.4
   eslint: 7.32.0
   eslint-config-airbnb-base: 14.2.1
   eslint-config-airbnb-typescript: 12.3.1
@@ -21,23 +20,19 @@ specifiers:
   eslint-plugin-react: 7.24.0
   fetch-mock: 9.11.0
   husky: 7.0.1
-  isomorphic-fetch: 3.0.0
   lint-staged: 11.1.2
   pinst: 2.1.6
-  proxyquire: 2.1.3
   sinon: 11.1.2
   ts-node: 10.2.0
   typescript: 4.3.5
 
 dependencies:
   camelcase-keys: 7.0.0
-  isomorphic-fetch: 3.0.0
+  cross-fetch: 3.1.4
 
 devDependencies:
   '@octetstream/eslint-config': 5.0.0_eslint@7.32.0
-  '@types/isomorphic-fetch': 0.0.35
   '@types/node': 16.4.13
-  '@types/proxyquire': 1.3.28
   '@types/sinon': 10.0.2
   '@typescript-eslint/eslint-plugin': 4.29.1_d4376362794b743c19f4cba25c7fc6f5
   '@typescript-eslint/parser': 4.29.1_eslint@7.32.0+typescript@4.3.5
@@ -55,7 +50,6 @@ devDependencies:
   husky: 7.0.1
   lint-staged: 11.1.2
   pinst: 2.1.6
-  proxyquire: 2.1.3
   sinon: 11.1.2
   ts-node: 10.2.0_dea0625f6d31b223e93dc3dc354b8b43
   typescript: 4.3.5
@@ -447,10 +441,6 @@ packages:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
     dev: true
 
-  /@types/isomorphic-fetch/0.0.35:
-    resolution: {integrity: sha512-DaZNUvLDCAnCTjgwxgiL1eQdxIKEpNLOlTNtAgnZc50bG2copGhRrFN9/PxPBuJe+tZVLCbQ7ls0xveXVRPkvw==}
-    dev: true
-
   /@types/istanbul-lib-coverage/2.0.3:
     resolution: {integrity: sha512-sz7iLqvVUg1gIedBOvlkxPlc8/uVzyS5OwGz1cKjXzkl3FpL3al0crU8YGU1WoHkxn0Wxbw5tyi6hvzJKNzFsw==}
     dev: true
@@ -473,10 +463,6 @@ packages:
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
-    dev: true
-
-  /@types/proxyquire/1.3.28:
-    resolution: {integrity: sha512-SQaNzWQ2YZSr7FqAyPPiA3FYpux2Lqh3HWMZQk47x3xbMCqgC/w0dY3dw9rGqlweDDkrySQBcaScXWeR+Yb11Q==}
     dev: true
 
   /@types/sinon/10.0.2:
@@ -1350,6 +1336,12 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
 
+  /cross-fetch/3.1.4:
+    resolution: {integrity: sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==}
+    dependencies:
+      node-fetch: 2.6.1
+    dev: false
+
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -2066,14 +2058,6 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
-  /fill-keys/1.0.2:
-    resolution: {integrity: sha1-mo+jb06K1jTjv2tPPIiCVRRS6yA=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      is-object: 1.0.2
-      merge-descriptors: 1.0.1
-    dev: true
-
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -2572,10 +2556,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /is-object/1.0.2:
-    resolution: {integrity: sha512-2rRIahhZr2UWb45fIOuvZGpFtz0TyOZLf32KxBbSoUCeZR495zCKlWUKKUByk3geS2eAs7ZAABt0Y/Rx0GiQGA==}
-    dev: true
-
   /is-path-cwd/2.2.0:
     resolution: {integrity: sha512-w942bTcih8fdJPJmQHFzkS76NEP8Kzzvmw92cXsazb8intwLqPibPPdXf4ANdKV3rYMuuQYGIWtvz9JilB3NFQ==}
     engines: {node: '>=6'}
@@ -2653,13 +2633,6 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
     dev: true
-
-  /isomorphic-fetch/3.0.0:
-    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
-    dependencies:
-      node-fetch: 2.6.1
-      whatwg-fetch: 3.6.2
-    dev: false
 
   /istanbul-lib-coverage/3.0.0:
     resolution: {integrity: sha512-UiUIqxMgRDET6eR+o5HbfRYP1l0hqkWOs7vNxC/mggutCMUIhWMm8gAHb8tHlyfD3/l6rlgNA5cKdDzEAf6hEg==}
@@ -2996,10 +2969,6 @@ packages:
       mimic-fn: 3.1.0
     dev: true
 
-  /merge-descriptors/1.0.1:
-    resolution: {integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=}
-    dev: true
-
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
     dev: true
@@ -3044,10 +3013,6 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
-    dev: true
-
-  /module-not-found-error/1.0.1:
-    resolution: {integrity: sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=}
     dev: true
 
   /ms/2.0.0:
@@ -3512,14 +3477,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
-
-  /proxyquire/2.1.3:
-    resolution: {integrity: sha512-BQWfCqYM+QINd+yawJz23tbBM40VIGXOdDw3X344KcclI/gtBbdWF6SlQ4nK/bYhF9d27KYug9WzljHC6B9Ysg==}
-    dependencies:
-      fill-keys: 1.0.2
-      module-not-found-error: 1.0.1
-      resolve: 1.20.0
     dev: true
 
   /pump/3.0.0:
@@ -4304,10 +4261,6 @@ packages:
     resolution: {integrity: sha512-ZMjC3ho+KXo0BfJb7JgtQ5IBuvnShdlACNkKkdsqBmYw3bPAaJfPeYUo6tLUaT5tG/Gkh7xkpBhKRQ9e7pyg9Q==}
     engines: {node: '>=6'}
     dev: true
-
-  /whatwg-fetch/3.6.2:
-    resolution: {integrity: sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==}
-    dev: false
 
   /whatwg-url/6.5.0:
     resolution: {integrity: sha512-rhRZRqx/TLJQWUpQ6bmrt2UV4f0HCQ463yQuONJqC6fO2VoEb1pTYddbe59SkYq87aoM5A3bdhMZiUiVws+fzQ==}
