@@ -10,7 +10,7 @@ specifiers:
   c8: 7.8.0
   camelcase-keys: 7.0.0
   codecov: 3.8.3
-  cross-fetch: ^3.1.4
+  cross-fetch: 3.1.4
   eslint: 7.32.0
   eslint-config-airbnb-base: 14.2.1
   eslint-config-airbnb-typescript: 12.3.1

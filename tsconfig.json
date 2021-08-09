@@ -11,8 +11,6 @@
     "target": "es2018",
     "module": "es2020",
     "outDir": "lib",
-    "declaration": true,
-    "declarationDir": "@type",
     "noImplicitAny": false,
     "baseUrl": "src",
     "checkJs": false,
@@ -23,6 +21,7 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true
   }
 }

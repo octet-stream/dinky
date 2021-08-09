@@ -19,7 +19,7 @@
     "philomena"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc --project tsconfig.d.ts.json",
     "cleanup": "npx rimraf @type lib",
     "test": "ava --fail-fast",
     "coverage": "c8 npm test",
@@ -57,6 +57,6 @@
   },
   "dependencies": {
     "camelcase-keys": "7.0.0",
-    "cross-fetch": "^3.1.4"
+    "cross-fetch": "3.1.4"
   }
 }
