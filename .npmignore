@@ -24,4 +24,5 @@ yarn-error.log
 /pnpm-lock.yaml
 /test.mjs
 /tsconfig.json
+/tsconfig.eslint.json
 /.c8rc.json
