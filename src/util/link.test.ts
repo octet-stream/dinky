@@ -3,10 +3,10 @@ import {URLSearchParams, URL} from "url"
 import test from "ava"
 import fm from "fetch-mock"
 
-import Query from "./Query"
-import NetworkError from "./NetworkError"
+import Query from "./Query.js"
+import NetworkError from "./NetworkError.js"
 
-import {createLink, DEFAULT_URL} from "./link"
+import {createLink, DEFAULT_URL} from "./link.js"
 
 const pattern = /^https:\/\/derpibooru.org/
 

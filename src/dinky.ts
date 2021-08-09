@@ -1,4 +1,4 @@
-export type {default as responses} from "./responses"
+export type {default as responses} from "./responses.js"
 
 export * from "./Request"
 export * from "./Entities"

@@ -1,8 +1,8 @@
-import {Request, RequestOptionsWithoutPath} from "./Request"
+import {Request, RequestOptionsWithoutPath} from "./Request.js"
 
-import {LinkOptions} from "./util/link"
+import {LinkOptions} from "./util/link.js"
 
-import flat from "./util/flat"
+import flat from "./util/flat.js"
 
 const {isArray} = Array
 

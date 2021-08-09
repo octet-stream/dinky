@@ -1,7 +1,7 @@
 import r from "./responses"
 
-import {Entities, EntitiesOptions} from "./Entities"
-import {LinkOptions} from "./util/link"
+import {Entities, EntitiesOptions} from "./Entities.js"
+import {LinkOptions} from "./util/link.js"
 
 export class Filters extends Entities<r.Filter, r.FiltersResponse> {
   constructor(options?: EntitiesOptions) {

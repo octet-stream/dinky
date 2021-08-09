@@ -1,6 +1,11 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
   "parserOptions": {
     "project": "./tsconfig.eslint.json"
   },

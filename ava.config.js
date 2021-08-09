@@ -1,7 +1,4 @@
 export default {
-  environmentVariables: {
-    TS_NODE_COMPILER: "ttypescript"
-  },
   extensions: {
     ts: "module"
   },

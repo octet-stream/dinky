@@ -1,3 +1,3 @@
-type MaybePromise<T = any> = T | PromiseLike<T>
+type MaybePromise<T> = T | PromiseLike<T>
 
 export default MaybePromise

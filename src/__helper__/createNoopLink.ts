@@ -1,8 +1,8 @@
 import sinon, {SinonSpy} from "sinon"
 
-import Query from "../util/Query"
+import Query from "../util/Query.js"
 
-import {LinkOptions} from "../util/link"
+import {LinkOptions} from "../util/link.js"
 
 const {spy} = sinon
 

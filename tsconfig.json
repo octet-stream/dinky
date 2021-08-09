@@ -23,12 +23,6 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "plugins": [
-      {
-        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
-        "after": true
-      }
-    ]
+    "allowSyntheticDefaultImports": true
   }
 }

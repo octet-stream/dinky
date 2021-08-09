@@ -1,8 +1,8 @@
 import test from "ava"
 
-import {createNoopLink} from "./__helper__/createNoopLink"
+import {createNoopLink} from "./__helper__/createNoopLink.js"
 
-import {Filters} from "./Filters"
+import {Filters} from "./Filters.js"
 
 test("Creates a request to /api/v1/json/filters", async t => {
   const link = createNoopLink()

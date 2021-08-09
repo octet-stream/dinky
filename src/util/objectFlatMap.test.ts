@@ -2,7 +2,7 @@ import test from "ava"
 
 import sinon from "sinon"
 
-import map from "./objectFlatMap"
+import map from "./objectFlatMap.js"
 
 const {keys} = Object
 const {spy} = sinon

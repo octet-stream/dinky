@@ -1,7 +1,7 @@
-import MaybePromise from "./MaybePromise"
+import MaybePromise from "./MaybePromise.js"
 
 interface Task {
-  (...args: any[]): MaybePromise
+  (...args: any[]): MaybePromise<unknown>
 }
 
 const step = (prev: MaybePromise, next: Task) => (

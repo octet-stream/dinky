@@ -1,6 +1,6 @@
 import test from "ava"
 
-import cast from "./castDates"
+import cast from "./castDates.js"
 
 test("Casts dates from the list", t => {
   const date = new Date()

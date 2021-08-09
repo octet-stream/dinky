@@ -2,7 +2,7 @@ import test from "ava"
 
 import sinon from "sinon"
 
-import waterfall from "./waterfall"
+import waterfall from "./waterfall.js"
 
 const {spy} = sinon
 
