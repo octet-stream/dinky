@@ -43,6 +43,6 @@ export class Request<T> {
   }
 
   catch(onRejected?: OnRejected): Promise<unknown> {
-    return this.exec<T>().catch(onRejected) as Promise<unknown>
+    return this.exec<T>().catch(onRejected)
   }
 }
