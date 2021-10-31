@@ -2,6 +2,7 @@ import {URL} from "url"
 
 import fetch from "cross-fetch"
 import camelCase from "camelcase-keys"
+import normalizeUrl from "normalize-url"
 
 import NetworkError from "./NetworkError.js"
 import waterfall from "./waterfall.js"
@@ -83,7 +84,10 @@ export function createLink(options: CreateLinkOptions = {}) {
     }
   }
 
-  const target = new URL(url as string)
+  // Create a request target.
+  // Force the protocol to HTTPS.
+  // Normalize URL input.
+  const target = new URL(normalizeUrl(url!, {forceHttps: true}))
 
   /**
    * Sends a request to Phelomena API

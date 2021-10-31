@@ -21,6 +21,7 @@ specifiers:
   fetch-mock: 9.11.0
   husky: 7.0.4
   lint-staged: 11.2.6
+  normalize-url: ^7.0.2
   pinst: 2.1.6
   sinon: 11.1.2
   ts-node: 10.4.0
@@ -29,6 +30,7 @@ specifiers:
 dependencies:
   camelcase-keys: 7.0.1
   cross-fetch: 3.1.4
+  normalize-url: 7.0.2
 
 devDependencies:
   '@octetstream/eslint-config': 5.0.0_eslint@7.32.0
@@ -3111,6 +3113,11 @@ packages:
     resolution: {integrity: sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==}
     engines: {node: '>=8'}
     dev: true
+
+  /normalize-url/7.0.2:
+    resolution: {integrity: sha512-HC9c6eHqxmiR6sL9DKt9ttLkiLaI1jytdkJMGAEvkLAAdlOi99kR7UMWWWRrwjucuFabaau4ZuvP1Zv+6PpDjA==}
+    engines: {node: '>=12.20'}
+    dev: false
 
   /npm-run-path/4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}

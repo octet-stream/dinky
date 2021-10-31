@@ -44,6 +44,28 @@ test("Creates a link to the given url", async t => {
   t.true(fetch.lastUrl().startsWith(expected))
 })
 
+test("Adds HTTPS protocol to custom URL", async t => {
+  const url = "furbooru.org"
+  const fetch = fm.sandbox().mock(new RegExp(`^https://${url}`), {})
+
+  const link = createLink({url, linkOptions: {fetch}})
+
+  await link(["images"], new Query())
+
+  t.true(fetch.lastUrl().startsWith(`https://${url}`))
+})
+
+test("Replaces HTTP protocol with an HTTPS in custom URL", async t => {
+  const url = "https://furbooru.org"
+  const fetch = fm.sandbox().mock(new RegExp(`^${url}`), {})
+
+  const link = createLink({url, linkOptions: {fetch}})
+
+  await link(["images"], new Query())
+
+  t.true(fetch.lastUrl().startsWith("https://"))
+})
+
 test("Creates a correct request address from given path and query", async t => {
   const fetch = fm.sandbox().mock(pattern, {})
 
