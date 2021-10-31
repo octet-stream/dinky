@@ -2,8 +2,6 @@ import {Request, RequestOptionsWithoutPath} from "./Request.js"
 
 import {LinkOptions} from "./util/link.js"
 
-import flat from "./util/flat.js"
-
 const {isArray} = Array
 
 export type SearchTypes =
@@ -68,7 +66,7 @@ export class Search<T> extends Request<T> {
    * ```
    */
   query(...list: Array<string[] | string>): this {
-    list = flat(list)
+    list = list.flat()
 
     if (!list.length) {
       return this
