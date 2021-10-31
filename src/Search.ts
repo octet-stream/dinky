@@ -34,20 +34,18 @@ export class Search<T> extends Request<T> {
    *
    * @param list A list of tags
    *
-   * @example
+   * Basic example
    *
-   * ```
-   * // Basic example
+   * ```js
    * import {Search} from "dinky.js"
    *
    * const search = new Search()
    *
    * search.query("princess luna")
    * ```
+   * With a few tags to search
    *
-   * @example
-   * ```
-   * // With a few tags to search
+   * ```js
    * import {Search} from "dinky.js"
    *
    * const search = new Search()
@@ -55,9 +53,9 @@ export class Search<T> extends Request<T> {
    * search.query("princess luna", "moonstuck")
    * ```
    *
-   * @example
-   * ```
-   * // With a few tags, applied as a single array
+   * With a few tags, applied as a single array
+   *
+   * ```js
    * import {Search} from "dinky.js"
    *
    * const search = new Search()
@@ -66,18 +64,18 @@ export class Search<T> extends Request<T> {
    * ```
    */
   query(...list: Array<string[] | string>): this {
-    list = list.flat()
+    const flatList = list.flat()
 
-    if (!list.length) {
+    if (!flatList.length) {
       return this
     }
 
-    let params = this._query.get("q") as string[]
+    let params = this._query.get<string[]>("q")
 
     if (isArray(params)) {
-      params = params.concat(list as string[])
+      params = params.concat(flatList)
     } else {
-      params = Array.from(list as string[])
+      params = flatList
     }
 
     this._query.set("q", params)

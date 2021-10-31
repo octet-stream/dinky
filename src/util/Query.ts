@@ -15,10 +15,10 @@ class Query extends Map<string, unknown> {
     return super.set(key, value)
   }
 
-  get(key: string) {
+  get<T = unknown>(key: string): T | undefined {
     assertKey(key)
 
-    return super.get(key)
+    return super.get(key) as T | undefined
   }
 
   has(key: string) {
