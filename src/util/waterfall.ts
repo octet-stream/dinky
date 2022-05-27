@@ -8,7 +8,7 @@ const step = (prev: MaybePromise<unknown>, next: Task) => (
   Promise.resolve(prev).then(res => next(res))
 )
 
-function waterfall(
+function waterfall<T = unknown>(
   tasks: Task[],
   initial: unknown = undefined
 ): Promise<any> {
@@ -16,7 +16,7 @@ function waterfall(
     return step(initial, tasks[0])
   }
 
-  return tasks.reduce(step, initial) as Promise<unknown>
+  return tasks.reduce(step, initial) as Promise<T>
 }
 
 export default waterfall

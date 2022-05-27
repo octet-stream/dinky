@@ -9,6 +9,10 @@ function assertKey(key: unknown) {
 }
 
 class Query extends Map<string, unknown> {
+  constructor() {
+    super()
+  }
+
   set(key: string, value: unknown) {
     assertKey(key)
 

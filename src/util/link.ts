@@ -1,10 +1,11 @@
 import {URL} from "url"
 
-import fetch from "cross-fetch"
 import camelCase from "camelcase-keys"
 import normalizeUrl from "normalize-url"
 
+import getDefaultFetch from "./getDefaultFetch.js"
 import NetworkError from "./NetworkError.js"
+import isFunction from "./isFunction.js"
 import waterfall from "./waterfall.js"
 import cast from "./castDates.js"
 import Query from "./Query.js"
@@ -46,7 +47,6 @@ export interface CreateLinkOptions {
 export const DEFAULT_URL = "https://derpibooru.org"
 
 const linkDefaults: LinkOptions = {
-  fetch,
   fetchOptions: {
     method: "get"
   }
@@ -100,7 +100,7 @@ export function createLink(options: CreateLinkOptions = {}) {
     // TODO: Should probably make base endpoint configurable
     path = ["/api/v1/json", ...path].filter(Boolean)
 
-    const {key, filter, fetch: call, fetchOptions}: LinkOptions = {
+    const {key, filter, fetchOptions, ...rest}: LinkOptions = {
       ...linkOptions,
       ...requestOptions,
 
@@ -109,6 +109,8 @@ export function createLink(options: CreateLinkOptions = {}) {
         ...requestOptions?.fetchOptions
       }
     }
+
+    const fetch = isFunction(rest.fetch) ? rest.fetch : await getDefaultFetch()
 
     if (key) {
       query.set("key", key)
@@ -121,9 +123,9 @@ export function createLink(options: CreateLinkOptions = {}) {
     target.pathname = path.join("/").replace(/\/{2,}/g, "/")
     target.search = query.toString()
 
-    const promise = (call as typeof fetch)(target.toString(), fetchOptions)
+    const promise = fetch(target.toString(), fetchOptions)
 
-    return waterfall([parse, normalize, cast], promise) as Promise<T>
+    return waterfall<T>([parse, normalize, cast], promise)
   }
 }
 
