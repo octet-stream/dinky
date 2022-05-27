@@ -3,7 +3,12 @@ import {URLSearchParams, URL} from "url"
 import unknownTest, {TestFn} from "ava"
 import fetch, {Response} from "node-fetch"
 import {spy, SinonSpy} from "sinon"
-import nock from "nock"
+import nock from "nock" // TODO: Find a way to isolate nock betwen tests?
+
+import Query from "./Query.js"
+import NetworkError from "./NetworkError.js"
+
+import {createLink, DEFAULT_URL} from "./link.js"
 
 type Fetch = typeof globalThis.fetch
 
@@ -12,11 +17,6 @@ interface TestContext {
 }
 
 const test = unknownTest as TestFn<TestContext>
-
-import Query from "./Query.js"
-import NetworkError from "./NetworkError.js"
-
-import {createLink, DEFAULT_URL} from "./link.js"
 
 const BASE_ENDPOINT = `/api/v1/json`
 const BASE_URL = `${DEFAULT_URL}${BASE_ENDPOINT}`
@@ -33,14 +33,32 @@ test.beforeEach(t => {
 test("Accepts custom fetch via fetchOptions", async t => {
   const {fetch} = t.context
 
-  const scope = nock(BASE_URL).get("/images").reply(200, {})
+  const scope = nock(BASE_URL).get("").reply(200, {})
   const link = createLink({linkOptions: {fetch}})
 
-  await link(["images"], new Query())
+  await link([], new Query())
 
   t.true(fetch.called)
 
   scope.done()
+})
+
+test("Takes fetch from globalThis by default", async t => {
+  const {fetch} = t.context
+  const originalFetch = globalThis.fetch
+
+  globalThis.fetch = fetch
+
+  const scope = nock(BASE_URL).get("").reply(200, {})
+  const link = createLink()
+
+  await link([], new Query())
+
+  t.true(fetch.called)
+
+  scope.done()
+
+  globalThis.fetch = originalFetch
 })
 
 test("Creates fetcher with default url", async t => {
@@ -261,17 +279,21 @@ test("Per-request filter have higher priority", async t => {
 test("Throws an error for non 2xx response", async t => {
   const {fetch} = t.context
 
-  const scope = nock(BASE_URL).get("").reply(404)
+  const scope = nock(BASE_URL).get("/not-found").reply(404)
   const link = createLink({linkOptions: {fetch}})
 
-  const err = await t.throwsAsync<NetworkError>(link([], new Query()), {
-    instanceOf: NetworkError
-  })
+  const err = await t.throwsAsync<NetworkError>(
+    link(["not-found"], new Query()),
+
+    {
+      instanceOf: NetworkError
+    }
+  )
 
   t.true(err.message.startsWith("Network error:"))
   t.true(err.response instanceof Response)
   t.is(err.status, 404)
-  t.is(err.url, BASE_URL)
+  t.is(err.url, `${BASE_URL}/not-found`)
 
   scope.done()
 })
