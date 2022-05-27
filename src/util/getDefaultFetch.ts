@@ -2,6 +2,7 @@ import isFunction from "./isFunction.js"
 
 /* eslint-disable no-undef, no-restricted-globals */
 
+/* c8 ignore start */
 function getGlobalObject(): typeof globalThis {
   // new standardized access to the global object
   if (typeof globalThis !== "undefined") {
@@ -15,6 +16,7 @@ function getGlobalObject(): typeof globalThis {
 
   return window
 }
+/* c8 ignore stop */
 
 let cached: typeof globalThis.fetch | undefined
 
