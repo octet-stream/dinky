@@ -2,7 +2,7 @@ import isFunction from "./isFunction.js"
 
 /* eslint-disable no-undef, no-restricted-globals */
 
-function getGlobalObject (): typeof globalThis {
+function getGlobalObject(): typeof globalThis {
   // new standardized access to the global object
   if (typeof globalThis !== "undefined") {
     return globalThis

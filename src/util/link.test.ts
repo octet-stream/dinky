@@ -1,9 +1,11 @@
-import {URLSearchParams, URL} from "url"
-
-import unknownTest, {TestFn} from "ava"
+/* eslint-disable no-undef, no-restricted-globals */
+/* eslint no-redeclare: ["error", { "builtinGlobals": false }] */
+/* eslint @typescript-eslint/no-redeclare: ["error", { "builtinGlobals": false }] */
 import fetch, {Response} from "node-fetch"
 import {spy, SinonSpy} from "sinon"
 import nock from "nock" // TODO: Find a way to isolate nock betwen tests?
+
+import anyTest, {TestFn} from "ava"
 
 import Query from "./Query.js"
 import NetworkError from "./NetworkError.js"
@@ -16,9 +18,9 @@ interface TestContext {
   fetch: SinonSpy<Parameters<Fetch>, ReturnType<Fetch>>
 }
 
-const test = unknownTest as TestFn<TestContext>
+const test = anyTest as TestFn<TestContext>
 
-const BASE_ENDPOINT = `/api/v1/json`
+const BASE_ENDPOINT = "/api/v1/json"
 const BASE_URL = `${DEFAULT_URL}${BASE_ENDPOINT}`
 
 // Disable all HTTP requests

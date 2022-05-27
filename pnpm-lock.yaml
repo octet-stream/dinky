@@ -13,7 +13,7 @@ specifiers:
   eslint-config-airbnb-base: 14.2.1
   eslint-config-airbnb-typescript: 12.3.1
   eslint-import-resolver-typescript: 2.5.0
-  eslint-plugin-ava: 12.0.0
+  eslint-plugin-ava: 13.2.0
   eslint-plugin-jsx-a11y: 6.4.1
   eslint-plugin-react: 7.24.0
   husky: 8.0.1
@@ -43,7 +43,7 @@ devDependencies:
   eslint-config-airbnb-base: 14.2.1_eslint@7.32.0
   eslint-config-airbnb-typescript: 12.3.1_kkehuvkj7vjrb3s2fgmdisuauq
   eslint-import-resolver-typescript: 2.5.0_eslint@7.32.0
-  eslint-plugin-ava: 12.0.0_eslint@7.32.0
+  eslint-plugin-ava: 13.2.0_eslint@7.32.0
   eslint-plugin-jsx-a11y: 6.4.1_eslint@7.32.0
   eslint-plugin-react: 7.24.0_eslint@7.32.0
   husky: 8.0.1
@@ -531,6 +531,14 @@ packages:
       acorn: 7.4.1
     dev: true
 
+  /acorn-jsx/5.3.2_acorn@8.7.1:
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 8.7.1
+    dev: true
+
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
@@ -826,11 +834,6 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /buf-compare/1.0.1:
-    resolution: {integrity: sha1-/vKNqLgROgoNtEMLC2Rntpcws0o=}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /c8/7.11.3:
     resolution: {integrity: sha512-6YBmsaNmqRm9OS3ZbIiL2EZgi1+Xc4O24jL3vMYGE6idixYuGdy76rIfIdltSKDj9DpLNrcXSonUTR1miBD0wA==}
     engines: {node: '>=10.12.0'}
@@ -1065,14 +1068,6 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
-  /core-assert/0.2.1:
-    resolution: {integrity: sha1-+F4s+b/tKPdzzIs/pcW2m9wC/j8=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      buf-compare: 1.0.1
-      is-error: 2.2.2
-    dev: true
-
   /core-js-pure/3.12.1:
     resolution: {integrity: sha512-1cch+qads4JnDSWsvc7d6nzlKAippwjUlf6vykkTLW53VSV+NkE6muGBToAjEA8pG90cSfcud3JgVmW2ds5TaQ==}
     requiresBuild: true
@@ -1164,13 +1159,6 @@ packages:
 
   /deep-is/0.1.3:
     resolution: {integrity: sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=}
-    dev: true
-
-  /deep-strict-equal/0.2.0:
-    resolution: {integrity: sha1-SgeBR6irV/ag1PVUckPNIvROtOQ=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      core-assert: 0.2.1
     dev: true
 
   /define-properties/1.1.3:
@@ -1462,17 +1450,16 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-ava/12.0.0_eslint@7.32.0:
-    resolution: {integrity: sha512-v8/GY1IWQn2nOBdVtD/6e0Y6A9PRFjY86a1m5r5FUel+C7iyoQVt7gKqaAc1iRXcQkZq2DDG0aTiQptgnq51cA==}
-    engines: {node: '>=10.18.0 <11 || >=12.14.0 <13 || >=14'}
+  /eslint-plugin-ava/13.2.0_eslint@7.32.0:
+    resolution: {integrity: sha512-i5B5izsEdERKQLruk1nIWzTTE7C26/ju8qQf7JeyRv32XT2lRMW0zMFZNhIrEf5/5VvpSz2rqrV7UcjClGbKsw==}
+    engines: {node: '>=12.22 <13 || >=14.17 <15 || >=16.4'}
     peerDependencies:
       eslint: '>=7.22.0'
     dependencies:
-      deep-strict-equal: 0.2.0
       enhance-visitors: 1.0.0
       eslint: 7.32.0
-      eslint-utils: 2.1.0
-      espree: 7.3.1
+      eslint-utils: 3.0.0_eslint@7.32.0
+      espree: 9.3.2
       espurify: 2.1.1
       import-modules: 2.1.0
       micro-spelling-correcter: 1.1.1
@@ -1592,6 +1579,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /eslint-visitor-keys/3.3.0:
+    resolution: {integrity: sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
   /eslint/7.32.0:
     resolution: {integrity: sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -1648,6 +1640,15 @@ packages:
       acorn: 7.4.1
       acorn-jsx: 5.3.1_acorn@7.4.1
       eslint-visitor-keys: 1.3.0
+    dev: true
+
+  /espree/9.3.2:
+    resolution: {integrity: sha512-D211tC7ZwouTIuY5x9XnS0E9sWNChB7IYKX/Xp5eQj3nFXhqmiUDB9q27y76oFl8jTg3pXcQx/bpxMfs3CIZbA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dependencies:
+      acorn: 8.7.1
+      acorn-jsx: 5.3.2_acorn@8.7.1
+      eslint-visitor-keys: 3.3.0
     dev: true
 
   /esprima/4.0.1:

@@ -1,5 +1,5 @@
-import {URLSearchParams} from "url"
-
+/* eslint-disable no-useless-constructor */
+/* eslint-disable @typescript-eslint/no-useless-constructor */
 import isString from "./isString.js"
 
 function assertKey(key: unknown) {

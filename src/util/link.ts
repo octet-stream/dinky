@@ -1,5 +1,3 @@
-import {URL} from "url"
-
 import camelCase from "camelcase-keys"
 import normalizeUrl from "normalize-url"
 
