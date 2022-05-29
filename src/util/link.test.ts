@@ -31,6 +31,8 @@ test.before(() => {
   // Replace global fetch function with node-fetch if it exists on globalThis
   // That way we prevent outbound requests (nock can only disable connections for native http client)
   if (isFunction(globalThis.fetch)) {
+    originalFetch = globalThis.fetch
+
     globalThis.fetch = fetch as unknown as Fetch
   }
 
