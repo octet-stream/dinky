@@ -55,7 +55,7 @@ const defaults: CreateLinkOptions = {
   linkOptions: linkDefaults
 }
 
-const normalize = (input: object) => camelCase(input, {deep: true})
+const normalize = <T>(input: T) => camelCase(input, {deep: true})
 
 function parse<T>(response: Response): Promise<T> {
   if (!response.ok) {
