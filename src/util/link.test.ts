@@ -8,6 +8,7 @@ import nock from "nock" // TODO: Find a way to isolate nock betwen tests?
 import anyTest, {TestFn} from "ava"
 
 import Query from "./Query.js"
+import isFunction from "./isFunction.js"
 import NetworkError from "./NetworkError.js"
 
 import {createLink, DEFAULT_URL} from "./link.js"
@@ -23,10 +24,26 @@ const test = anyTest as TestFn<TestContext>
 const BASE_ENDPOINT = "/api/v1/json"
 const BASE_URL = `${DEFAULT_URL}${BASE_ENDPOINT}`
 
-// Disable all HTTP requests
-test.before(() => nock.disableNetConnect())
+let originalFetch: Fetch | undefined
 
-test.after.always(() => nock.enableNetConnect())
+// Disable all HTTP requests
+test.before(() => {
+  // Replace global fetch function with node-fetch if it exists on globalThis
+  // That way we prevent outbound requests (nock can only disable connections for native http client)
+  if (isFunction(globalThis.fetch)) {
+    globalThis.fetch = fetch as unknown as Fetch
+  }
+
+  nock.disableNetConnect()
+})
+
+test.after.always(() => {
+  nock.enableNetConnect()
+
+  if (isFunction(originalFetch)) {
+    globalThis.fetch = originalFetch
+  }
+})
 
 test.beforeEach(t => {
   t.context.fetch = spy(fetch as unknown as Fetch)
