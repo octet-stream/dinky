@@ -26,6 +26,7 @@ export class Tags extends Entities<r.Tag, r.TagsResponse> {
    * ```
    */
   getById(id: string, options?: LinkOptions): Promise<r.Tag> {
+    // TODO: Add slug normalization
     return super.getById(id, options)
   }
 }
