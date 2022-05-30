@@ -11,9 +11,9 @@ const step = (prev: MaybePromise<unknown>, next: Task) => (
 function waterfall<TResult = unknown>(
   tasks: Task[],
   initial: unknown = undefined
-): Promise<any> {
+): Promise<TResult> {
   if (tasks.length <= 1) {
-    return step(initial, tasks[0])
+    return step(initial, tasks[0]) as Promise<TResult>
   }
 
   return tasks.reduce(step, initial) as Promise<TResult>
