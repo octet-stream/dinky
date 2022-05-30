@@ -1,6 +1,7 @@
-import {Request, RequestOptionsWithoutPath} from "./Request.js"
+import type {RequestOptionsWithoutPath} from "./Request.js"
+import {Request} from "./Request.js"
 
-import {LinkOptions} from "./util/link.js"
+import type {LinkOptions} from "./util/link.js"
 
 const {isArray} = Array
 
@@ -268,3 +269,5 @@ export class Search<T> extends Request<T> {
     return super.exec<T>(options)
   }
 }
+
+export const search = <T>(options?: SearchOptions) => new Search<T>(options)

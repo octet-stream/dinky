@@ -1,5 +1,6 @@
-import {createLink, Link, CreateLinkOptions, LinkOptions} from "./util/link.js"
+import type {CreateLinkOptions, LinkOptions} from "./util/link.js"
 import {OnFulfilled, OnRejected} from "./util/PromiseCallbacks.js"
+import {createLink, Link} from "./util/link.js"
 
 import Query from "./util/Query.js"
 

@@ -1,7 +1,9 @@
 import r from "./responses"
 
-import {Entities, EntitiesOptions} from "./Entities.js"
-import {LinkOptions} from "./util/link.js"
+import {Entities} from "./Entities.js"
+import type {EntitiesOptions} from "./Entities.js"
+import type {LinkOptions} from "./util/link.js"
+import {instaniate} from "./util/instaniate.js"
 
 export class Filters extends Entities<r.Filter, r.FiltersResponse> {
   constructor(options?: EntitiesOptions) {
@@ -16,3 +18,5 @@ export class Filters extends Entities<r.Filter, r.FiltersResponse> {
     return this._link([...this._path, "user"], this._query, options)
   }
 }
+
+export const filters = instaniate(Filters)
