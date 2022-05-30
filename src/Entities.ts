@@ -8,6 +8,9 @@ export abstract class Entities<Response, Page> extends Request<Page> {
   /**
    * Gets one entity by their ID
    *
+   * @param id Entity unique ID
+   * @param options Additional link options
+   *
    * @example
    * ```
    * // You won't use this method directly from Entities, so let's say we want to get the first ever picture from Derpibooru:
