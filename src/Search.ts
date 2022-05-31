@@ -20,12 +20,12 @@ export type SearchTypes =
 /**
  * Available Search responses
  */
-export interface SearchTypesMap {
-  comments: r.Comment
-  galleries: r.Gallery
-  posts: r.Post
-  tags: r.Tag
-  images: r.Image
+export interface SearchResponseTypes {
+  comments: r.CommentsResponse
+  galleries: r.GalleriesResponse
+  posts: r.PostsResponse
+  tags: r.TagsResponse
+  images: r.ImagesResponse
 }
 
 /**
@@ -47,7 +47,7 @@ type DefaultSearchType = typeof DEFAULT_SEARCH_TYPE
 
 export class Search<
   T extends SearchTypes = DefaultSearchType
-> extends Request<SearchTypesMap[T]> {
+> extends Request<SearchResponseTypes[T]> {
   protected _type: string
 
   constructor({type, url, link, linkOptions}: SearchOptions<T> = {}) {
