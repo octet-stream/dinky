@@ -1,7 +1,5 @@
 import sinon, {SinonSpy} from "sinon"
 
-import Query from "../util/Query.js"
-
 import type {Link} from "../util/link.js"
 
 const {spy} = sinon
