@@ -1,6 +1,6 @@
 {
   "name": "dinky.js",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "JavaScript bindings for Philomena JSON API. Supports sites such as Derpibooru and Furbooru.",
   "type": "module",
   "types": "./@type/dinky.d.ts",
