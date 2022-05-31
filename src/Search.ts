@@ -1,10 +1,15 @@
-import type {RequestOptionsWithoutPath} from "./Request.js"
+import type {RequestOptionsWithoutPath as Options} from "./Request.js"
 import {Request} from "./Request.js"
+
+import r from "./responses"
 
 import type {LinkOptions} from "./util/link.js"
 
 const {isArray} = Array
 
+/**
+ * Available types of the Search responses
+ */
 export type SearchTypes =
   | "comments"
   | "galleries"
@@ -12,19 +17,40 @@ export type SearchTypes =
   | "tags"
   | "images"
 
-export interface SearchOptions extends RequestOptionsWithoutPath {
+/**
+ * Available Search responses
+ */
+export interface SearchTypesMap {
+  comments: r.Comment
+  galleries: r.Gallery
+  posts: r.Post
+  tags: r.Tag
+  images: r.Image
+}
+
+/**
+ * Additional Search options
+ */
+export interface SearchOptions<T extends SearchTypes> extends Options {
   /**
    * Indicates the type of search request
    */
-  readonly type?: SearchTypes
+  readonly type?: T
 }
 
+/**
+ * Default Search type
+ */
 export const DEFAULT_SEARCH_TYPE: SearchTypes = "images"
 
-export class Search<T> extends Request<T> {
+type DefaultSearchType = typeof DEFAULT_SEARCH_TYPE
+
+export class Search<
+  T extends SearchTypes = DefaultSearchType
+> extends Request<SearchTypesMap[T]> {
   protected _type: string
 
-  constructor({type, url, link, linkOptions}: SearchOptions = {}) {
+  constructor({type, url, link, linkOptions}: SearchOptions<T> = {}) {
     super({url, link, linkOptions, path: "search"})
 
     this._type = type ?? DEFAULT_SEARCH_TYPE
@@ -201,7 +227,7 @@ export class Search<T> extends Request<T> {
   /**
    * Adds a param to sort result by given field.
    *
-   * @param {string} field
+   * @param field
    */
   sortBy(field: string): this {
     this._query.set("sf", field)
@@ -210,7 +236,7 @@ export class Search<T> extends Request<T> {
   }
 
   /**
-   * Sets the "sf" parameter to "random"
+   * Sets the "sf" (sort field) parameter to "random"
    */
   random() {
     return this.sortBy("random")
@@ -230,12 +256,12 @@ export class Search<T> extends Request<T> {
    * await search.reverse("https://derpicdn.net/img/2019/12/24/2228439/full.jpg")
    * ```
    */
-  reverse<T>(url: string, options?: LinkOptions): Promise<T> {
+  reverse(url: string, options?: LinkOptions) {
     this._type = "reverse"
 
     this._query.set("url", url)
 
-    return this.exec<T>(options)
+    return this.exec(options)
   }
 
   /**
@@ -254,7 +280,7 @@ export class Search<T> extends Request<T> {
    * await search.exec()
    * ```
    */
-  async exec<T>(options?: LinkOptions) {
+  async exec(options?: LinkOptions) {
     const params = this._query.get("q") as string[]
     if (isArray(params) && params.length > 0) {
       this._query.set("q", params.join(","))
@@ -266,8 +292,10 @@ export class Search<T> extends Request<T> {
 
     this._path[1] = this._type
 
-    return super.exec<T>(options)
+    return super.exec(options)
   }
 }
 
-export const search = <T>(options?: SearchOptions) => new Search<T>(options)
+export const search = <T extends SearchTypes = DefaultSearchType>(
+  options?: SearchOptions<T>
+) => new Search<T>(options)

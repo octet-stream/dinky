@@ -14,6 +14,7 @@ export interface RequestOptions extends CreateLinkOptions {
 
 export type RequestOptionsWithoutPath = Omit<RequestOptions, "path">
 
+// TODO: Make Request abstract class
 export class Request<T> implements PromiseLike<T> {
   protected _link: Link
 
@@ -36,7 +37,7 @@ export class Request<T> implements PromiseLike<T> {
     return this
   }
 
-  exec<T>(options?: LinkOptions): Promise<T> {
+  exec(options?: LinkOptions): Promise<T> {
     return this._link<T>(this._path, this._query, options)
   }
 
@@ -44,10 +45,10 @@ export class Request<T> implements PromiseLike<T> {
     onFulfilled?: Maybe<OnFulfilled<T, TResult1>>,
     onRejected?: Maybe<OnRejected<TResult2>>
   ): Promise<TResult1 | TResult2> {
-    return this.exec<T>().then(onFulfilled, onRejected)
+    return this.exec().then(onFulfilled, onRejected)
   }
 
   catch<R = never>(onRejected?: OnRejected<R>): Promise<unknown> {
-    return this.exec<T>().catch(onRejected)
+    return this.exec().catch(onRejected)
   }
 }

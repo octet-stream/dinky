@@ -10,10 +10,16 @@ export class Filters extends Entities<r.Filter, r.FiltersResponse> {
     super({...options, path: "filters"})
   }
 
+  /**
+   * Returns list of the system filters
+   */
   system(options?: LinkOptions): Promise<r.FiltersResponse> {
     return this._link([...this._path, "system"], this._query, options)
   }
 
+  /**
+   * Returns list of public filters, created by users
+   */
   user(options?: LinkOptions): Promise<r.FiltersResponse> {
     return this._link([...this._path, "user"], this._query, options)
   }
