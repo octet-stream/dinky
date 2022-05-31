@@ -15,7 +15,7 @@ export interface RequestOptions extends CreateLinkOptions {
 export type RequestOptionsWithoutPath = Omit<RequestOptions, "path">
 
 // TODO: Make Request abstract class
-export class Request<T> implements PromiseLike<T> {
+export abstract class Request<T> implements PromiseLike<T> {
   protected _link: Link
 
   protected _path: string[]

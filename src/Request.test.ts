@@ -8,10 +8,12 @@ import {Request} from "./Request.js"
 
 const {spy} = sinon
 
+class NoopRequest<T> extends Request<T> { }
+
 test("Request calls the link on given path", async t => {
   const link = createNoopLink()
 
-  await new Request({link, path: "search"}).exec()
+  await new NoopRequest({link, path: "search"}).exec()
 
   const [[path]] = link.firstCall.args
 
@@ -21,7 +23,7 @@ test("Request calls the link on given path", async t => {
 test(".page() sets the page offset in query", async t => {
   const link = createNoopLink()
 
-  await new Request({link, path: []}).page(42)
+  await new NoopRequest({link, path: []}).page(42)
 
   const [, query] = link.firstCall.args
 
@@ -32,7 +34,7 @@ test(".page() sets the page offset in query", async t => {
 test(".page() sets default page offset in query", async t => {
   const link = createNoopLink()
 
-  await new Request({link, path: []}).page()
+  await new NoopRequest({link, path: []}).page()
 
   const [, query] = link.firstCall.args
 
@@ -45,7 +47,7 @@ test(".exec() takes per-request options", async t => {
 
   const link = createNoopLink()
 
-  await new Request({link, path: []}).exec(expected)
+  await new NoopRequest({link, path: []}).exec(expected)
 
   const [, , actual] = link.firstCall.args
 
@@ -56,7 +58,7 @@ test(".catch() correctly handles errors", async t => {
   const link = () => Promise.reject(new Error("Some error."))
   const onRejected = spy()
 
-  await new Request({link, path: []}).catch(onRejected)
+  await new NoopRequest({link, path: []}).catch(onRejected)
 
   t.true(onRejected.called)
 
