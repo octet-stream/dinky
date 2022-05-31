@@ -57,9 +57,9 @@ export class Search<
   }
 
   /**
-   * Add a tag or set of tags to the request
+   * Add one or more parameters for seach query query.
    *
-   * @param list A list of tags
+   * @param list A list of search parameters
    *
    * Basic example
    *
@@ -70,7 +70,7 @@ export class Search<
    *
    * search.query("princess luna")
    * ```
-   * With a few tags to search
+   * With a few params to search
    *
    * ```js
    * import {Search} from "dinky.js"
@@ -80,7 +80,7 @@ export class Search<
    * search.query("princess luna", "moonstuck")
    * ```
    *
-   * With a few tags, applied as a single array
+   * With a few params, applied as a single array
    *
    * ```js
    * import {Search} from "dinky.js"
