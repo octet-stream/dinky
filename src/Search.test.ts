@@ -2,7 +2,7 @@ import test from "ava"
 
 import {createNoopLink} from "./__helper__/createNoopLink.js"
 
-import {Search, DEFAULT_SEARCH_TYPE} from "./Search.js"
+import {Search, search, DEFAULT_SEARCH_TYPE} from "./Search.js"
 
 test("Creates a link to /api/v1/json/search", async t => {
   const link = createNoopLink()
@@ -12,6 +12,10 @@ test("Creates a link to /api/v1/json/search", async t => {
   const [[actual]] = link.firstCall.args
 
   t.is(actual, "search")
+})
+
+test("Can be instaniated using search function", t => {
+  t.true(search() instanceof Search)
 })
 
 test("Sets default search type", async t => {

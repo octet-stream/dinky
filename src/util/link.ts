@@ -1,5 +1,6 @@
-import camelCase from "camelcase-keys"
 import normalizeUrl from "normalize-url"
+import camelCase from "camelcase-keys"
+import merge from "lodash.merge"
 
 import getDefaultFetch from "./getDefaultFetch.js"
 import NetworkError from "./NetworkError.js"
@@ -72,15 +73,16 @@ export type Link = ReturnType<typeof createLink>
  * Creates a new link for target url
  */
 export function createLink(options: CreateLinkOptions = {}) {
-  const {url, linkOptions}: CreateLinkOptions = {
-    ...defaults,
-    ...options,
+  const {url, linkOptions}: CreateLinkOptions = merge(
+    {},
 
-    linkOptions: {
-      ...defaults?.linkOptions,
-      ...options?.linkOptions
+    defaults,
+    options,
+
+    {
+      linkOptions: merge({}, defaults?.linkOptions, options?.linkOptions)
     }
-  }
+  )
 
   // Create a request target.
   // Force the protocol to HTTPS.
@@ -98,15 +100,21 @@ export function createLink(options: CreateLinkOptions = {}) {
     // TODO: Should probably make base endpoint configurable
     path = ["/api/v1/json", ...path].filter(Boolean)
 
-    const {key, filter, fetchOptions, ...rest}: LinkOptions = {
-      ...linkOptions,
-      ...requestOptions,
+    const {key, filter, fetchOptions, ...rest}: LinkOptions = merge(
+      {},
 
-      fetchOptions: {
-        ...linkOptions.fetchOptions,
-        ...requestOptions?.fetchOptions
+      linkOptions,
+      requestOptions,
+
+      {
+        fetchOptions: merge(
+          {},
+
+          linkOptions.fetchOptions,
+          requestOptions?.fetchOptions
+        )
       }
-    }
+    )
 
     const fetch = isFunction(rest.fetch) ? rest.fetch : await getDefaultFetch()
 
