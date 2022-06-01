@@ -57,7 +57,7 @@ export class Search<
   }
 
   /**
-   * Add one or more parameters for seach query query.
+   * Add one or more parameters for seach query.
    *
    * @param list A list of search parameters
    *
