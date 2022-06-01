@@ -1,6 +1,6 @@
-import {LinkOptions} from "./util/link.js"
+import {LinkOptions} from "../util/link.js"
 
-import {Request, RequestOptionsWithoutPath} from "./Request.js"
+import {Request, RequestOptionsWithoutPath} from "../Request.js"
 
 export type EntitiesOptions = RequestOptionsWithoutPath
 

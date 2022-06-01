@@ -1,47 +1,30 @@
 import test from "ava"
 
-import {createNoopLink} from "./__helper__/createNoopLink.js"
+import {createNoopLink} from "../__helper__/createNoopLink.js"
 
-import {Search, search, DEFAULT_SEARCH_TYPE} from "./Search.js"
+import {Search} from "./Search.js"
+import type {BaseSearchOptions} from "./Search.js"
+
+class NoopSearch extends Search<"images"> {
+  constructor(options: BaseSearchOptions = {}) {
+    super({...options, type: "images"})
+  }
+}
 
 test("Creates a link to /api/v1/json/search", async t => {
   const link = createNoopLink()
 
-  await new Search({link})
+  await new NoopSearch({link})
 
   const [[actual]] = link.firstCall.args
 
   t.is(actual, "search")
 })
 
-test("Can be instaniated using search function", t => {
-  t.true(search() instanceof Search)
-})
-
-test("Sets default search type", async t => {
-  const link = createNoopLink()
-
-  await new Search({link})
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, DEFAULT_SEARCH_TYPE)
-})
-
-test("Sets the search type from option", async t => {
-  const link = createNoopLink()
-
-  await new Search({link, type: "tags"})
-
-  const [[, actual]] = link.firstCall.args
-
-  t.is(actual, "tags")
-})
-
 test("Creates search request without tags by default", async t => {
   const link = createNoopLink()
 
-  await new Search({link})
+  await new NoopSearch({link})
 
   const [, query] = link.firstCall.args
 
@@ -53,7 +36,7 @@ test(
   async t => {
     const link = createNoopLink()
 
-    await new Search({link}).query()
+    await new NoopSearch({link}).query()
 
     const [, query] = link.firstCall.args
 
@@ -64,7 +47,7 @@ test(
 test(".query() allows to pass a one tag from the string", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query("scootaloo")
+  await new NoopSearch({link}).query("scootaloo")
 
   const [, query] = link.firstCall.args
 
@@ -75,7 +58,7 @@ test(".query() allows to pass a one tag from the string", async t => {
 test(".query() allows to set tags from multiple strings", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query("artist:rainbow", "scootaloo")
+  await new NoopSearch({link}).query("artist:rainbow", "scootaloo")
 
   const [, query] = link.firstCall.args
 
@@ -86,7 +69,7 @@ test(".query() allows to set tags from multiple strings", async t => {
 test(".query() allows to set tags from array", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["artist:rainbow", "scootaloo"])
+  await new NoopSearch({link}).query(["artist:rainbow", "scootaloo"])
 
   const [, query] = link.firstCall.args
 
@@ -97,7 +80,7 @@ test(".query() allows to set tags from array", async t => {
 test(".query() allows to set tags from multiple arrays", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["artist:rainbow"], ["scootaloo"])
+  await new NoopSearch({link}).query(["artist:rainbow"], ["scootaloo"])
 
   const [, query] = link.firstCall.args
 
@@ -108,7 +91,7 @@ test(".query() allows to set tags from multiple arrays", async t => {
 test(".faves() sets my:faves to request", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).faves()
+  await new NoopSearch({link}).faves()
 
   const [, query] = link.firstCall.args
 
@@ -118,7 +101,7 @@ test(".faves() sets my:faves to request", async t => {
 test(".faves() appends my:faves to the existent tags set", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["scootaloo", "safe"]).faves()
+  await new NoopSearch({link}).query(["scootaloo", "safe"]).faves()
 
   const [, query] = link.firstCall.args
 
@@ -128,7 +111,7 @@ test(".faves() appends my:faves to the existent tags set", async t => {
 test(".watched() sets my:watched to request", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).watched()
+  await new NoopSearch({link}).watched()
 
   const [, query] = link.firstCall.args
 
@@ -138,7 +121,7 @@ test(".watched() sets my:watched to request", async t => {
 test(".watched() appends my:watched to the existent tags set", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["scootaloo", "safe"]).watched()
+  await new NoopSearch({link}).query(["scootaloo", "safe"]).watched()
 
   const [, query] = link.firstCall.args
 
@@ -148,7 +131,7 @@ test(".watched() appends my:watched to the existent tags set", async t => {
 test(".upvotes() sets my:upvotes to request", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).upvotes()
+  await new NoopSearch({link}).upvotes()
 
   const [, query] = link.firstCall.args
 
@@ -158,7 +141,7 @@ test(".upvotes() sets my:upvotes to request", async t => {
 test(".upvotes() appends my:upvotes to the existent tags set", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["scootaloo", "safe"]).upvotes()
+  await new NoopSearch({link}).query(["scootaloo", "safe"]).upvotes()
 
   const [, query] = link.firstCall.args
 
@@ -168,7 +151,7 @@ test(".upvotes() appends my:upvotes to the existent tags set", async t => {
 test(".downvotes() sets my:downvotes to request", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).downvotes()
+  await new NoopSearch({link}).downvotes()
 
   const [, query] = link.firstCall.args
 
@@ -178,7 +161,7 @@ test(".downvotes() sets my:downvotes to request", async t => {
 test(".downvotes() appends my:downvotes to the existent tags set", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["scootaloo", "safe"]).downvotes()
+  await new NoopSearch({link}).query(["scootaloo", "safe"]).downvotes()
 
   const [, query] = link.firstCall.args
 
@@ -188,7 +171,7 @@ test(".downvotes() appends my:downvotes to the existent tags set", async t => {
 test(".uploads() sets my:uploads to request", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).uploads()
+  await new NoopSearch({link}).uploads()
 
   const [, query] = link.firstCall.args
 
@@ -198,7 +181,7 @@ test(".uploads() sets my:uploads to request", async t => {
 test(".uploads() appends my:uploads to the existent tags set", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).query(["scootaloo", "safe"]).uploads()
+  await new NoopSearch({link}).query(["scootaloo", "safe"]).uploads()
 
   const [, query] = link.firstCall.args
 
@@ -208,7 +191,7 @@ test(".uploads() appends my:uploads to the existent tags set", async t => {
 test(".favedBy() sets faved_by parameter with the given user", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).favedBy("minuette")
+  await new NoopSearch({link}).favedBy("minuette")
 
   const [, query] = link.firstCall.args
 
@@ -218,7 +201,7 @@ test(".favedBy() sets faved_by parameter with the given user", async t => {
 test(".uploadedBy() sets uploader parameter with the given user", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).uploadedBy("minuette")
+  await new NoopSearch({link}).uploadedBy("minuette")
 
   const [, query] = link.firstCall.args
 
@@ -228,7 +211,7 @@ test(".uploadedBy() sets uploader parameter with the given user", async t => {
 test(".limit() adds the page limit (per_page param) to query", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).limit(42)
+  await new NoopSearch({link}).limit(42)
 
   const [, query] = link.firstCall.args
 
@@ -238,7 +221,7 @@ test(".limit() adds the page limit (per_page param) to query", async t => {
 test(".minScore() adds the minimal images score to query", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).minScore(420)
+  await new NoopSearch({link}).minScore(420)
 
   const [, query] = link.firstCall.args
 
@@ -248,7 +231,7 @@ test(".minScore() adds the minimal images score to query", async t => {
 test(".maxScore() adds the maximal images score to query", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).maxScore(2600)
+  await new NoopSearch({link}).maxScore(2600)
 
   const [, query] = link.firstCall.args
 
@@ -258,7 +241,7 @@ test(".maxScore() adds the maximal images score to query", async t => {
 test(".ascending() sets ordering to the ascending", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).ascending()
+  await new NoopSearch({link}).ascending()
 
   const [, query] = link.firstCall.args
 
@@ -268,7 +251,7 @@ test(".ascending() sets ordering to the ascending", async t => {
 test(".descending() sets ordering to the descending", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).descending()
+  await new NoopSearch({link}).descending()
 
   const [, query] = link.firstCall.args
 
@@ -278,7 +261,7 @@ test(".descending() sets ordering to the descending", async t => {
 test(".sortBy() sets sorting param with given field", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).sortBy("score")
+  await new NoopSearch({link}).sortBy("score")
 
   const [, query] = link.firstCall.args
 
@@ -288,7 +271,7 @@ test(".sortBy() sets sorting param with given field", async t => {
 test(".random() adds sf=random param to query", async t => {
   const link = createNoopLink()
 
-  await new Search({link}).random()
+  await new NoopSearch({link}).random()
 
   const [, query] = link.firstCall.args
 
@@ -301,7 +284,7 @@ test(
   async t => {
     const link = createNoopLink()
 
-    await new Search({link}).random()
+    await new NoopSearch({link}).random()
 
     const [, actual] = link.firstCall.args
 
@@ -316,7 +299,7 @@ test(
     const expected = "https://derpicdn.net/img/2019/12/24/2228439/full.jpg"
     const link = createNoopLink()
 
-    await new Search({link}).reverse(expected)
+    await new NoopSearch({link}).reverse(expected)
 
     const [[, searchType], query] = link.firstCall.args
 

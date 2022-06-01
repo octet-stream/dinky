@@ -1,9 +1,9 @@
-import r from "./responses"
+import r from "../responses"
 
 import {Entities} from "./Entities.js"
 import type {EntitiesOptions} from "./Entities.js"
-import type {LinkOptions} from "./util/link.js"
-import {instaniate} from "./util/instaniate.js"
+import type {LinkOptions} from "../util/link.js"
+import {instaniate} from "../util/instaniate.js"
 
 export class Images extends Entities<r.Image, r.ImagesResponse> {
   constructor(options?: EntitiesOptions) {

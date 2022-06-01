@@ -1,9 +1,9 @@
-import r from "./responses"
+import r from "../responses"
 
 import {Entities} from "./Entities.js"
 import type {EntitiesOptions} from "./Entities.js"
-import type {LinkOptions} from "./util/link.js"
-import {instaniate} from "./util/instaniate.js"
+import type {LinkOptions} from "../util/link.js"
+import {instaniate} from "../util/instaniate.js"
 
 export class Filters extends Entities<r.Filter, r.FiltersResponse> {
   constructor(options?: EntitiesOptions) {

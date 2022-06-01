@@ -1,16 +1,19 @@
-import type {RequestOptionsWithoutPath as Options} from "./Request.js"
-import {Request} from "./Request.js"
+import type {RequestOptionsWithoutPath} from "../Request.js"
 
-import r from "./responses"
+/* eslint-disable no-redeclare */
+/* eslint-disable @typescript-eslint/no-redeclare */
+import {Request} from "../Request.js"
 
-import type {LinkOptions} from "./util/link.js"
+import r from "../responses"
+
+import type {LinkOptions} from "../util/link.js"
 
 const {isArray} = Array
 
 /**
  * Available types of the Search responses
  */
-export type SearchTypes =
+export type SearchType =
   | "comments"
   | "galleries"
   | "posts"
@@ -20,7 +23,7 @@ export type SearchTypes =
 /**
  * Available Search responses
  */
-export interface SearchResponseTypes {
+export interface SearchResponses {
   comments: r.CommentsResponse
   galleries: r.GalleriesResponse
   posts: r.PostsResponse
@@ -29,31 +32,29 @@ export interface SearchResponseTypes {
 }
 
 /**
+ * Alias for SearchResponses
+ */
+type SR = SearchResponses
+
+export interface BaseSearchOptions extends RequestOptionsWithoutPath { }
+
+/**
  * Additional Search options
  */
-export interface SearchOptions<T extends SearchTypes> extends Options {
+export interface SearchOptions<T extends SearchType> extends BaseSearchOptions {
   /**
    * Indicates the type of search request
    */
-  readonly type?: T
+  readonly type: T
 }
 
-/**
- * Default Search type
- */
-export const DEFAULT_SEARCH_TYPE: SearchTypes = "images"
-
-type DefaultSearchType = typeof DEFAULT_SEARCH_TYPE
-
-export class Search<
-  T extends SearchTypes = DefaultSearchType
-> extends Request<SearchResponseTypes[T]> {
+export abstract class Search<T extends SearchType> extends Request<SR[T]> {
   protected _type: string
 
-  constructor({type, url, link, linkOptions}: SearchOptions<T> = {}) {
+  constructor({type, url, link, linkOptions}: SearchOptions<T>) {
     super({url, link, linkOptions, path: "search"})
 
-    this._type = type ?? DEFAULT_SEARCH_TYPE
+    this._type = type
   }
 
   /**
@@ -295,7 +296,3 @@ export class Search<
     return super.exec(options)
   }
 }
-
-export const search = <T extends SearchTypes = DefaultSearchType>(
-  options?: SearchOptions<T>
-) => new Search<T>(options)

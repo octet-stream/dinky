@@ -1,6 +1,6 @@
 import test from "ava"
 
-import {createNoopLink} from "./__helper__/createNoopLink.js"
+import {createNoopLink} from "../__helper__/createNoopLink.js"
 import {Entities} from "./Entities.js"
 
 class MyEntity extends Entities<unknown, unknown> { }
