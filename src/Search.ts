@@ -176,7 +176,7 @@ export class Search<
   /**
    * Specifies how many entities per page API will return.
    *
-   * @param {number} value An amount of entities you want to take.
+   * @param value An amount of entities you want to take.
    */
   limit(value: number): this {
     this._query.set("per_page", value)
@@ -281,7 +281,7 @@ export class Search<
    * ```
    */
   async exec(options?: LinkOptions) {
-    const params = this._query.get("q") as string[]
+    const params = this._query.get("q")
     if (isArray(params) && params.length > 0) {
       this._query.set("q", params.join(","))
     } else if (this._query.get("sf") === "random") {
