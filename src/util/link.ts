@@ -2,7 +2,9 @@ import normalizeUrl from "normalize-url"
 import camelCase from "camelcase-keys"
 import merge from "lodash.merge"
 
-import getDefaultFetch from "./getDefaultFetch.js"
+import {getDefaultFetch} from "./getDefaultFetch.js"
+import type {Fetch} from "./getDefaultFetch.js"
+
 import NetworkError from "./NetworkError.js"
 import isFunction from "./isFunction.js"
 import waterfall from "./waterfall.js"
@@ -13,7 +15,7 @@ export interface LinkOptions {
   /**
    * Fetch API compatible function
    */
-  readonly fetch?: typeof fetch
+  readonly fetch?: Fetch
 
   /**
    * Fetch options
@@ -134,5 +136,3 @@ export function createLink(options: CreateLinkOptions = {}) {
     return waterfall<T>([parse, normalize, cast], promise)
   }
 }
-
-export default createLink

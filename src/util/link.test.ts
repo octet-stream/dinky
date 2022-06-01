@@ -12,8 +12,7 @@ import isFunction from "./isFunction.js"
 import NetworkError from "./NetworkError.js"
 
 import {createLink, DEFAULT_URL} from "./link.js"
-
-type Fetch = typeof globalThis.fetch
+import type {Fetch} from "./getDefaultFetch.js"
 
 interface TestContext {
   fetch: SinonSpy<Parameters<Fetch>, ReturnType<Fetch>>

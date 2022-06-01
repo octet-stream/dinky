@@ -18,12 +18,14 @@ function getGlobalObject(): typeof globalThis {
 }
 /* c8 ignore stop */
 
-let cached: typeof globalThis.fetch | undefined
+export type Fetch = typeof globalThis.fetch
+
+let cached: Fetch | undefined
 
 /**
  * Returns default fetch function
  */
-async function getDefaultFetch(): Promise<typeof globalThis.fetch> {
+export async function getDefaultFetch(): Promise<Fetch> {
   if (cached) {
     return cached
   }
@@ -38,9 +40,7 @@ async function getDefaultFetch(): Promise<typeof globalThis.fetch> {
 
   const fetch = await import("node-fetch")
 
-  cached = fetch.default as typeof globalThis.fetch
+  cached = fetch.default as Fetch
 
   return cached
 }
-
-export default getDefaultFetch
