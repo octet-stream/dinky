@@ -65,18 +65,18 @@ export abstract class Search<T extends SearchType> extends Request<SR[T]> {
    * Basic example
    *
    * ```js
-   * import {Search} from "dinky.js"
+   * import {SearchImages} from "dinky.js"
    *
-   * const search = new Search()
+   * const search = new SearchImages()
    *
    * search.query("princess luna")
    * ```
    * With a few params to search
    *
    * ```js
-   * import {Search} from "dinky.js"
+   * import {SearchImages} from "dinky.js"
    *
-   * const search = new Search()
+   * const search = new SearchImages()
    *
    * search.query("princess luna", "moonstuck")
    * ```
@@ -84,9 +84,9 @@ export abstract class Search<T extends SearchType> extends Request<SR[T]> {
    * With a few params, applied as a single array
    *
    * ```js
-   * import {Search} from "dinky.js"
+   * import {SearchImages} from "dinky.js"
    *
-   * const search = new Search()
+   * const search = new SearchImages()
    *
    * search.query(["princess luna", "moonstuck"])
    * ```
@@ -111,6 +111,9 @@ export abstract class Search<T extends SearchType> extends Request<SR[T]> {
     return this
   }
 
+  /**
+   * Executes search query
+   */
   exec(options?: LinkOptions) {
     const params = this._query.get("q")
     if (isArray(params) && params.length > 0) {
