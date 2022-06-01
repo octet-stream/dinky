@@ -26,7 +26,7 @@ test(
 test("Passes the result of previous task to the next", async t => {
   const taskOne = spy(() => "Hello")
 
-  const taskTwo = spy(res => `${res}, world!`)
+  const taskTwo = spy((res: string) => `${res}, world!`)
 
   await waterfall([taskOne, taskTwo])
 
