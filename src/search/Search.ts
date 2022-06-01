@@ -36,10 +36,13 @@ export interface SearchResponses {
  */
 type SR = SearchResponses
 
+/**
+ * Additional Search options
+ */
 export interface BaseSearchOptions extends RequestOptionsWithoutPath { }
 
 /**
- * Additional Search options
+ * Additional Search options with search type
  */
 export interface SearchOptions<T extends SearchType> extends BaseSearchOptions {
   /**
@@ -48,6 +51,11 @@ export interface SearchOptions<T extends SearchType> extends BaseSearchOptions {
   readonly type: T
 }
 
+/**
+ * Implements abstract search interface.
+ *
+ * Endpoint: `/api/v1/json/search/[type]`
+ */
 export abstract class Search<T extends SearchType> extends Request<SR[T]> {
   protected _type: string
 

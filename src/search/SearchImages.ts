@@ -4,6 +4,11 @@ import {Search} from "./Search.js"
 
 export interface SearchImagesOptions extends BaseSearchOptions { }
 
+/**
+ * Implements `images` search interface
+ *
+ * Endpoint `/api/v1/json/search/images`
+ */
 export class SearchImages extends Search<"images"> {
   constructor(options: SearchImagesOptions = {}) {
     super({...options, type: "images"})
