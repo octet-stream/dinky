@@ -55,7 +55,10 @@ export interface SearchOptions<T extends SearchType> extends BaseSearchOptions {
  * Endpoint: `/api/v1/json/search/[type]`
  */
 export abstract class Search<T extends SearchType> extends Request<SR[T]> {
-  protected _type: string
+  /**
+   * Search type. Can be eiter one of the SearchType or "reverse" (a special type for images reverse search)
+   */
+  protected _type: SearchType | "reverse"
 
   constructor({type, url, link, linkOptions}: SearchOptions<T>) {
     super({url, link, linkOptions, path: "search"})

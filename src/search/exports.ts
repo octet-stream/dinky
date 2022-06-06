@@ -5,6 +5,7 @@ import {SearchComments} from "./SearchComments.js"
 import {SearchImages} from "./SearchImages.js"
 import {SearchPosts} from "./SearchPosts.js"
 import {SearchTags} from "./SearchTags.js"
+import {reverse} from "./reverse.js"
 
 export * from "./SearchGalleries.js"
 export * from "./SearchComments.js"
@@ -17,5 +18,6 @@ export const search = Object.freeze({
   posts: instaniate(SearchPosts),
   images: instaniate(SearchImages),
   comments: instaniate(SearchComments),
-  galleries: instaniate(SearchGalleries)
+  galleries: instaniate(SearchGalleries),
+  reverse
 })
