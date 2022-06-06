@@ -1,4 +1,4 @@
-import type {RequestOptionsWithoutPath} from "../Request.js"
+import type {BaseRequestOptions} from "../Request.js"
 
 import {Request} from "../Request.js"
 
@@ -37,7 +37,7 @@ type SR = SearchResponses
 /**
  * Additional Search options
  */
-export interface BaseSearchOptions extends RequestOptionsWithoutPath { }
+export interface BaseSearchOptions extends BaseRequestOptions { }
 
 /**
  * Additional Search options with search type
@@ -56,7 +56,8 @@ export interface SearchOptions<T extends SearchType> extends BaseSearchOptions {
  */
 export abstract class Search<T extends SearchType> extends Request<SR[T]> {
   /**
-   * Search type. Can be eiter one of the SearchType or "reverse" (a special type for images reverse search)
+   * Search type.
+   * Can be eiter one of the SearchType or "reverse" (a special type for images reverse search)
    */
   protected _type: SearchType | "reverse"
 
