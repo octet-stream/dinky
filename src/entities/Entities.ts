@@ -1,8 +1,8 @@
-import {LinkOptions} from "../util/link.js"
+import type {LinkOptions} from "../util/link.js"
 
-import {Request, RequestOptionsWithoutPath} from "../Request.js"
+import {Request, BaseRequestOptions} from "../Request.js"
 
-export type EntitiesOptions = RequestOptionsWithoutPath
+export interface EntitiesOptions extends BaseRequestOptions { }
 
 export abstract class Entities<Response, Page> extends Request<Page> {
   /**

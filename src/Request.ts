@@ -7,12 +7,18 @@ import Query from "./util/Query.js"
 
 const {isArray} = Array
 
-export interface RequestOptions extends CreateLinkOptions {
-  readonly path: string | string[]
+export interface BaseRequestOptions extends CreateLinkOptions {
   readonly link?: Link
 }
 
-export type RequestOptionsWithoutPath = Omit<RequestOptions, "path">
+/**
+ * @deprecated Use BaseRequestOptions instead
+ */
+export type RequestOptionsWithoutPath = BaseRequestOptions
+
+export interface RequestOptions extends BaseRequestOptions {
+  readonly path: string | string[]
+}
 
 export abstract class Request<T> implements PromiseLike<T> {
   protected _link: Link
