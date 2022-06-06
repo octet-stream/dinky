@@ -121,7 +121,7 @@ export abstract class Search<T extends SearchType> extends Request<SR[T]> {
    * Executes search query
    */
   exec(options?: LinkOptions) {
-    const params = this._query.get("q")
+    const params = this._query.get<string[]>("q")
     if (isArray(params) && params.length > 0) {
       this._query.set("q", params.join(","))
     }
