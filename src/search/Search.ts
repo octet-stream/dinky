@@ -1,7 +1,5 @@
 import type {RequestOptionsWithoutPath} from "../Request.js"
 
-/* eslint-disable no-redeclare */
-/* eslint-disable @typescript-eslint/no-redeclare */
 import {Request} from "../Request.js"
 
 import r from "../responses"
