@@ -1,5 +1,3 @@
-import isFunction from "./isFunction.js"
-
 /* eslint-disable no-undef, no-restricted-globals */
 
 /* c8 ignore start */
@@ -20,27 +18,17 @@ function getGlobalObject(): typeof globalThis {
 
 export type Fetch = typeof globalThis.fetch
 
-let cached: Fetch | undefined
-
 /**
  * Returns default fetch function
  */
 export async function getDefaultFetch(): Promise<Fetch> {
-  if (cached) {
-    return cached
+  if (typeof fetch === "function") {
+    const globalObject = getGlobalObject()
+
+    return globalObject.fetch
   }
 
-  const globalObject = getGlobalObject()
+  const module = await import("node-fetch")
 
-  if (isFunction(globalObject.fetch)) {
-    cached = globalObject.fetch
-
-    return cached
-  }
-
-  const fetch = await import("node-fetch")
-
-  cached = fetch.default as Fetch
-
-  return cached
+  return module.default as Fetch
 }
