@@ -161,7 +161,7 @@ export class SearchImages extends Search<"images"> {
    * ```
    */
   reverse(url: string, options?: LinkOptions) {
-    // Override search type to "reserve" so request will be send to the right search endpoing
+    // Override search type to "reserve" so request will be send to the right search endpoint
     this._type = "reverse"
 
     this._query.set("url", url)
