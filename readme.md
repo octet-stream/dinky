@@ -134,6 +134,7 @@ import {Search} from "dinky.js"
 
 const search = new Search({key: "<your key here>"})
 
+// You can search for `my:faves` images with specific tags
 await search.query(["trixie", "safe"]).faves()
 ```
 
