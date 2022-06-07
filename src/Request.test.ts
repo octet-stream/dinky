@@ -31,17 +31,6 @@ test(".page() sets the page offset in query", async t => {
   t.is(query.get("page") as number, 42)
 })
 
-test(".page() sets default page offset in query", async t => {
-  const link = createNoopLink()
-
-  await new NoopRequest({link, path: []}).page()
-
-  const [, query] = link.firstCall.args
-
-  t.true(query.has("page"))
-  t.is(query.get("page") as number, 1)
-})
-
 test(".exec() takes per-request options", async t => {
   const expected = {key: "secret", filter: 100073}
 

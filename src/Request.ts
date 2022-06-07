@@ -36,7 +36,7 @@ export abstract class Request<T> implements PromiseLike<T> {
   /**
    * Sets the page number
    */
-  page(value: number = 1): this {
+  page(value: number): this {
     this._query.set("page", value)
 
     return this
