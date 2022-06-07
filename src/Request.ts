@@ -35,6 +35,8 @@ export abstract class Request<T> implements PromiseLike<T> {
 
   /**
    * Sets the page number
+   *
+   * @param value Page number to navigate to
    */
   page(value: number): this {
     this._query.set("page", value)
@@ -42,14 +44,19 @@ export abstract class Request<T> implements PromiseLike<T> {
     return this
   }
 
+  /**
+   * Executes current Request to Philomena API
+   *
+   * @param options Additional request options
+   */
   exec(options?: LinkOptions): Promise<T> {
     return this._link<T>(this._path, this._query, options)
   }
 
-  then<TResult1 = T, TResult2 = never>(
-    onFulfilled?: Maybe<OnFulfilled<T, TResult1>>,
-    onRejected?: Maybe<OnRejected<TResult2>>
-  ): Promise<TResult1 | TResult2> {
+  then<TResult = T, TReason = never>(
+    onFulfilled?: Maybe<OnFulfilled<T, TResult>>,
+    onRejected?: Maybe<OnRejected<TReason>>
+  ): Promise<TResult | TReason> {
     return this.exec().then(onFulfilled, onRejected)
   }
 

@@ -19,7 +19,9 @@ function getGlobalObject(): typeof globalThis {
 export type Fetch = typeof globalThis.fetch
 
 /**
- * Returns default fetch function
+ * Returns default fetch function.
+ * This function will check if fetch is presented on globalThis object and return it.
+ * If the function is not presented, `node-fetch` will be used as ponyfill
  */
 export async function getDefaultFetch(): Promise<Fetch> {
   if (typeof fetch === "function") {

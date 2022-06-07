@@ -2,16 +2,32 @@ import test from "ava"
 
 import Query from "./Query.js"
 
+test("Constructor accepts array as the argument", t => {
+  const query = new Query([["key", "value"]])
+
+  t.is(query.get("key"), "value")
+})
+
+test("Constructor asserts keys", t => {
+  // @ts-expect-error
+  const trap = () => new Query([[42, "has invalid key"]])
+
+  t.throws(trap, {
+    instanceOf: TypeError,
+    message: "Key must be a string."
+  })
+})
+
 test(".set() allows only string keys", t => {
   const query = new Query()
 
   // @ts-ignore
   const trap = () => query.set({}, "some value")
 
-  const err = t.throws(trap)
-
-  t.true(err instanceof TypeError)
-  t.is(err.message, "Given key must be a string.")
+  t.throws(trap, {
+    instanceOf: TypeError,
+    message: "Key must be a string."
+  })
 })
 
 test(".get() allows only string keys", t => {
@@ -20,10 +36,10 @@ test(".get() allows only string keys", t => {
   // @ts-ignore
   const trap = () => query.get({})
 
-  const err = t.throws(trap)
-
-  t.true(err instanceof TypeError)
-  t.is(err.message, "Given key must be a string.")
+  t.throws(trap, {
+    instanceOf: TypeError,
+    message: "Key must be a string."
+  })
 })
 
 test(".get() returns a value by its key", t => {
@@ -40,10 +56,10 @@ test(".has() allows only string keys", t => {
   // @ts-ignore
   const trap = () => query.has({})
 
-  const err = t.throws(trap)
-
-  t.true(err instanceof TypeError)
-  t.is(err.message, "Given key must be a string.")
+  t.throws(trap, {
+    instanceOf: TypeError,
+    message: "Key must be a string."
+  })
 })
 
 test(".has() returns true for known keys and false for unknown", t => {
@@ -61,10 +77,10 @@ test(".delete() allows only string keys", t => {
   // @ts-ignore
   const trap = () => query.delete({})
 
-  const err = t.throws(trap)
-
-  t.true(err instanceof TypeError)
-  t.is(err.message, "Given key must be a string.")
+  t.throws(trap, {
+    instanceOf: TypeError,
+    message: "Key must be a string."
+  })
 })
 
 test(".delete() removes value by its key", t => {

@@ -2,15 +2,27 @@
 /* eslint-disable @typescript-eslint/no-useless-constructor */
 import isString from "./isString.js"
 
-function assertKey(key: unknown) {
+import {Maybe} from "./Maybe"
+
+type Entry = readonly [string, unknown]
+
+function assertKey(key: unknown): never | void {
   if (!isString(key)) {
-    throw TypeError("Given key must be a string.")
+    throw TypeError("Key must be a string.")
+  }
+}
+
+function* assertKeys(entries: Iterable<Entry>): Generator<Entry, void> {
+  for (const [key, value] of entries) {
+    assertKey(key)
+
+    yield [key, value]
   }
 }
 
 class Query extends Map<string, unknown> {
-  constructor() {
-    super()
+  constructor(entries?: Maybe<Iterable<Entry>>) {
+    super(entries ? assertKeys(entries) : undefined)
   }
 
   set(key: string, value: unknown) {

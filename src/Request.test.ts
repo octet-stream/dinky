@@ -28,7 +28,7 @@ test(".page() sets the page offset in query", async t => {
   const [, query] = link.firstCall.args
 
   t.true(query.has("page"))
-  t.is(query.get("page") as number, 42)
+  t.is(query.get("page"), 42)
 })
 
 test(".exec() takes per-request options", async t => {
