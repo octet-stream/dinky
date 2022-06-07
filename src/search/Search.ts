@@ -1,10 +1,8 @@
 import type {BaseRequestOptions} from "../Request.js"
-
+import type {LinkOptions} from "../util/link.js"
 import {Request} from "../Request.js"
 
 import r from "../responses"
-
-import type {LinkOptions} from "../util/link.js"
 
 const {isArray} = Array
 
