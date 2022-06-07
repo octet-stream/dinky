@@ -147,6 +147,6 @@ Full documentation can be found in [`/docs`](https://github.com/octet-stream/din
 * Derpibooru API documentation can be found here: [derpibooru.org/pages/api](https://derpibooru.org/pages/api)
 
 ## Another API bindings:
-* [derpiboorust](https://github.com/Ralvke/derpiboorust) – Rust
+* [derpiboorust](https://github.com/mxseev/derpiboorust) – Rust
 * [DerPyBooru](https://github.com/joshua-stone/DerPyBooru) – Python
 * [derpigo](https://github.com/Xe/derpigo) – Go
