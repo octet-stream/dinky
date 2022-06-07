@@ -4,7 +4,13 @@ Implements `images` search interface.
 
 Endpoint `/api/v1/json/search/images`
 
+Source code [`search/SearchImages.ts`](https://github.com/octet-stream/dinky/blob/master/src/search/SearchImages.ts)
+
+#### `page(value: number): SearchImages`
+
 #### `query(params: string[]): SearchImages`
+
+Add one or more parameters for `SearchImages` query.
 
 ```js
 import {SearchImages} from "dinky.js"
@@ -145,11 +151,19 @@ Implements `tags` search interface.
 
 Endpoint `/api/v1/json/search/tags`
 
+Source code [`search/SearchTags.ts`](https://github.com/octet-stream/dinky/blob/master/src/search/SearchTags.ts)
+
 ### SearchComments
 
 Implements `comments` search interface.
 
 Endpoint `/api/v1/json/search/comments`
+
+Source code [`search/SearchComments.ts`](https://github.com/octet-stream/dinky/blob/master/src/search/SearchComments.ts)
+
+#### `query(params: string[]): SearchComments`
+
+Add one or more parameters for `SearchComments` query.
 
 ### SearchGalleries
 
@@ -157,8 +171,20 @@ Implements `galleries` search interface.
 
 Endpoint `/api/v1/json/search/galleries`
 
+Source code [`search/SearchGalleries.ts`](https://github.com/octet-stream/dinky/blob/master/src/search/SearchGalleries.ts)
+
+#### `query(params: string[]): SearchGalleries`
+
+Add one or more parameters for `SearchGalleries` query.
+
 ### SearchPosts
 
 Implements `posts` search interface.
 
 Endpoint `/api/v1/json/search/posts`
+
+Source code [`search/SearchPosts.ts`](https://github.com/octet-stream/dinky/blob/master/src/search/SearchPosts.ts)
+
+#### `query(params: string[]): SearchPosts`
+
+Add one or more parameters for `SearchPosts` query.

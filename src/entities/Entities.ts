@@ -4,6 +4,11 @@ import {Request, BaseRequestOptions} from "../Request.js"
 
 export interface EntitiesOptions extends BaseRequestOptions { }
 
+/**
+ * Implements abstract entites interface.
+ *
+ * Endpoint `/api/v1/json/[entity]`
+ */
 export abstract class Entities<Response, Page> extends Request<Page> {
   /**
    * Gets one entity by their ID

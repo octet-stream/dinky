@@ -5,6 +5,11 @@ import type {EntitiesOptions} from "./Entities.js"
 import type {LinkOptions} from "../util/link.js"
 import {instaniate} from "../util/instaniate.js"
 
+/**
+ * Implements `tags` entites interface.
+ *
+ * Endpoint `/api/v1/json/tags`
+ */
 export class Tags extends Entities<r.Tag, r.TagsResponse> {
   constructor(options?: EntitiesOptions) {
     super({...options, path: "tags"})

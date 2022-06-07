@@ -5,6 +5,11 @@ import type {EntitiesOptions} from "./Entities.js"
 import type {LinkOptions} from "../util/link.js"
 import {instaniate} from "../util/instaniate.js"
 
+/**
+ * Implements `images` entites interface.
+ *
+ * Endpoint `/api/v1/json/images`
+ */
 export class Images extends Entities<r.Image, r.ImagesResponse> {
   constructor(options?: EntitiesOptions) {
     super({...options, path: "images"})
