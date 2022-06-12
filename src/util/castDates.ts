@@ -15,7 +15,9 @@ const fields = [
  * @param object An object of the API response
  */
 const castDates = (object: object) => map(
-  object, (value: number | string, key) => {
+  object,
+
+  (value: number | string, key) => {
     if (!fields.includes(key as any)) {
       return value
     }

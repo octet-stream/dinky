@@ -5,6 +5,7 @@ interface Task {
 }
 
 const step = (prev: MaybePromise<unknown>, next: Task) => (
+  // eslint-disable-next-line promise/no-callback-in-promise
   Promise.resolve(prev).then(res => next(res))
 )
 

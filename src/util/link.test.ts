@@ -1,6 +1,7 @@
 /* eslint-disable no-undef, no-restricted-globals */
 /* eslint no-redeclare: ["error", { "builtinGlobals": false }] */
 /* eslint @typescript-eslint/no-redeclare: ["error", { "builtinGlobals": false }] */
+/* eslint-disable no-shadow */
 import fetch, {Response} from "node-fetch"
 import {spy, SinonSpy} from "sinon"
 import nock from "nock" // TODO: Find a way to isolate nock betwen tests?
@@ -309,6 +310,10 @@ test("Throws an error for non 2xx response", async t => {
       instanceOf: NetworkError
     }
   )
+
+  if (!err) {
+    return void t.fail("The t.throwsAsync assertion returned nothing.")
+  }
 
   t.true(err.message.startsWith("Network error:"))
   t.true(err.response instanceof Response)
